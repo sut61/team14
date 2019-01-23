@@ -7,4 +7,5 @@ import java.util.Collection;
 @RepositoryRestResource
 public interface GenderRepository extends JpaRepository<Gender,Long> {
     Gender findById(long id);
+    Gender findByGender(String id);
 }
