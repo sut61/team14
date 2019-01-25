@@ -1,0 +1,72 @@
+<main>
+    <mat-toolbar style="background-color: #DFC8EF">
+        <span class="fill-remaining-space"></span>
+        <button mat-button [routerLink]="['/Manager']"><font size = "4"><b>Manager</b></font></button>
+        <button mat-button [routerLink]="['/profile']"><font size = "4"><b>Dess</b></font></button>
+        <button mat-button [routerLink]="['/profile']"><font size = "4"><b>Finance</b></font></button>
+        <button mat-button (click)="logout()"><font size = "4"><b>Login</b></font></button>
+    </mat-toolbar>
+    
+    <div align="center">
+      <p><font size="10">ระบบจัดเก็บข้อมูลศิลปิน</font></p>
+
+<table mat-table [dataSource]="Artists" class="mat-elevation-z8">
+  
+  <ng-container matColumnDef="artistsID">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>No.</b></font> </th>
+    <td mat-cell *matCellDef="let element ">{{element.artistsID}}</td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Fistname</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Lastname</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+  </ng-container>
+
+ 
+  <ng-container matColumnDef="nickname">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Nickname</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.nickname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthday">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Birthday</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Phone</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Gender</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.gender.gender}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="manager">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Manage</b>r</font></th>
+    <td mat-cell *matCellDef="let element"> {{element.manager.username}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="band">
+    <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Band</b></font></th>
+    <td mat-cell *matCellDef="let element"> {{element.band.bandname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="typeMusic">
+      <th mat-header-cell *matHeaderCellDef><font size ="4"><b>TypeMusic</b></font></th>
+      <td mat-cell *matCellDef="let element"> {{element.typeMusic.typemusics}} </td>
+    </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<button mat-flat-button [routerLink]="['/artists']">กลับ</button>
+</div>
+</main>
