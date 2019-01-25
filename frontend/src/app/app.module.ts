@@ -50,6 +50,7 @@ import { ArtistsComponent } from './artists/artists.component';
 
 import { ShowArtistsComponent } from './show-artists/show-artists.component';
 
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
 
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     MoneyComponent,
     LoginAdminComponent,
     ArtistsComponent,
-    ShowArtistsComponent
+    ShowArtistsComponent,
+    RegisterComponent
 
   ],
   imports: [
@@ -101,9 +103,10 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'money', component:MoneyComponent},
+      { path:'money', component:MoneyComponent},
       {path:'artists',component:ArtistsComponent},
-      {path:'show-artists',component:ShowArtistsComponent}
+      {path:'show-artists',component:ShowArtistsComponent},
+      {path:'register',component:RegisterComponent}
 
     ])
   ],
