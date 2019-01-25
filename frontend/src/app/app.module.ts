@@ -40,17 +40,21 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { MoneyService } from './shared/money/money.service';
+import { ManageService } from './shared/manage/manage.service';
+
 import { MoneyComponent } from './money/money.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 const appRoutes: Routes = [
-  
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     MoneyComponent,
-    
+    LoginAdminComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -90,10 +94,10 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot([
       { path: 'money', component:MoneyComponent},
-     
+
     ])
   ],
-  providers: [MoneyService],
+  providers: [MoneyService,ManageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
