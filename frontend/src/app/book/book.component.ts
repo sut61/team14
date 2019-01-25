@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuereService} from '../service/quere.service';
+import { QuereService} from '../shared/quere.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
