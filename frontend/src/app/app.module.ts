@@ -51,6 +51,8 @@ import { ArtistsComponent } from './artists/artists.component';
 import { ShowArtistsComponent } from './show-artists/show-artists.component';
 
 import { RegisterComponent } from './register/register.component';
+import { RegisterControlService } from 'src/app/shared/register-control/register-control.service';
+import {ProfileComponent} from './profile/profile.component';
 
 const appRoutes: Routes = [
 
@@ -63,7 +65,8 @@ const appRoutes: Routes = [
     LoginAdminComponent,
     ArtistsComponent,
     ShowArtistsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
 
   ],
   imports: [
@@ -106,11 +109,12 @@ const appRoutes: Routes = [
       { path:'money', component:MoneyComponent},
       {path:'artists',component:ArtistsComponent},
       {path:'show-artists',component:ShowArtistsComponent},
-      {path:'register',component:RegisterComponent}
+      {path:'register',component:RegisterComponent},
+      {path:'profile',component:ProfileComponent}
 
     ])
   ],
-  providers: [MoneyService,ManageService,ArtistsService],
+  providers: [MoneyService,ManageService,ArtistsService,RegisterControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
