@@ -1,3 +1,9 @@
+<mat-toolbar style="background-color: #c899d9">
+  <span class="fill-remaining-space"></span>
+  <button mat-button [routerLink]="['/book']">Book</button>
+  <button mat-button [routerLink]="['/profile']">Profile</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <mat-toolbar [style.backgroundColor]="'#000033'"><!--สร้างแถบสีข้างบน-->
   <label class="headtxt">ระบบจองคิวงาน</label>
 </mat-toolbar>
@@ -10,7 +16,7 @@
         <div class="nametxt">
           <label>ชื่อ-นามสกุล  </label>
           <div id="box_name">
-            {{user.firstName}}
+            {{user.name}}
           </div>
         </div>
       </div>
@@ -57,8 +63,8 @@
 
      <br>
       <mat-select placeholder=" " [(ngModel)]="setData.artistSelect" name="artistName" id="select">
-        <mat-option *ngFor="let artist of artists" [value]="artist.artistId">
-          {{artist.artistname}} ( {{artist.price}} บาท/ชั่วโมง )
+        <mat-option *ngFor="let artist of artists" [value]="artist.artistsID">
+          {{artist.firstname}} ( {{artist.price}} บาท/ชั่วโมง )
         </mat-option>
       </mat-select><br>
 

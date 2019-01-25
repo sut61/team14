@@ -61,10 +61,7 @@ public class DressController {
     public Collection<Type> type() {
         return typeRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/artists")
-    public Collection<Artists> artists() {
-        return artistsRepository.findAll().stream().collect(Collectors.toList());
-    }
+
     @GetMapping("/event")
     public Collection<Event> event() {
         return eventRepository.findAll().stream().collect(Collectors.toList());

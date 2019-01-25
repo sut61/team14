@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { Router, RouterModule } from '@angular/router';
-import { ArtistsService } from 'src/app/artists.service';
+import { ArtistsService } from '../shared/artists/artists.service';
 
 @Component({
   selector: 'app-artists',

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { QuereService} from '../shared/quere.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
+import { QuereService} from '../shared/book/quere.service';
+
 @Component({
   selector: 'app-bookshow',
   templateUrl: './bookshow.component.html',

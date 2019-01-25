@@ -67,7 +67,7 @@ public class MoneyController {
 
     @GetMapping("/findDress/{id}")
     public Dress findDress(@PathVariable int id) {
-        Dress dress = dressRepository.findByIdDress(id);
+        Dress dress = dressRepository.findById(id);
         return dress;
     }
 
@@ -85,7 +85,7 @@ public class MoneyController {
                                ){
                         
     
-    Dress d = dressRepository.findByIdDress(dress);
+    Dress d = dressRepository.findById(dress);
     Quere q = quereRepository.findById(queue);
     Artists a = artistRepository.findByfirstname(artist);
    
