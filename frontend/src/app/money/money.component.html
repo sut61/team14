@@ -1,0 +1,59 @@
+<div style="text-align:center ;margin:2px auto;width: 60%;">
+    <h1></h1>
+</div>
+<fieldset>
+    <legend style="font: 50px sans-serif;color: red"> การเงิน </legend>
+    <fieldset>
+        <legend style="color:  green;">
+            <!--เพิ่ม Insurance แบบเลอืก id จาก DB-->
+            <mat-card-title>เช็คข้อมูลและบันทึก</mat-card-title>
+        </legend>
+
+        <mat-card style="margin:5px auto;width: 60%;">
+            <mat-card-content>
+                <form>
+                    <mat-form-field>
+                        <mat-select placeholder="ไอดี : ชื่อศิลปิน" [(ngModel)]="ids.artistSelect" name="idArtist" #idArtist>
+                            <mat-option *ngFor="let id of id_artist" [value]=[id.firstname] text="number">
+                                {{id.idArtist}} : {{id.firstname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <mat-select placeholder="ชุด : ชื่อศิลปิน" [(ngModel)]="ids.dressSelect" name="idDress" #idDress>
+                            <mat-option *ngFor="let id of id_dress" [value]=[id.idDress]  text="number">
+                                {{id.dress}} : {{id.idArtist.firstname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+
+                <mat-form-field>
+                    <input matInput [(ngModel)]="priceExpenses" type="number" placeholder="รายจ่าย">
+                </mat-form-field>
+
+                <form>
+                    <mat-form-field>
+                        <mat-select placeholder="คิว : ชื่อศิลปิน" [(ngModel)]="ids.queueSelect" name="idQueue" #idQueue>
+                            <mat-option *ngFor="let id of id_queue" [value]=[id.id] text="number">
+                                {{id.id}} : {{id.artistQuere.firstname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </form>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="priceIncome" type="number" placeholder="รายรับ">
+                </mat-form-field>
+            </mat-card-content>
+            <h1 style="margin:10px">
+                <!--button mat-raised-button (click)="refresh()" color="warn">refresh</button-->
+
+                <button mat-raised-button (click)="insertMoney()" color="primary">บันทึกข้อมูล</button>
+            </h1>
+
+        </mat-card>
+    </fieldset>
+</fieldset>
