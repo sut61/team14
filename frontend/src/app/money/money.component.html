@@ -15,7 +15,7 @@
                     <mat-form-field>
                         <mat-select placeholder="ไอดี : ชื่อศิลปิน" [(ngModel)]="ids.artistSelect" name="idArtist" #idArtist>
                             <mat-option *ngFor="let id of id_artist" [value]=[id.firstname] text="number">
-                                {{id.idArtist}} : {{id.firstname}}
+                                {{id.artistsID}} : {{id.firstname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -23,8 +23,8 @@
                 <form>
                     <mat-form-field>
                         <mat-select placeholder="ชุด : ชื่อศิลปิน" [(ngModel)]="ids.dressSelect" name="idDress" #idDress>
-                            <mat-option *ngFor="let id of id_dress" [value]=[id.idDress]  text="number">
-                                {{id.dress}} : {{id.idArtist.firstname}}
+                            <mat-option *ngFor="let id of id_dress" [value]=[id.id]  text="number">
+                                {{id.dress}} : {{id.artist.firstname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

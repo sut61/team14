@@ -58,7 +58,6 @@ export class MoneyComponent implements OnInit {
 
     this.moneyService.getIdArtist().subscribe(data => {
       this.id_artist = data;
-
       console.log(this.id_artist);
     });
 
@@ -92,7 +91,7 @@ export class MoneyComponent implements OnInit {
           this.dress = data;
           console.log(this.dress);
 
-          if (this.dress.idArtist.firstname == this.ids.artistSelect && this.queue.artistQuere.firstname == this.ids.artistSelect) {
+          if (this.dress.artist.firstname == this.ids.artistSelect && this.queue.artistQuere.firstname == this.ids.artistSelect) {
             this.httpClient.post('http://localhost:8080/Money/' + this.ids.artistSelect + '/'
               + this.ids.dressSelect + '/' + this.priceExpenses + '/' + this.ids.queueSelect + '/' + this.priceIncome
               , this.ids).subscribe(data => {
