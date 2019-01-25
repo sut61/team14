@@ -53,6 +53,7 @@ import { ShowArtistsComponent } from './show-artists/show-artists.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterControlService } from 'src/app/shared/register-control/register-control.service';
 import {ProfileComponent} from './profile/profile.component';
+import { LoginCusComponent } from './login-cus/login-cus.component';
 
 const appRoutes: Routes = [
 
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     ArtistsComponent,
     ShowArtistsComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginCusComponent
 
   ],
   imports: [
@@ -110,8 +112,8 @@ const appRoutes: Routes = [
       {path:'artists',component:ArtistsComponent},
       {path:'show-artists',component:ShowArtistsComponent},
       {path:'register',component:RegisterComponent},
-      {path:'profile',component:ProfileComponent}
-
+      {path:'profile',component:ProfileComponent},
+      {path:'login-cus',component:LoginCusComponent}
     ])
   ],
   providers: [MoneyService,ManageService,ArtistsService,RegisterControlService],

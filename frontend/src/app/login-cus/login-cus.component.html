@@ -1,0 +1,27 @@
+<body>
+
+  <div class="signin-content">
+
+      <p style="width: 66%; text-align: right">
+          <button mat-raised-button color="primary" style="width: 100px; margin-left: 15px; background-color: chocolate"
+            [routerLink]="['/Login/admin']">for Admin</button> </p>
+    <mat-card>
+
+      <h3 style="font-size:30px;">Login </h3>
+      <mat-card-content>
+
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Username" [(ngModel)]="usernameLogin">
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Password" [(ngModel)]="passwordLogin">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="login()">Login</button>
+
+      </mat-card-content>
+      <br>
+      <a [routerLink]="['/register']">Create an account.</a>
+
+    </mat-card>
+  </div>
+</body>
