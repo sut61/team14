@@ -45,6 +45,9 @@ import { ManageService } from './shared/manage/manage.service';
 import { MoneyComponent } from './money/money.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 
+import {ArtistsService} from './shared/artists/artists.service';
+import { ArtistsComponent } from './artists/artists.component';
+
 const appRoutes: Routes = [
 
 ];
@@ -54,6 +57,7 @@ const appRoutes: Routes = [
     AppComponent,
     MoneyComponent,
     LoginAdminComponent,
+    ArtistsComponent
 
   ],
   imports: [
@@ -97,7 +101,7 @@ const appRoutes: Routes = [
 
     ])
   ],
-  providers: [MoneyService,ManageService],
+  providers: [MoneyService,ManageService,ArtistsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
