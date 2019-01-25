@@ -43,7 +43,11 @@ import { MoneyService } from './shared/money/money.service';
 import { ManageService } from './shared/manage/manage.service';
 
 import { MoneyComponent } from './money/money.component';
+
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ContactComponent } from './contact/contact.component';
+import { InfomanagerComponent } from './infomanager/infomanager.component';
 
 import {ArtistsService} from './shared/artists/artists.service';
 import { ArtistsComponent } from './artists/artists.component';
@@ -56,7 +60,13 @@ import {ProfileComponent} from './profile/profile.component';
 import { LoginCusComponent } from './login-cus/login-cus.component';
 
 const appRoutes: Routes = [
-
+  {path: '',  redirectTo: 'login-cus', pathMatch: 'full'},
+  {path:'money', component:MoneyComponent},
+  {path:'artists',component:ArtistsComponent},
+  {path:'show-artists',component:ShowArtistsComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'profile',component:ProfileComponent},
+  {path:'login-cus',component:LoginCusComponent}
 ];
 
 @NgModule({
@@ -68,7 +78,10 @@ const appRoutes: Routes = [
     ShowArtistsComponent,
     RegisterComponent,
     ProfileComponent,
-    LoginCusComponent
+    LoginCusComponent,
+    ManagerComponent,
+    ContactComponent,
+    InfomanagerComponent,
 
   ],
   imports: [
@@ -107,14 +120,7 @@ const appRoutes: Routes = [
     MatSortModule,
     MatPaginatorModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path:'money', component:MoneyComponent},
-      {path:'artists',component:ArtistsComponent},
-      {path:'show-artists',component:ShowArtistsComponent},
-      {path:'register',component:RegisterComponent},
-      {path:'profile',component:ProfileComponent},
-      {path:'login-cus',component:LoginCusComponent}
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [MoneyService,ManageService,ArtistsService,RegisterControlService],
   bootstrap: [AppComponent]
