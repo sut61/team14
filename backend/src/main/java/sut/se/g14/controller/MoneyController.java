@@ -77,23 +77,7 @@ public class MoneyController {
         return artistRepository.save(artist);
     }
 
-    @PostMapping("/Dress/{artist}/{nameDress}")
-    public Dress dress(Dress dress,@PathVariable int artist,@PathVariable String nameDress){
-        Artists artists = artistRepository.findByIdArtist(artist);
 
-        dress.setIdArtist(artists);
-        dress.setDress(nameDress);
-        return dressRepository.save(dress);
-    }
-
-    @PostMapping("/Queue/{artist}/{nameQueue}")
-    public Quere queue(Quere queue,@PathVariable int artist,@PathVariable String nameQueue){
-        Artists artists = artistRepository.findByIdArtist(artist);
-
-        queue.setartistQuere(artists);
-       
-        return quereRepository.save(queue);
-    }
     // ===========================================================================================
     @PostMapping("/Money/{artist}/{dress}/{priceExpenses}/{queue}/{priceIncome}")
     public MoneyEntity moneyEntity(MoneyEntity moneyEntity,@PathVariable String artist,@PathVariable int dress
@@ -107,7 +91,7 @@ public class MoneyController {
    
     moneyEntity.setnameDress(d.getDress());
     
-    moneyEntity.setnameArtist(a.getfirstname());
+    moneyEntity.setnameArtist(a.getFirstname());
 
     moneyEntity.setIdQueue(q);
 

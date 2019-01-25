@@ -1,7 +1,7 @@
-package com.example.demo.Controller;
+package sut.se.g14.controller;
 
-import com.example.demo.Repository.*;
-import com.example.demo.Entity.*;
+import sut.se.g14.repository.*;
+import sut.se.g14.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

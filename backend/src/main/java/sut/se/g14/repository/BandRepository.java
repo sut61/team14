@@ -1,6 +1,6 @@
-package com.example.demo.Repository;
+package sut.se.g14.repository;
 
-import com.example.demo.Entity.*;
+import sut.se.g14.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 

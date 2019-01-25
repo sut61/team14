@@ -62,8 +62,8 @@ public class QuereController {
         placeRepository.save(newPlace);
 
         Quere newQuere = new Quere();
-        Members members = membersRepository.findByMemuser(memuser);
-        Artist artist = artistRepository.findByArtistId(artistId);
+        Members members = membersRepository.findByMemUser(memuser);
+        Artists artist = artistRepository.findByIdArtist(artistId);
         TypeWork typeWork = typeWorkRepository.findByTypeworkId(typeworkId);
         Status status = statusRepository.findByStatusId(1L);
 

@@ -6,4 +6,5 @@ import sut.se.g14.entity.Members;
 
 @RepositoryRestResource
 public interface MembersRepository extends JpaRepository<Members, String> {
+    Members findByMemUser(String member);
 }
