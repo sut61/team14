@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ArtistsComponent } from './artists/artists.component';
+
 
 @Injectable()
 export class ArtistsService {
@@ -21,14 +21,14 @@ export class ArtistsService {
     }
 
      getManager() : Observable<any>{
-      return this.http.get('//localhost:8080/Manager');
+      return this.http.get('//localhost:8080/Managers');
     }
      getTypeMusic(): Observable<any>{
       return this.http.get('//localhost:8080/TypeMusic');
     }
 
     getGender() : Observable<any>{
-     return this.http.get('//localhost:8080/Gender');
+     return this.http.get('//localhost:8080/gender');
     }
 
     getShowArtists(): Observable<any>{

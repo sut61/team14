@@ -16,7 +16,7 @@ getTypeWork(): Observable<any> {
   }
 
   getArtist(): Observable<any> {
-    return this.http.get(this.API + '/Artists');
+    return this.http.get(this.API + '/artists');
   }
 
   getStatus(): Observable<any> {
@@ -28,7 +28,7 @@ getTypeWork(): Observable<any> {
   }
 
   getMembers(memuser): Observable<any> {
-    return this.http.get(this.API + '/Members/user/' + memuser);
+    return this.http.get(this.API + '/profile/' + memuser);
   }
 
   getQueres(quereId): Observable<any> {

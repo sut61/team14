@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ArtistsComponent } from 'src/app/artists/artists.component';
-import { ArtistsService } from 'src/app/artists.service';
+import { ArtistsService } from '../shared/artists/artists.service';
 
 
 

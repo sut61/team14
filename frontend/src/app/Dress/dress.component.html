@@ -1,3 +1,12 @@
+<mat-toolbar style="background-color: #DFC8EF">
+  <span class="fill-remaining-space"></span>
+  <button mat-button (click)="goManager()" >Manager</button>
+  <button mat-button [routerLink]="['/dress']">Dress</button>
+  <button mat-button [routerLink]="['/money']">Finance</button>
+  <button mat-button [routerLink]="['/artists']">Artists</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
 <mat-progress-bar mode="buffer" ></mat-progress-bar>
 <mat-grid-list cols="1" rowHeight="12:1" >
   <mat-toolbar color="primary" >

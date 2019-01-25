@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuereService} from '../shared/quere.service';
+import { QuereService} from '../shared/book/quere.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
@@ -71,6 +71,24 @@ export class BookComponent implements OnInit {
   }
 
   save() {
+
+    //if (this.user.quereSet[0] == undefined || this.user.quereSet[0].statusQuere.statusId != 1) {
+      this.httpClient.post('http://localhost:8080/Quere/' + this.setData.place + '/' + this.setData.date + '/' +
+    this.setData.hour + '/' + this.setData.hrs + '/' + this.setData.mins + '/' + this.setData.artistSelect + '/' +
+    this.user.memuser + '/' + this.setData.typeWorkSelect ,this.setData,this.user)
+    .subscribe(
+      data => {
+        if(data){
+          alert('การจองเสร็จสิ้น');
+          this.router.navigate(['bookshow/' + this.user.memuser]);
+          console.log('PUT Request is successful', data);
+        }
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
+    /*
     if (this.setData.artistSelect === '' || this.setData.typeWorkSelect === '' || this.setData.place === '' || this.setData.date === '' ||
     this.setData.hour === '' || this.setData.hrs === '' || this.setData.mins === '') {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
@@ -96,7 +114,9 @@ export class BookComponent implements OnInit {
       }else{
         alert(' ขออภัย พบการจองที่ยังไม่ได้รับการยืนยัน');
       }
-    }
+      */
+    //}
+    
   }
 
   back(){

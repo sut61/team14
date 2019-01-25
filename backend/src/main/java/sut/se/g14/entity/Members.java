@@ -2,9 +2,8 @@ package sut.se.g14.entity;
 
 import lombok.NonNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Members {
@@ -12,6 +11,18 @@ public class Members {
     @Column(name = "MEMBERS_USER")
     private @NonNull String memUser;
     private @NonNull String memPassword;
+
+    public Collection<Quere> getQuereSet() {
+        return quereSet;
+    }
+
+    public void setQuereSet(Collection<Quere> quereSet) {
+        this.quereSet = quereSet;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OrderBy("id Desc")
+    private Collection<Quere> quereSet;
 
     public Members(){}
 

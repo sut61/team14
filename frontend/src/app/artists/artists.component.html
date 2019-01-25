@@ -1,11 +1,12 @@
 <main>
   <mat-toolbar style="background-color: #DFC8EF">
     <span class="fill-remaining-space"></span>
-    <button mat-button [routerLink]="['/Manager']"><font size = "4"><b>Manager</b></font></button>
-    <button mat-button [routerLink]="['/profile']"><font size = "4"><b>Dess</b></font></button>
-    <button mat-button [routerLink]="['/profile']"><font size = "4"><b>Finance</b></font></button>
-    <button mat-button (click)="logout()"><font size = "4"><b>Login</b></font></button>
-</mat-toolbar>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
     <div align="center">
       <p><font size="10">ระบบจัดเก็บข้อมูลศิลปิน</font></p>
 
@@ -42,7 +43,7 @@
         <mat-form-field style="margin-right: 10%">
           <mat-select placeholder="ผู้จัดการ"[(ngModel)]="setData.managerIdSelect" (ngModelChange)="test($event)">
             <mat-option *ngFor="let manager of managers" [value]="manager.id">
-              {{manager.username}}
+              {{manager.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

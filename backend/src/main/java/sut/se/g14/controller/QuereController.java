@@ -63,7 +63,7 @@ public class QuereController {
 
         Quere newQuere = new Quere();
         Members members = membersRepository.findByMemUser(memuser);
-        Artists artist = artistRepository.findByIdArtist(artistId);
+        Artists artist = artistRepository.findByartistsID(artistId);
         TypeWork typeWork = typeWorkRepository.findByTypeworkId(typeworkId);
         Status status = statusRepository.findByStatusId(1L);
 

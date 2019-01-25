@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:4200")
 public 
 interface DressRepository extends  JpaRepository<Dress, Long>{    
-    Dress findByIdDress(long idDress);
+    Dress findById(long idDress);
     
 }
