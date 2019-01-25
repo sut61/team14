@@ -48,6 +48,9 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import {ArtistsService} from './shared/artists/artists.service';
 import { ArtistsComponent } from './artists/artists.component';
 
+import { ShowArtistsComponent } from './show-artists/show-artists.component';
+
+
 const appRoutes: Routes = [
 
 ];
@@ -57,7 +60,8 @@ const appRoutes: Routes = [
     AppComponent,
     MoneyComponent,
     LoginAdminComponent,
-    ArtistsComponent
+    ArtistsComponent,
+    ShowArtistsComponent
 
   ],
   imports: [
@@ -98,6 +102,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot([
       { path: 'money', component:MoneyComponent},
+      {path:'artists',component:ArtistsComponent},
+      {path:'show-artists',component:ShowArtistsComponent}
 
     ])
   ],
