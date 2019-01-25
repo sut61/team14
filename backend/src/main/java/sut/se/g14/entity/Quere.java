@@ -25,9 +25,9 @@ public class Quere {
     @JoinColumn(name = "SQ_ID", insertable = true)
     private Status statusQuere;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Artist.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
     @JoinColumn(name = "AQ_ID", insertable = true)
-    private Artist  artistQuere;
+    private Artists  artistQuere;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeWork.class)
     @JoinColumn(name = "TQ_ID", insertable = true)

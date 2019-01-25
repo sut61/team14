@@ -1,4 +1,4 @@
-package com.cpe.sa.main.entity;
+package sut.se.g14.entity;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;

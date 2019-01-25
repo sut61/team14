@@ -1,6 +1,6 @@
-package com.cpe.sa.main.Repository;
+package sut.se.g14.repository;
 
-import com.cpe.sa.main.entity.Type;
+import sut.se.g14.entity.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
