@@ -1,0 +1,8 @@
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body {
+ margin: 0;
+ font-family: Kanit, sans-serif;
+}

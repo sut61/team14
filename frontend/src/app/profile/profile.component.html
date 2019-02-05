@@ -1,0 +1,72 @@
+<body>
+    <mat-toolbar style="background-color: #c899d9">
+        <span class="fill-remaining-space"></span>
+        <button mat-button (click)="goBook()">Book</button>
+        <button mat-button [routerLink]="['/profile']">Profile</button>
+        <button mat-button (click)="logout()">Logout</button>
+    </mat-toolbar>
+
+<div>
+  <h1 style="font-size: 56px; text-align: center; color: #000000;">MY PROFILE</h1>
+</div>
+
+<mat-card>
+  <div>
+    <h1>Profile</h1>
+
+    <mat-grid-list cols="2" rowHeight="50px">
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Name</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{nameProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>ID Card/Passport No.</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{idCardProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Birth Day</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{birthDayProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Gender</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{genderSelect}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Email</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{emailProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Phone Number</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{phoneProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Address</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{addressProfile}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p class="txt-profile"><b>Country</b></p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{countrySelect}} {{pastalCodeProfile}}
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </div>
+</mat-card>
+
+</body>

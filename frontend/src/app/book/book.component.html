@@ -1,0 +1,92 @@
+<mat-toolbar style="background-color: #c899d9">
+  <span class="fill-remaining-space"></span>
+  <button mat-button [routerLink]="['/book']">Book</button>
+  <button mat-button [routerLink]="['/profile']">Profile</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<mat-toolbar [style.backgroundColor]="'#000033'"><!--สร้างแถบสีข้างบน-->
+  <label class="headtxt">ระบบจองคิวงาน</label>
+</mat-toolbar>
+
+<main>
+  <div id="block">
+    <div id="blockleft"></div>
+    <div id="blockup">
+      <div id="blocktextup1">
+        <div class="nametxt">
+          <label>ชื่อ-นามสกุล  </label>
+          <div id="box_name">
+            {{user.name}}
+          </div>
+        </div>
+      </div>
+      <div id="blocktextup2">
+        <div class="nametxt">
+        <label>เบอร์โทรศัพท์  </label>
+        <div id="box_tel">
+          {{user.mobilePhone}}
+        </div>
+      </div>
+      </div>
+    <div id="blocktextup3">
+      <div class="nametxt">
+        <label>E-mail  </label>
+        <div id="box_mail">
+          {{user.email}}
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div id="blockd">
+    <div id="blockleftd"></div>
+    <div id="blockdown">
+      <div id="blockindown">
+
+        <label>ประเภทงาน : </label><br><br><br>
+        <label>สถานที่จัดงาน : </label><br><br><br>
+        <label>ศิลปินที่ต้องการ :</label><br><br><br>
+        <label>วันที่จัดงาน : </label><br><br>
+        <label>เวลาเริ่ม : </label><br><br>
+        <label>จำนวนชั่วโมง : </label><br><br>
+      </div>
+      <div id ="blockindownl">
+
+        <mat-select placeholder=" " [(ngModel)]="setData.typeWorkSelect" name="typeWork" id="select">
+        <mat-option *ngFor="let typeWork of typeWorks" [value]="typeWork.typeworkId">
+          {{typeWork.typeWork}}
+        </mat-option>
+      </mat-select><br>
+
+    <br>
+      <textarea matInput name="place" id="box_area" [(ngModel)]="setData.place"></textarea><br>
+
+     <br>
+      <mat-select placeholder=" " [(ngModel)]="setData.artistSelect" name="artistName" id="select">
+        <mat-option *ngFor="let band of band" [value]="band.bandID">
+          {{band.bandname}}
+        </mat-option>
+      </mat-select><br>
+
+       <br>
+       <input matInput type="date" id="box_date" [(ngModel)]="setData.date"><br>
+
+       <br>
+       <input matInput type="number" min="0" max="24" maxlength="2" placeholder="hour" id="box_time" [(ngModel)]="setData.hrs" name="hrs"> :
+       <input matInput type="number" min="0" max="59" maxlength="2" placeholder="miniuse" id="box_time" [(ngModel)]="setData.mins" name="mins"> น.
+       <br>
+
+
+      <br>
+       <input matInput type="number" min="0" id="box_time" [(ngModel)]="setData.hour" name="hour"><br>
+
+       <div class="bott">
+         <button mat-raised-button (click)="history()" class="mat-bot" >ดูข้อมูลการจอง</button>
+         <button mat-raised-button (click)="save()" class="mat-bot" >ตกลง</button>
+       </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+

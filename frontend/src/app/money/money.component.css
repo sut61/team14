@@ -1,0 +1,10 @@
+h2{
+    text-indent: 0;
+  }
+  h1{
+    text-align: center;
+  }
+  a {
+    text-emphasis: dot 0;
+    font-size: 50px;
+  }
