@@ -1,0 +1,80 @@
+
+<main>
+  <mat-toolbar style="background-color: #DFC8EF">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+
+  <div class="planHead">
+    ข้อมูลผู้จัดการ
+  </div>
+
+  <div class="planLeft">
+    <div class="planIn1">
+      <div class="planBox1">
+        ข้อมูลส่วนตัว
+      </div>
+      <div class="planBox1">
+        ชื่อ :
+      </div>
+      <div class="planBox1">
+        เพศ :
+      </div>
+      <div class="planBox1">
+        Username :
+      </div>
+      <div class="planBox1">
+        Password :
+      </div>
+    </div>
+
+    <div class="planIn2">
+      <div class="planBox2">
+
+      </div>
+      <div class="planBox2">
+        {{manager.name}}
+      </div>
+      <div class="planBox2">
+        {{manager.gender.gender}}
+      </div>
+      <div class="planBox2">
+        {{manager.username}}
+      </div>
+      <div class="planBox2">
+        {{manager.password}}
+      </div>
+    </div>
+  </div>
+
+  <div class="planRight">
+    <div class="planIn3">
+      <div class="planBox1">
+        ข้อมูลติดต่อ
+      </div>
+      <div class="planBox1" *ngFor="let manager of manager.contactSet">
+        {{manager.type.type}} :
+      </div>
+      <div class="planBox1">
+        <button mat-raised-button (click)="goAdd()" style="background-color: #9A80FD" >เพิ่ม</button>
+      </div>
+    </div>
+
+    <div class="planIn4">
+      <div class="planBox2"></div>
+      <div class="planBox2" *ngFor="let manager of manager.contactSet">
+        {{manager.contact}}
+      </div>
+    </div>
+  </div>
+
+  <div class="planTail">
+    <button mat-raised-button (click)="addManager()" style="background-color: #9A80FD" >เพิ่มผู้จัดการใหม่</button>
+  </div>
+
+</main>
+

@@ -1,0 +1,23 @@
+<body>
+
+<div class="signin-content">
+
+  <mat-card>
+    <h3 style="font-size:30px;">Login </h3>
+
+    <mat-card-content>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Username" [(ngModel)]="usernameLogin">
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Password" [(ngModel)]="passwordLogin">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="login()">Login</button>
+      <br><br>
+      <a [routerLink]="['/login-cus']">สำหรับสมาชิก</a>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
+</body>
