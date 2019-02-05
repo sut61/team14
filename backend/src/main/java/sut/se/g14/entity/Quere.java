@@ -25,11 +25,51 @@ public class Quere {
     @JoinColumn(name = "SQ_ID", insertable = true)
     private Status statusQuere;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Band.class)
     @JoinColumn(name = "AQ_ID", insertable = true)
-    private Artists  artistQuere;
+    private Band  bandQuere;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeWork.class)
     @JoinColumn(name = "TQ_ID", insertable = true)
     private TypeWork typeworkQuere;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Place getPlaceQuere() {
+        return placeQuere;
+    }
+
+    public void setPlaceQuere(Place placeQuere) {
+        this.placeQuere = placeQuere;
+    }
+
+    public Status getStatusQuere() {
+        return statusQuere;
+    }
+
+    public void setStatusQuere(Status statusQuere) {
+        this.statusQuere = statusQuere;
+    }
+
+    public Band getBandQuere() {
+        return bandQuere;
+    }
+
+    public void setBandQuere(Band bandQuere) {
+        this.bandQuere = bandQuere;
+    }
+
+    public TypeWork getTypeworkQuere() {
+        return typeworkQuere;
+    }
+
+    public void setTypeworkQuere(TypeWork typeworkQuere) {
+        this.typeworkQuere = typeworkQuere;
+    }
 }

@@ -8,6 +8,6 @@ import sut.se.g14.entity.Profile;
 @RepositoryRestResource
 public interface ProfileRepository extends JpaRepository<Profile,Long> {
     Profile findByMembers(Members members);
-
+    Profile findByProfileID(Long id);
 }
 

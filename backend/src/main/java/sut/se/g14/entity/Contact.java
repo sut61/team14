@@ -19,4 +19,28 @@ public class Contact {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeContact.class)
     @JoinColumn(name = "Type_ID", insertable = true)
     private TypeContact type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public TypeContact getType() {
+        return type;
+    }
+
+    public void setType(TypeContact type) {
+        this.type = type;
+    }
 }

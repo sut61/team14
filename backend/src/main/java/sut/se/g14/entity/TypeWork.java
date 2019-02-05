@@ -21,7 +21,24 @@ public class TypeWork {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="typeWork_seq")
     @Column(name="TypeWork_ID")
     private @NonNull Long typeworkId;
-
     private @NonNull String typeWork;
+
+    public Long getTypeworkId() {
+        return typeworkId;
+    }
+
+    public void setTypeworkId(Long typeworkId) {
+        this.typeworkId = typeworkId;
+    }
+
+    public String getTypeWork() {
+        return typeWork;
+    }
+
+    public void setTypeWork(String typeWork) {
+        this.typeWork = typeWork;
+    }
+
+
 
 }

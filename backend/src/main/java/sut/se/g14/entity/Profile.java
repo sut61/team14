@@ -5,6 +5,11 @@ import lombok.NonNull;
 import lombok.Setter;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.Collection;
+
 @Entity
 @Getter @Setter
 
@@ -31,6 +36,11 @@ public class Profile {
     @ManyToOne
     @JoinColumn(name = "GENDER_ID")
     private Gender gender;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch(value=FetchMode.SUBSELECT)
+    @OrderBy("id Desc")
+    private Collection<Quere> quereSet;
 
     public Profile(){}
 
@@ -118,5 +128,15 @@ public class Profile {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+
+    public Collection<Quere> getQuereSet() {
+        return quereSet;
+    }
+
+    public void setQuereSet(Collection<Quere> quereSet) {
+        this.quereSet = quereSet;
+    }
+
+
 }
 

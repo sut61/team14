@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name="dress")
 
 public class Dress {
+
     @Id()
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private   Long id;
@@ -33,6 +34,55 @@ public class Dress {
         this.id = id;
         this.dress = dress;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDress() {
+        return dress;
+    }
+
+    public void setDress(String dress) {
+        this.dress = dress;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public Artists getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artists artist) {
+        this.artist = artist;
+    }
+
+    public sut.se.g14.entity.Type getType() {
+        return Type;
+    }
+
+    public void setType(sut.se.g14.entity.Type type) {
+        Type = type;
+    }
+
 
 }
 

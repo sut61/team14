@@ -12,17 +12,7 @@ public class Members {
     private @NonNull String memUser;
     private @NonNull String memPassword;
 
-    public Collection<Quere> getQuereSet() {
-        return quereSet;
-    }
 
-    public void setQuereSet(Collection<Quere> quereSet) {
-        this.quereSet = quereSet;
-    }
-
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @OrderBy("id Desc")
-    private Collection<Quere> quereSet;
 
     public Members(){}
 

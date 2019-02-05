@@ -11,15 +11,15 @@ import java.lang.String;
 @Entity
 @Data
 @Getter@Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @ToString @EqualsAndHashCode
 @Table (name = " Money ")
 public class MoneyEntity{
     @Id
     @SequenceGenerator(name="money_seq",sequenceName="money_seq")               
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="money_seq")  
-    @Column(name = "MONEY_ID", unique = true, nullable = false)
-    private @NonNull int idMoney;
+
+    private @NonNull long idMoney;
 
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Dress.class)
@@ -40,20 +40,22 @@ public class MoneyEntity{
     
 
 
-    private @NonNull int priceIncome;
-    private @NonNull int priceExpenses;
+    private  int priceIncome;
+    private  int priceExpenses;
 
     
     public void setnameArtist(String nameAString){this.firstname = nameAString;}
     public String getnameArtist() {return firstname;}
     
     public void setIdQueue(Quere  idQueue){this.idQueue = idQueue;}
-
-
+    public void setIdArtist(Artists id){this.idArtist = id;}
+    public Artists getIdArtist(){return  this.idArtist;}
     public void setnameDress(String nameDress){this.nameDress=nameDress;}
     public String getnameDress(){ return nameDress; }
+    public void  setIdDress(Dress id){this.idDress = id;}
+    public Dress getIdDress(){return  this.idDress;}
 
-    
+
     public void setpriceIncome(int priceIncome){this.priceIncome = priceIncome;}
     public int getpeiceIncome(){return this.priceIncome;}
 

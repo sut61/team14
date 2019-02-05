@@ -19,6 +19,24 @@ public class TypeMusic {
     private @NonNull Long TypeMusicID;
     private @NonNull String typemusics;
 
+    public Long getTypeMusicID() {
+        return TypeMusicID;
+    }
+
+    public void setTypeMusicID(Long typeMusicID) {
+        TypeMusicID = typeMusicID;
+    }
+
+    public String getTypemusics() {
+        return typemusics;
+    }
+
+    public void setTypemusics(String typemusics) {
+        this.typemusics = typemusics;
+    }
+
+
+
     public TypeMusic() {
     }
 

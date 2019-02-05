@@ -23,6 +23,23 @@ public class Status {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="status_seq")
     @Column(name="Status_ID")
     private @NonNull Long statusId;
-
     private @NonNull String statusQuere;
+
+    public Long getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
+    }
+
+    public String getStatusQuere() {
+        return statusQuere;
+    }
+
+    public void setStatusQuere(String statusQuere) {
+        this.statusQuere = statusQuere;
+    }
+
+
 }

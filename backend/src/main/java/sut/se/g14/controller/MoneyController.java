@@ -80,11 +80,12 @@ public class MoneyController {
 
     // ===========================================================================================
     @PostMapping("/Money/{artist}/{dress}/{priceExpenses}/{queue}/{priceIncome}")
-    public MoneyEntity moneyEntity(MoneyEntity moneyEntity,@PathVariable String artist,@PathVariable int dress
-    ,@PathVariable int queue,@PathVariable int priceExpenses,@PathVariable int priceIncome
+    public MoneyEntity moneyEntity(@PathVariable String artist,@PathVariable int dress,@PathVariable int priceExpenses
+    ,@PathVariable int queue,@PathVariable int priceIncome
                                ){
-                        
-    
+
+
+    MoneyEntity moneyEntity = new MoneyEntity();
     Dress d = dressRepository.findById(dress);
     Quere q = quereRepository.findById(queue);
     Artists a = artistRepository.findByfirstname(artist);
@@ -93,6 +94,8 @@ public class MoneyController {
     
     moneyEntity.setnameArtist(a.getFirstname());
 
+    moneyEntity.setIdArtist(a);
+    moneyEntity.setIdDress(d);
     moneyEntity.setIdQueue(q);
 
     moneyEntity.setpriceExpenses(priceExpenses);

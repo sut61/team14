@@ -25,4 +25,19 @@ public class Band {
         this.BandID = BandID;
         this.bandname = name;
     }
+    public Long getBandID() {
+        return BandID;
+    }
+
+    public void setBandID(Long bandID) {
+        BandID = bandID;
+    }
+
+    public String getBandname() {
+        return bandname;
+    }
+
+    public void setBandname(String bandname) {
+        this.bandname = bandname;
+    }
 }
