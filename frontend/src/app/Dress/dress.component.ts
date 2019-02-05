@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
 export interface PeriodicElement { }
 
 @Component({
@@ -37,7 +38,7 @@ export class DressComponent implements OnInit {
   }
       
     
-    constructor( private http: HttpClient) {}
+    constructor( private http: HttpClient,  private router: Router) {}
    ngOnInit() {
     
     this.http.get("http://localhost:8080/type").subscribe(
@@ -89,6 +90,10 @@ export class DressComponent implements OnInit {
         console.log("Error", error);
       }
     );
+  }
+
+  logout() {
+    this.router.navigate(['Login/admin']);
   }
 }
 

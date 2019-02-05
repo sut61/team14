@@ -3,7 +3,8 @@ import { QuereService} from '../shared/book/quere.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
-
+import { LoginCusComponent } from '../login-cus/login-cus.component';
+import { RegisterControlService } from 'src/app/shared/register-control/register-control.service';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
@@ -12,19 +13,12 @@ import { HttpClient} from '@angular/common/http';
 export class BookComponent implements OnInit {
   private username :any;
   private sub : any;
-  artists: Array<any>;
+  band: Array<any>;
   typeWorks: Array<any>;
-  user: any = {
-    id : '',
-    memuser : '',
-    password : '',
-    firstName : '',
-    email : '',
-    mobilePhone : '',
-    quereSet: []
-  }
+  user: any;
 
   setData: any = {
+    username :'',
     place : '',
     date : '',
     hour : '',
@@ -43,18 +37,24 @@ export class BookComponent implements OnInit {
   }
 
   constructor(private quereService:QuereService, private httpClient: HttpClient, private router: Router,
-    private rout: ActivatedRoute) { }
+    private rout: ActivatedRoute,private registerController: RegisterControlService) {
+      if (typeof LoginCusComponent.userName === 'undefined' || LoginCusComponent.userName == null) {
+        this.router.navigate(['login'])
+      }
+      console.log(LoginCusComponent.userName);
+     }
 
 
   ngOnInit() {
     this.sub = this.rout.params.subscribe(params => {
-        this.username = params
-        console.log(this.username.username)
+        this.username = params;
+        this.setData.username = this.username.username;
+        console.log(this.username.username);
     })
 
-    this.quereService.getArtist().subscribe(data => {
-      this.artists = data;
-      console.log(this.artists);
+    this.quereService.getBand().subscribe(data => {
+      this.band = data;
+      console.log(this.band);
     });
 
     this.quereService.getTypeWork().subscribe(data => {
@@ -71,58 +71,37 @@ export class BookComponent implements OnInit {
   }
 
   save() {
-
-    //if (this.user.quereSet[0] == undefined || this.user.quereSet[0].statusQuere.statusId != 1) {
-      this.httpClient.post('http://localhost:8080/Quere/' + this.setData.place + '/' + this.setData.date + '/' +
-    this.setData.hour + '/' + this.setData.hrs + '/' + this.setData.mins + '/' + this.setData.artistSelect + '/' +
-    this.user.memuser + '/' + this.setData.typeWorkSelect ,this.setData,this.user)
-    .subscribe(
-      data => {
-        if(data){
-          alert('การจองเสร็จสิ้น');
-          this.router.navigate(['bookshow/' + this.user.memuser]);
-          console.log('PUT Request is successful', data);
-        }
-      },
-      error => {
-        console.log('Error', error);
-      }
-    );
-    /*
     if (this.setData.artistSelect === '' || this.setData.typeWorkSelect === '' || this.setData.place === '' || this.setData.date === '' ||
     this.setData.hour === '' || this.setData.hrs === '' || this.setData.mins === '') {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     }else{
       if (this.user.quereSet[0] == undefined || this.user.quereSet[0].statusQuere.statusId != 1) {
         this.httpClient.post('http://localhost:8080/Quere/' + this.setData.place + '/' + this.setData.date + '/' +
-      this.setData.hour + '/' + this.setData.hrs + '/' + this.setData.mins + '/' + this.setData.artistSelect + '/' +
-      this.user.memuser + '/' + this.setData.typeWorkSelect ,this.setData,this.user)
-      .subscribe(
-        data => {
+        this.setData.hour + '/' + this.setData.hrs + '/' + this.setData.mins + '/' + this.setData.artistSelect + '/' +
+        this.setData.username + '/' + this.setData.typeWorkSelect ,this.setData)
+        .subscribe(data => {
           if(data){
             alert('การจองเสร็จสิ้น');
-            this.router.navigate(['bookshow/' + this.user.memuser]);
-            console.log('PUT Request is successful', data);
-
+            this.router.navigate(['bookshow/' + this.setData.username]);
+           console.log('PUT Request is successful', data);
           }
         },
-        error => {
-          console.log('Error', error);
-        }
-      );
-
+          error => {
+            console.log('Error', error);
+          }
+        );
       }else{
         alert(' ขออภัย พบการจองที่ยังไม่ได้รับการยืนยัน');
       }
-      */
-    //}
-    
+    }  
   }
 
-  back(){
-    this.router.navigate(['profile/' + this.username]);
-  }
   history(){
-    this.router.navigate(['bookshow/' + this.user.memuser]);
+    this.router.navigate(['bookshow/' + this.setData.username]);
+  }
+
+  logout() {
+    LoginCusComponent.userName = null;
+    this.router.navigate(['login-cus']);
   }
 }

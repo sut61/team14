@@ -62,7 +62,7 @@ export class RegisterControlService {
   }
 
   public getProfileByUsername(username: string): Observable<any> {
-    return this.httpClient.get('//localhost:8080//profile/member/' + username);
+    return this.httpClient.get('//localhost:8080/profile/member/' + username);
   }
 
 }

@@ -88,6 +88,9 @@ getManager() {
     console.log(this.viewartists.selectband);
     console.log(this.viewartists.selecttypemusics);
   }
+  logout() {
+    this.router.navigate(['Login/admin']);
+  }
   }
   
 

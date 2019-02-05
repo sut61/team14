@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoneyService } from '../shared/money/money.service';
 import { HttpClient } from '@angular/common/http';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-money',
   templateUrl: './money.component.html',
@@ -52,7 +53,7 @@ export class MoneyComponent implements OnInit {
   artist: any = {};
   income: any = {};
 
-  constructor(private moneyService: MoneyService, private httpClient: HttpClient) { }
+  constructor(private moneyService: MoneyService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
 
@@ -69,7 +70,6 @@ export class MoneyComponent implements OnInit {
 
     this.moneyService.getIdQueue().subscribe(data => {
       this.id_queue = data;
-
       console.log(this.id_queue);
     });
 
@@ -91,7 +91,7 @@ export class MoneyComponent implements OnInit {
           this.dress = data;
           console.log(this.dress);
 
-          if (this.dress.artist.firstname == this.ids.artistSelect && this.queue.artistQuere.firstname == this.ids.artistSelect) {
+         
             this.httpClient.post('http://localhost:8080/Money/' + this.ids.artistSelect + '/'
               + this.ids.dressSelect + '/' + this.priceExpenses + '/' + this.ids.queueSelect + '/' + this.priceIncome
               , this.ids).subscribe(data => {
@@ -102,24 +102,20 @@ export class MoneyComponent implements OnInit {
                   console.log('Error', error);
                 });
 
-          }
-          else {
-            alert('ข้อมูลไม่ตรงกัน');
-          }
-
+           
         });
-
       });
-
-
     }
+    
     else {
       alert('กรุณาเลือกข้อมูลให้ครบ');
     }
 
   }
 
-
+  logout() {
+    this.router.navigate(['Login/admin']);
+  }
 
 
 }

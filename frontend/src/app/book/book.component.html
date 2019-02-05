@@ -63,8 +63,8 @@
 
      <br>
       <mat-select placeholder=" " [(ngModel)]="setData.artistSelect" name="artistName" id="select">
-        <mat-option *ngFor="let artist of artists" [value]="artist.artistsID">
-          {{artist.firstname}} ( {{artist.price}} บาท/ชั่วโมง )
+        <mat-option *ngFor="let band of band" [value]="band.bandID">
+          {{band.bandname}}
         </mat-option>
       </mat-select><br>
 
@@ -83,7 +83,6 @@
        <div class="bott">
          <button mat-raised-button (click)="history()" class="mat-bot" >ดูข้อมูลการจอง</button>
          <button mat-raised-button (click)="save()" class="mat-bot" >ตกลง</button>
-         <button mat-raised-button (click)="back()" class="mat-bot">กลับ</button>
        </div>
       </div>
     </div>

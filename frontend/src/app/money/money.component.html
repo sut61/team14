@@ -1,6 +1,14 @@
 <div style="text-align:center ;margin:2px auto;width: 60%;">
     <h1></h1>
 </div>
+<mat-toolbar style="background-color: #DFC8EF">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
 <fieldset>
     <legend style="font: 50px sans-serif;color: red"> การเงิน </legend>
     <fieldset>
@@ -15,7 +23,7 @@
                     <mat-form-field>
                         <mat-select placeholder="ไอดี : ชื่อศิลปิน" [(ngModel)]="ids.artistSelect" name="idArtist" #idArtist>
                             <mat-option *ngFor="let id of id_artist" [value]=[id.firstname] text="number">
-                                {{id.artistsID}} : {{id.firstname}}
+                                {{id.artistsID}} : {{id.band.bandname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -24,7 +32,7 @@
                     <mat-form-field>
                         <mat-select placeholder="ชุด : ชื่อศิลปิน" [(ngModel)]="ids.dressSelect" name="idDress" #idDress>
                             <mat-option *ngFor="let id of id_dress" [value]=[id.id]  text="number">
-                                {{id.dress}} : {{id.artist.firstname}}
+                                {{id.dress}} : {{id.artist.band.bandname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -38,7 +46,7 @@
                     <mat-form-field>
                         <mat-select placeholder="คิว : ชื่อศิลปิน" [(ngModel)]="ids.queueSelect" name="idQueue" #idQueue>
                             <mat-option *ngFor="let id of id_queue" [value]=[id.id] text="number">
-                                {{id.id}} : {{id.artistQuere.firstname}}
+                                {{id.id}} : {{id.bandQuere.bandname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
