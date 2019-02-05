@@ -1,3 +1,9 @@
+<mat-toolbar style="background-color: #c899d9">
+  <span class="fill-remaining-space"></span>
+  <button mat-button [routerLink]="['/book']">Book</button>
+  <button mat-button [routerLink]="['/profile']">Profile</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <mat-toolbar [style.backgroundColor]="'#000033'"><!--สร้างแถบสีข้างบน-->
   <label class="headtxt">ข้อมูลการจอง</label>
 </mat-toolbar>
@@ -10,7 +16,7 @@
         <div class="nametxt">
           <label>ชื่อ-นามสกุล  </label>
           <div id="box_name">
-            {{user.firstName}}
+            {{user.name}}
           </div>
         </div>
       </div>
@@ -44,7 +50,7 @@
           </label><br><br>
 
       <label>ศิลปินที่ต้องการ : &nbsp;&nbsp;
-      {{user.quereSet[0].artistQuere.artistname}}
+      {{user.quereSet[0].bandQuere.bandname}}
       <span *ngFor="let artist of arists">{{artist}}</span>
           </label><br><br>
 

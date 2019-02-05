@@ -59,6 +59,7 @@ export class ArtistsComponent implements OnInit {
       getManager() {
              this.service.getManager().subscribe(data => {
                this.managers = data;
+               console.log(this.managers);
              })
            }
        test(data: any) {
@@ -81,6 +82,9 @@ export class ArtistsComponent implements OnInit {
                    }
                  );
                   }
-
+                  
+}
+logout() {
+  this.router.navigate(['Login/admin']);
 }
 }

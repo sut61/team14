@@ -9,7 +9,7 @@ import { LoginCusComponent } from '../login-cus/login-cus.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  idProfile:number;
   usernameRegister: string;
   nameProfile: string;
   idCardProfile: number;
@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   }
   getProfile() {
     this.registerController.getProfileByUsername(LoginCusComponent.userName).subscribe(data => {
+      this.idProfile = data.profileID;
       this.nameProfile = data.name;
       this.emailProfile = data.email;
       this.addressProfile = data.addressDetail;
@@ -54,6 +55,10 @@ export class ProfileComponent implements OnInit {
   logout() {
     LoginCusComponent.userName = null;
     this.router.navigate(['login-cus']);
+  }
+
+  goBook(){
+    this.router.navigate(['book/' + this.idProfile]);
   }
 
 }

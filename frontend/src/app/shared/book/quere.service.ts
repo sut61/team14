@@ -11,12 +11,12 @@ export class QuereService {
 
   constructor(private http: HttpClient) { }
 
-getTypeWork(): Observable<any> {
+  getTypeWork(): Observable<any> {
     return this.http.get(this.API + '/TypeWorks');
   }
 
-  getArtist(): Observable<any> {
-    return this.http.get(this.API + '/artists');
+  getBand(): Observable<any> {
+    return this.http.get(this.API + '/Band');
   }
 
   getStatus(): Observable<any> {
