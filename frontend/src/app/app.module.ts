@@ -72,6 +72,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { DressComponent } from './Dress/dress.component';
+import { ContractartistComponent } from './contractartist/contractartist.component';
 
 
 const appRoutes: Routes = [
@@ -88,7 +89,8 @@ const appRoutes: Routes = [
   { path: 'Manager/newContact/:username', component: ContactComponent },
   { path: 'Manager/:username', component: InfomanagerComponent },
   { path: 'Login/admin', component: LoginAdminComponent },
-  { path: 'dress', component: DressComponent }
+  { path: 'dress', component: DressComponent },
+  { path: 'contract', component: ContractartistComponent }
 ];
 
 @NgModule({
@@ -106,7 +108,8 @@ const appRoutes: Routes = [
     InfomanagerComponent,
     BookComponent,
     BookshowComponent,
-    DressComponent
+    DressComponent,
+    ContractartistComponent
 
   ],
   imports: [
