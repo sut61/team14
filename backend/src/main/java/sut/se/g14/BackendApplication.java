@@ -59,7 +59,8 @@ public class BackendApplication {
 						   PlaceRepository placeRepository,
 						   QuereRepository quereRepository,
 						   TypeWorkRepository typeWorkRepository,
-						   StatusRepository statusRepository ) {
+						   StatusRepository statusRepository ,TypeContractRepository typeContractRepository,
+						   HireMoneyRepository hireMoneyRepository) {
 		return args -> {
 			//Manager
 			Stream.of("Male", "Female").forEach(gender -> {
@@ -67,6 +68,8 @@ public class BackendApplication {
 				newGender.setGender(gender);
 				genderRepository.save(newGender);
 			});
+
+			
 
 			Stream.of("Tel.", "Email", "Facebook", "Twitter", "Instagram", "Line").forEach(type -> {
 				TypeContact newType = new TypeContact();
@@ -171,6 +174,8 @@ public class BackendApplication {
 				countryRepository.save(newCountry);
 			});
 
+			
+
 
 			//Dress
 			sizeRepository.save(new Size("S"));
@@ -208,7 +213,28 @@ public class BackendApplication {
 				statusquere.setStatusQuere(status);
 				statusRepository.save(statusquere);
 			});
+
+				//hiremoney
+				Stream.of("100,000 Baht","50,000 baht","25,000 Baht").forEach(hire -> {
+					HireMoneyEntity h = new HireMoneyEntity();
+					h.setMoney(hire);
+					hireMoneyRepository.save(h);
+				});
+
+				//typeContract
+				Stream.of("แสดงดนตรี & คอนเสิร์ต", "แสดงโฆษณา & แสดงละคร"
+					,"ร้องเพลง & โมเดลลิ่ง","music").forEach(type -> {
+					TypeContractEntity t = new TypeContractEntity();
+
+					t.setTypeContract(type);
+					typeContractRepository.save(t);
+				});
+
 		};
+
+		
+		
+		
 	}
 
 }
