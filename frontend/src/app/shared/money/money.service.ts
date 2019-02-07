@@ -30,11 +30,19 @@ export class MoneyService {
   }
 
   getIdManager(): Observable<any> {
-    return this.http.get(this.API + '/Manager');
+    return this.http.get(this.API + '/Managers');
   }
 
   getIdMoney(): Observable<any> {
     return this.http.get(this.API + '/Money');
+  }
+
+  getIdType(): Observable<any> {
+    return this.http.get(this.API + '/Typecontract');
+  }
+
+  getIdHire(): Observable<any> {
+    return this.http.get(this.API + '/Hire');
   }
 
   getFindQueue(id): Observable<any> {

@@ -1,0 +1,69 @@
+<div style="text-align:center ;margin:2px auto;width: 60%;">
+</div>
+<mat-toolbar style="background-color: #DFC8EF">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button [routerLink]="['/contract']">Contract</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+
+<fieldset>
+  <legend style="font: 50px sans-serif;color: red"> สัญญาจ้างศิลปิน </legend>
+  <fieldset>
+      <legend style="color:  green;">
+          <!--เพิ่ม Insurance แบบเลอืก id จาก DB-->
+          <mat-card-title>เช็คข้อมูลและบันทึก</mat-card-title>
+      </legend>
+
+      <mat-card style="margin:5px auto;width: 60%;">
+          <mat-card-content>
+              <form>
+                  <mat-form-field>
+                      <mat-select placeholder="ไอดี : ชื่อศิลปิน" [(ngModel)]="ids.artistSelect" name="artistsID" #artistsID>
+                          <mat-option *ngFor="let id of id_artist" [value]=[id.firstname] >
+                              {{id.artistsID}} : {{id.firstname}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </form>
+              <form>
+                  <mat-form-field>
+                      <mat-select placeholder="ประเภท : ชื่อประเภท" [(ngModel)]="ids.typeSelect" name="id" #id>
+                          <mat-option *ngFor="let id of id_type" [value]=[id.id]  text="number">
+                            {{id.id}} : {{id.typeContract}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </form>
+              <form>
+                  <mat-form-field>
+                      <mat-select placeholder="ไอดี : จำนวนเงินจ้าง" [(ngModel)]="ids.hireSelect" name="id" #idQ>
+                          <mat-option *ngFor="let id of id_hire" [value]=[id.id] text="number">
+                              {{id.id}} : {{id.money}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </form>
+
+              <form>
+                <mat-form-field>
+                    <mat-select placeholder="ไอดี : ผู้จัดการศิลปิน" [(ngModel)]="ids.managerSelect" name="id" #id>
+                        <mat-option *ngFor="let id of id_manager" [value]=[id.username] >
+                            {{id.id}} : {{id.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+             
+          </mat-card-content>
+          <h1 style="margin:10px">
+              <!--button mat-raised-button (click)="refresh()" color="warn">refresh</button-->
+
+              <button mat-raised-button (click)="insertContract()" color="primary">บันทึกข้อมูล</button>
+          </h1>
+
+      </mat-card>
+  </fieldset>
