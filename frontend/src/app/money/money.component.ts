@@ -82,7 +82,7 @@ export class MoneyComponent implements OnInit {
 
   insertMoney() {
 
-    if (this.ids.queueSelect != 0 && this.ids.dressSelect != 0 && this.priceExpenses != null  && this.priceIncome != null) {
+    if (this.ids.artistSelect != 0 && this.ids.queueSelect != 0 && this.ids.dressSelect != 0 && this.priceExpenses != null  && this.priceIncome != null) {
       this.moneyService.getFindQueue(this.ids.queueSelect).subscribe(data => {
         this.queue = data;
         console.log(this.queue);
@@ -100,6 +100,7 @@ export class MoneyComponent implements OnInit {
               },
                 error => {
                   console.log('Error', error);
+                  alert('บันทึกข้อมูลไม่สำเร็จ');
                 });
 
            
