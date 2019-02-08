@@ -34,7 +34,7 @@ public class Type {
 
 
 
-  protected Type(){}
+  public Type(){}
   public Type(String type) {
     this.type = type;
 }}

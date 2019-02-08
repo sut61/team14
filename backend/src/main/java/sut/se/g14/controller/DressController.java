@@ -45,7 +45,7 @@ public class DressController {
     public Dress newDress(Dress newDress, @RequestBody() Map<String,Object> body){
         Optional<Artists> artist = artistsRepository.findById((Long.valueOf( body.get("artist").toString() )));
         Optional<Type> type = typeRepository.findById((Long.valueOf( body.get("type").toString() )));
-        Optional<Size> size = sizeRepository.findById((Long.valueOf( body.get("size").toString() )));
+        Optional<Sizes> size = sizeRepository.findById((Long.valueOf( body.get("size").toString() )));
         Optional<Event> event = eventRepository.findById((Long.valueOf( body.get("event").toString() )));
         
         newDress.setDress(body.get("dressname").toString());
@@ -67,7 +67,7 @@ public class DressController {
         return eventRepository.findAll().stream().collect(Collectors.toList());
     }
     @GetMapping("/size")
-    public Collection<Size> size() {
+    public Collection<Sizes> size() {
         return sizeRepository.findAll().stream().collect(Collectors.toList());
     }
 

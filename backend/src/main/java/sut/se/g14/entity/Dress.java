@@ -22,13 +22,13 @@ public class Dress {
     @ManyToOne
     private Event event;
     @ManyToOne
-    private Size size;
+    private Sizes size;
     @ManyToOne
     private Artists artist;
     @ManyToOne
     private Type Type;
 
-    protected Dress(){    }
+    public Dress(){    }
 
     public Dress(Long id,String dress) {
         this.id = id;
@@ -59,11 +59,11 @@ public class Dress {
         this.event = event;
     }
 
-    public Size getSize() {
+    public Sizes getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
+    public void setSize(Sizes size) {
         this.size = size;
     }
 

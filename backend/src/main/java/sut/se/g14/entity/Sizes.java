@@ -8,9 +8,9 @@ import lombok.Setter;
 import lombok.*;
 @Entity
 @Data
-@Table(name="size")
+@Table(name="sizes")
 
-public class Size {
+public class Sizes {
     @Id()
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private   Long id;
@@ -18,8 +18,8 @@ public class Size {
 
     private   String size;
 
-    protected Size(){}
-    public Size(String size) {
+    public Sizes(){}
+    public Sizes(String size) {
         this.size = size;
 }
 

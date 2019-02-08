@@ -60,6 +60,7 @@ public class BackendApplication {
 						   QuereRepository quereRepository,
 						   TypeWorkRepository typeWorkRepository,
 						   StatusRepository statusRepository ,TypeContractRepository typeContractRepository,
+						   StatusdressRepository statusdressRepository,
 						   HireMoneyRepository hireMoneyRepository) {
 		return args -> {
 			//Manager
@@ -178,11 +179,11 @@ public class BackendApplication {
 
 
 			//Dress
-			sizeRepository.save(new Size("S"));
-			sizeRepository.save(new Size("M"));
-			sizeRepository.save(new Size("L"));
-			sizeRepository.save(new Size("XL"));
-			sizeRepository.save(new Size("XXL"));
+			sizeRepository.save(new Sizes("S"));
+			sizeRepository.save(new Sizes("M"));
+			sizeRepository.save(new Sizes("L"));
+			sizeRepository.save(new Sizes("XL"));
+			sizeRepository.save(new Sizes("XXL"));
 			sizeRepository.findAll().forEach(System.out::println);
 
 
@@ -199,7 +200,9 @@ public class BackendApplication {
 			eventRepository.save(new Event("Event"));
 			eventRepository.findAll().forEach(System.out::println);
 
-
+			statusdressRepository .save(new Statusdress("Receive"));
+			statusdressRepository.save(new Statusdress("Repatriate"));
+			statusdressRepository.findAll().forEach(System.out::println);
 			//Queue
 			Stream.of("งานแต่งงาน", "งานปาร์ตี้", "งานบวช", "งานมหาวิทยาลัย", "งานเลี้ยง", "โรงแรม", "ร้านอาหาร", "อีเว้นท์ทั่วไป", "งาน Event Grand Openning",
 					"งาน Event Pop-up Marget", "งาน Event Venue/Mall", "อื่นๆ").forEach(type -> {
