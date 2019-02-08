@@ -104,6 +104,35 @@ public class BackendApplicationTests {
 
         }
     //===========================test Null
+    
+    
+        @Test//เช็คค่าติดลบ
+        public void testpriceIncomeNotPossitive() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+    
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+        m.setnameArtist("null");
+        m.setnameDress("nameDress");
+        m.setpriceExpenses(1000000);
+        m.setpriceIncome(-1);
+        try {
+        entityManager.persist(m);
+        entityManager.flush();
+
+        fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+        System.out.println(">>>"+e+"<<<");
+        System.out.println("=====priceIncome must not be possitive to be valid\n\n");
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
+        }
+        }
+    
+    
         @Test
         public void testfirstnameNull() {
         MoneyEntity m = new MoneyEntity();
@@ -229,112 +258,50 @@ public class BackendApplicationTests {
             assertEquals(violations.size(), 1);
         }
         }
+
        
     //========================end test null==============================
     //===========================test size
-        @Test//firstname min
-        public void testfirstnameMin() {
-        MoneyEntity m = new MoneyEntity();
-        m.setIdQueue(q);
-        m.setIdDress(d);
-        m.setIdArtist(a);
-		m.setnameArtist("");//ผิด
-		m.setnameDress("abcd");
-	    m.setpriceExpenses(1000000);
-		m.setpriceIncome(1000000);
-        try {
-            entityManager.persist(m);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameArtist must not be minimum to be valid\n\n");
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-        }
+      
 
-        @Test//first max
-        public void testfirstnameMax() {
+        @Test//เช็คminสุด
+        public void testpriceExpensesmin() {
         MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+    
         m.setIdQueue(q);
         m.setIdDress(d);
         m.setIdArtist(a);
-		m.setnameArtist("abcdefghijklnmop");//ผิด
-		m.setnameDress("abcd");
-	    m.setpriceExpenses(1000000);
-		m.setpriceIncome(1000000);
+        m.setnameArtist("null");
+        m.setnameDress("nameDress");
+        m.setpriceExpenses(0);//ผิด
+        m.setpriceIncome(100000);
         try {
-            entityManager.persist(m);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameArtist must not be maximum to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-        }
+        entityManager.persist(m);
+        entityManager.flush();
 
-        @Test//nameDressMin
-        public void testnameDressMin() {
-        MoneyEntity m = new MoneyEntity();
-        m.setIdQueue(q);
-        m.setIdDress(d);
-        m.setIdArtist(a);
-		m.setnameArtist("abcd");
-		m.setnameDress("");//ผิด
-	    m.setpriceExpenses(1000000);
-		m.setpriceIncome(1000000);
-        try {
-            entityManager.persist(m);
-            entityManager.flush();
-            fail("Should not pass to this line");
+        fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameDress must not be minimum to be valid\n\n");
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+        System.out.println(">>>"+e+"<<<");
+        System.out.println("=====priceExpenses must not be minimum to be valid\n\n");
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
         }
         }
-
-        @Test//nameDressMax
-        public void testnameDressMax() {
+    
+        @Test//เช็คmaxสุด
+        public void testpriceIncomemax() {
         MoneyEntity m = new MoneyEntity();
-        m.setIdQueue(q);
+        a = artistRepository.findByfirstname("firstname");
+    
+     m.setIdQueue(q);
         m.setIdDress(d);
         m.setIdArtist(a);
-		m.setnameArtist("abcd");
-		m.setnameDress("abcdabcdabcdabcd");//ผิด
-	    m.setpriceExpenses(1000000);
-		m.setpriceIncome(1000000);
-        try {
-            entityManager.persist(m);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameDress must not be maximum to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-        }
-    //========================end test size ===============================
-    //========================pattern============
-        @Test
-        public void testfirstnameNotPattern() {
-        MoneyEntity m = new MoneyEntity();
-        m.setIdQueue(q);
-        m.setIdDress(d);
-        m.setIdArtist(a);
-        m.setnameArtist("ฟหกด");//ผิด
+        m.setnameArtist("null");
         m.setnameDress("nameDress");
         m.setpriceExpenses(1000000);
-        m.setpriceIncome(1000000);
+        m.setpriceIncome(1000000000);//ผิด
         try {
         entityManager.persist(m);
         entityManager.flush();
@@ -342,37 +309,16 @@ public class BackendApplicationTests {
         fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
         System.out.println(">>>"+e+"<<<");
-        System.out.println("=====nameArtist must not be pattern to be valid\n\n");
+        System.out.println("=====priceIncome must not be maximmum to be valid\n\n");
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         assertEquals(violations.isEmpty(), false);
         assertEquals(violations.size(), 1);
         }
         }
 
-        @Test
-        public void testnameDressNotPattern() {
-        MoneyEntity m = new MoneyEntity();
-        m.setIdQueue(q);
-        m.setIdDress(d);
-        m.setIdArtist(a);
-        m.setnameArtist("abcd");
-        m.setnameDress("ฟหกด");//ผิด
-        m.setpriceExpenses(1000000);
-        m.setpriceIncome(1000000);
-        try {
-        entityManager.persist(m);
-        entityManager.flush();
-
-        fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-        System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameDress must not be pattern to be valid\n\n");
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
-        }
-        }
-    //=========================end test pattern===
+       
+    //========================end test size ===============================
+    
 
 //======================================end test sprint 1 ==============================================
 
@@ -519,105 +465,9 @@ public class BackendApplicationTests {
     //======================End TEST Null =================================================
 
     //================================== Size=============================================
-        //=====================manager test size===========================
-            @Test//ยาวเกินไป nameManager
-            public void testNameManagerMax() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("100,000");
-            c.setTypecontract("abcd");
-            c.setnameManager("aabcdefghijklnmop");//ผิด
-
-            try {
-                entityManager.persist(c);
-                entityManager.flush();
-                fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("nameManager must not be maximum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-
-            @Test//สั้นเกินไป nameManager
-            public void testNameManagerMin() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("100,000");
-            c.setTypecontract("abcd");
-            c.setnameManager("");//ผิด
-
-            try {
-                entityManager.persist(c);
-                entityManager.flush();
-                fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("nameManager must not be minimum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-        //=========================end manager test size================
+        
          
-        //=====================typecontract size ==============
-            @Test//ยาวเกินไป Typecontract
-            public void testTypecontractMax() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("1,000");
-            c.setTypecontract("abcdefghijklnmop");//ผิด
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("Typecontract must not be maximum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-
-            @Test//สั้นเกินไป Typecontract
-            public void testTypecontractMin() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("1,000");
-            c.setTypecontract("a");//ผิด
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("Typecontract must not be minimum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-        //=========================end typecontract test size ==========
+       
         
         //========================== hire test size ============== 
             @Test//สั้นเกินไป Hiremoney
@@ -651,7 +501,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c.setManager(m);
             c.setnameArtist("abcd");
-            c.setHiremoney("1000000000000000000000000000");//ผิด
+            c.setHiremoney("100000000000000000000000000000");//ผิด
             c.setTypecontract("abcd &");
             c.setnameManager("ab");
 
@@ -669,83 +519,12 @@ public class BackendApplicationTests {
             }
         //====================== end hire test size ==============
 
-        //======================== firstname size tset ===================
-            @Test//ยาวเกินไป nameArtist
-            public void testNameArtistMax() { 
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("aaaaaaaaaaaaaaaaaaaaaaa");//ผิด
-            c.setHiremoney("100,000");
-            c.setTypecontract("abcd");
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameArtist must not be maximum to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-            @Test//สั้นเกินไป nameArtist
-            public void testNameArtistMin() { 
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("a");//ผิด
-            c.setHiremoney("100,000");
-            c.setTypecontract("abcd");
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("=====nameArtist must not be minimum to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-        //================end firstname test ======================================
-
+       
     //========================== End test Size====================================
         
 
     //============================= pattern test =============================
-        @Test//namesrtist ไม่ตรงตาม pattern 
-        public void testNameArtistNotPattern() { 
-        ContractArtistEntity c = new ContractArtistEntity();
-        Manager m = new Manager();
-        m = managerRepository.findByUsername("mimi");
-        c.setManager(m);
-        c.setnameArtist("aaฟหก");//ผิด
-        c.setHiremoney("100,000");
-        c.setTypecontract("abcd");
-        c.setnameManager("ab");
-
-        try {
-        entityManager.persist(c);
-        entityManager.flush();
-        fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-        System.out.println(">>>"+e+"<<<");
-        System.out.println("=====nameArtist must not be pattern to be valid\n\n");
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
-        }
-        }
-
+       
         @Test//Hiremoney ไม่ตรงตาม pattern 
         public void testHiremoneyNotPattern() { 
         ContractArtistEntity c = new ContractArtistEntity();
@@ -771,57 +550,11 @@ public class BackendApplicationTests {
         }
     
     
-        @Test//type ไม่ตรงตาม pattern 
-        public void testTypeNotMatchPattern() { 
-        ContractArtistEntity c = new ContractArtistEntity();
-        Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-        c.setnameArtist("abcd");
-        c.setHiremoney("100,000 baht");
-        c.setTypecontract("ฟหกด");//ผิด
-        c.setnameManager("ab");
-
-        try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("Typecontract must not be pattern to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-        }
-
-        @Test//nameManager ไม่ตรงตาม pattern 
-        public void testnameManagerNotPattern() { 
-        ContractArtistEntity c = new ContractArtistEntity();
-        Manager m = new Manager();
-        m = managerRepository.findByUsername("mimi");
-        c.setManager(m);
-        c.setnameArtist("abcd");
-        c.setHiremoney("100,000");
-        c.setTypecontract("abcd");
-        c.setnameManager("ศิลปิน");//ผิด
-
-        try {
-        entityManager.persist(c);
-        entityManager.flush();
-        fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-        System.out.println(">>>"+e+"<<<");
-        System.out.println("=====nameManager must not be pattern to be valid\n\n");
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
-        }
-        }
+      
     //================================ end pattern test =======================
 
 
-
+    //Unique
         @Test(expected=javax.persistence.PersistenceException.class)
             public void testnameArtistMustBeUnique() {
             ContractArtistEntity c1 = new ContractArtistEntity();
@@ -853,11 +586,6 @@ public class BackendApplicationTests {
             fail("Should not pass to this line");
         
         }
-
-        
-
-        
-
 //========================================== End test =====================================================
 
 
