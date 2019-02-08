@@ -27,22 +27,25 @@ public class ContractArtistEntity{
     private @NonNull long id;
 
     @NotNull(message = "name must not be null to be valid")
-    private @NonNull String firstname;
-
-    @NotNull(message = "Value must not be minimum to be valid")
-    @Pattern(regexp="[a-zA-Z0-9 ,]*")
-    @Size(min=4)
+    @Pattern(regexp="[a-zA-Z ]*")
     @Column( unique = true)
+    @Size(min=2 , max = 10)
+    private @NonNull String nameArtist;
+
+    @NotNull(message = "Value must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z0-9 ,]*")
+    @Size(min=4 , max = 15)
+    
     private @NonNull String hiremoney;
    
-    @NotNull(message = "name must not be pattern to be valid")
+    @NotNull(message = "name must not be null to be valid")
     @Pattern(regexp="[a-zA-Z &]*")
-    @Size(min= 2)
+    @Size(min= 2 , max = 10)
     private @NonNull String typecontract;
 
-    @NotNull(message = "name must not be maximum to be valid")
+    @NotNull(message = "name must not be null to be valid")
     @Pattern(regexp="[a-zA-Z ]*")
-    @Size(max=2)
+    @Size(min=1 , max=10)
     private @NonNull String nameManager;
 
 
@@ -61,7 +64,9 @@ public class ContractArtistEntity{
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
     @JoinColumn(name = "artist_id",insertable = true)
     private Artists idArtist;
-
+    
+    
+    @NotNull(message = "manager must not be null to be valid")
     @ManyToOne
     @JoinColumn(name = "Manager_ID")
     private Manager manager;
@@ -69,8 +74,8 @@ public class ContractArtistEntity{
     
 
     
-    public void setnameArtist(String nameAString){this.firstname = nameAString;}
-    public String getnameArtist() {return firstname;}
+    public void setnameArtist(String nameAString){this.nameArtist = nameAString;}
+    public String getnameArtist() {return nameArtist;}
 
     public void setnameManager(String nameAString){this.nameManager = nameAString;}
     public String getnameManager() {return nameManager;}
