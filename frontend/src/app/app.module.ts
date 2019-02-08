@@ -63,6 +63,7 @@ import { BookComponent } from './book/book.component';
 import { BookshowComponent } from './bookshow/bookshow.component';
 import { QuereService } from './shared/book/quere.service';
 
+
 import {
   MatBadgeModule,
   MatBottomSheetModule,
@@ -72,7 +73,9 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { DressComponent } from './Dress/dress.component';
+import { SponserDressComponent } from './sponserdress/sponserdress.component';
 import { ContractartistComponent } from './contractartist/contractartist.component';
+
 
 
 const appRoutes: Routes = [
@@ -90,7 +93,8 @@ const appRoutes: Routes = [
   { path: 'Manager/:username', component: InfomanagerComponent },
   { path: 'Login/admin', component: LoginAdminComponent },
   { path: 'dress', component: DressComponent },
-  { path: 'contract', component: ContractartistComponent }
+  { path: 'contract', component: ContractartistComponent },
+  { path: 'sponser', component: SponserDressComponent }
 ];
 
 @NgModule({
@@ -109,7 +113,8 @@ const appRoutes: Routes = [
     BookComponent,
     BookshowComponent,
     DressComponent,
-    ContractartistComponent
+    ContractartistComponent,
+    SponserDressComponent
 
   ],
   imports: [
