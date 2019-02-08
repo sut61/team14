@@ -1,0 +1,74 @@
+<mat-progress-bar mode="buffer" ></mat-progress-bar>
+  <mat-grid-list cols="1" rowHeight="12:1" >
+    <mat-toolbar color="primary" >
+      <mat-icon class="example-icon">SPONSERDRESS</mat-icon>
+    </mat-toolbar>
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  <br>
+  
+    <mat-card class="example-card">
+  
+        <div class="flex-container">
+          
+          <form #sponser="ngForm" (ngSubmit)="onClickSubmit(sponser.value)">
+
+
+              <mat-form-field>  
+                  <h4>Artist:</h4> 
+                    <mat-select name ="artist" [(ngModel)]="sponser.artists">
+                      <mat-option *ngFor="let artist of artists" [value]="artist.value">
+                        {{artist.value}} : {{artist.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+      
+           
+            <mat-form-field>
+              <h4>SponserDress:</h4> 
+                 <input matInput name ="sponser" [(ngModel)]="sponser.sponserdress">
+           </mat-form-field><br>
+    
+           
+            <mat-form-field>  
+              <h4>Dress:</h4> 
+                <mat-select name ="dress" [(ngModel)]="sponser.dress">
+                  <mat-option *ngFor="let dress of dress" [value]="dress.value">
+                    {{dress.value}} : {{dress.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field><br>
+  
+           <mat-form-field>  
+            <h4>Status:</h4> 
+              <mat-select name ="statusdress" [(ngModel)]="sponser.status_id">
+                <mat-option *ngFor="let statusdress of status_id" [value]="statusdress.value">
+                  {{statusdress.viewValue}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field><br>
+          <h4>DateAdd-DateReturn</h4>
+          <div class="flex-container">
+            
+            <mat-form-field>
+               
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="sponser.date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field><dd>
+
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Choose a date" name="datere" [(ngModel)]="sponser.datere">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+          </div><br><br>
+  
+            <div class="flex-container">
+              <button type="submit" mat-stroked-button color="primary">SAVE</button>
+            </div>
+      
+          </form>
+        </div>
+      </mat-card>

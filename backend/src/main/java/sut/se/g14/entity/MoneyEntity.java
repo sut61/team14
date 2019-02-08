@@ -43,13 +43,13 @@ public class MoneyEntity{
 
     @NotNull(message = "name must not be null to be valid")
     @Pattern(regexp="[a-zA-Z ]*")
-    @Column( unique = true)
+    //@Column( unique = true)
     @Size(min=2 , max = 10)
     private  @NonNull String nameDress;
 
     @NotNull(message = "name must not be null to be valid")
     @Pattern(regexp="[a-zA-Z ]*")
-    @Column( unique = true)
+    //@Column( unique = true)
     @Size(min=2 , max = 10)
     private @NonNull String firstname;
     
