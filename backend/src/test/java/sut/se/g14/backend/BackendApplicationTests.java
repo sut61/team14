@@ -26,6 +26,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 @DataJpaTest
 public class BackendApplicationTests {
 
+
+
 	@Autowired
     private  MoneyRepository moneyRepository;
 
@@ -38,19 +40,79 @@ public class BackendApplicationTests {
     @Autowired
     private  ManagerRepository managerRepository;
 
+    @Autowired
+    private  DressRepository dressRepository;
+
+    @Autowired
+    private  QuereRepository quereRepository;
+
+    @Autowired
+    private  ArtistRepository artistRepository;
+
+
+
     private Validator validator;
-
-
+    Artists a = new Artists();
+    Dress d = new Dress();
+    Quere q = new Quere();
+    Band b = new Band();
 	@Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+
+        d.setDress("dress");
+        entityManager.persist(d);
+        entityManager.flush();
+
+        b.setBandname("bandname");
+        entityManager.persistAndFlush(b);
+        
+
+
+       //q.setId(1);
+       q.setBandQuere(entityManager.persistAndFlush(b));
+       entityManager.persist(q);
+       entityManager.flush();
+        
+
+        a.setFirstname("firstname");
+        entityManager.persist(a);
+        entityManager.flush();
+        
     }
-/*
-	@Test
-    public void testFristNameNull() {
-		MoneyEntity m = new MoneyEntity();
-		m.setnameArtist(null);
+//==================================== Start test sprint1 ==============================================
+    @Test
+        public void testDataSuccessSP1() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+        m.setnameArtist("abcd");
+        m.setnameDress("nameDress");
+        m.setpriceExpenses(1000000);
+        m.setpriceIncome(1000000);
+
+        //entityManager.persist(m);
+        entityManager.flush();
+
+    
+        System.out.println("Save data SP1 successfully\n\n");
+
+
+        }
+    //===========================test Null
+        @Test
+        public void testfirstnameNull() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+        
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist(null);//ผิด
 		m.setnameDress("nameDress");
 	    m.setpriceExpenses(1000000);
 		m.setpriceIncome(1000000);
@@ -60,18 +122,124 @@ public class BackendApplicationTests {
 
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameArtist must not be null to be valid\n\n");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
-    }
+        }
 
+        @Test
+        public void testnameDressNull() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("abcd");
+		m.setnameDress(null);//ผิด
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
 
-    @Test
-    public void testNameMin() {
-		MoneyEntity m = new MoneyEntity();
-		m.setnameArtist("");
-		m.setnameDress("a");
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+                System.out.println("=====nameDress must not be null to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test
+        public void testIDartistNull() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname(null);
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);//ผิด
+		m.setnameArtist("abcd");
+		m.setnameDress("abcd");
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+                System.out.println("=====IDartist must not be null to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test
+        public void testIDdressNull() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+        m.setIdQueue(q);
+        m.setIdDress(null);//ผิด
+        m.setIdArtist(a);
+		m.setnameArtist("abcd");
+		m.setnameDress("abcd");
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+                System.out.println("=====IDdress must not be null to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test
+        public void testIDquereNull() {
+        MoneyEntity m = new MoneyEntity();
+        a = artistRepository.findByfirstname("firstname");
+        m.setIdQueue(null);//ผิด
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("abcd");
+		m.setnameDress("abcd");
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+                System.out.println("=====IDquere must not be null to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+       
+    //========================end test null==============================
+    //===========================test size
+        @Test//firstname min
+        public void testfirstnameMin() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("");//ผิด
+		m.setnameDress("abcd");
 	    m.setpriceExpenses(1000000);
 		m.setpriceIncome(1000000);
         try {
@@ -80,12 +248,133 @@ public class BackendApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameArtist must not be minimum to be valid\n\n");
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
-    }
-    */
+        }
 
+        @Test//first max
+        public void testfirstnameMax() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("abcdefghijklnmop");//ผิด
+		m.setnameDress("abcd");
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameArtist must not be maximum to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test//nameDressMin
+        public void testnameDressMin() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("abcd");
+		m.setnameDress("");//ผิด
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameDress must not be minimum to be valid\n\n");
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test//nameDressMax
+        public void testnameDressMax() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+		m.setnameArtist("abcd");
+		m.setnameDress("abcdabcdabcdabcd");//ผิด
+	    m.setpriceExpenses(1000000);
+		m.setpriceIncome(1000000);
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameDress must not be maximum to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+        }
+    //========================end test size ===============================
+    //========================pattern============
+        @Test
+        public void testfirstnameNotPattern() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+        m.setnameArtist("ฟหกด");//ผิด
+        m.setnameDress("nameDress");
+        m.setpriceExpenses(1000000);
+        m.setpriceIncome(1000000);
+        try {
+        entityManager.persist(m);
+        entityManager.flush();
+
+        fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+        System.out.println(">>>"+e+"<<<");
+        System.out.println("=====nameArtist must not be pattern to be valid\n\n");
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
+        }
+        }
+
+        @Test
+        public void testnameDressNotPattern() {
+        MoneyEntity m = new MoneyEntity();
+        m.setIdQueue(q);
+        m.setIdDress(d);
+        m.setIdArtist(a);
+        m.setnameArtist("abcd");
+        m.setnameDress("ฟหกด");//ผิด
+        m.setpriceExpenses(1000000);
+        m.setpriceIncome(1000000);
+        try {
+        entityManager.persist(m);
+        entityManager.flush();
+
+        fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+        System.out.println(">>>"+e+"<<<");
+            System.out.println("=====nameDress must not be pattern to be valid\n\n");
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
+        }
+        }
+    //=========================end test pattern===
+
+//======================================end test sprint 1 ==============================================
 
 //========================================== test sprint2 contract =======================================
     @Test
@@ -103,7 +392,7 @@ public class BackendApplicationTests {
         entityManager.flush();
 
     
-        System.out.println("Save data successfully\n\n");
+        System.out.println("Save data SP 2successfully\n\n");
         
     }
     
@@ -534,20 +823,20 @@ public class BackendApplicationTests {
 
 
         @Test(expected=javax.persistence.PersistenceException.class)
-        public void testnameArtistMustBeUnique() {
-        ContractArtistEntity c1 = new ContractArtistEntity();
-        Manager m = new Manager();
+            public void testnameArtistMustBeUnique() {
+            ContractArtistEntity c1 = new ContractArtistEntity();
+            Manager m = new Manager();
             m = managerRepository.findByUsername("mimi");
             c1.setManager(m);
-        c1.setnameArtist("abcd");//ซ้ำ
-        c1.setHiremoney("9999");
-        c1.setTypecontract("abcd");
-        c1.setnameManager("ab");
+            c1.setnameArtist("abcd");//ซ้ำ
+            c1.setHiremoney("9999");
+            c1.setTypecontract("abcd");
+            c1.setnameManager("ab");
 
-        entityManager.persist(c1);
-        entityManager.flush();
+            entityManager.persist(c1);
+            entityManager.flush();
 
-        ContractArtistEntity c2 = new ContractArtistEntity();
+            ContractArtistEntity c2 = new ContractArtistEntity();
         
             m = managerRepository.findByUsername("mimi");
             c2.setManager(m);
@@ -557,11 +846,11 @@ public class BackendApplicationTests {
             c2.setnameManager("ab");
 
         
-        System.out.println("Test nust be Unique\n\n");
-        entityManager.persist(c2);
-        entityManager.flush();
+            System.out.println("Test nust be Unique\n\n");
+            entityManager.persist(c2);
+            entityManager.flush();
 
-        fail("Should not pass to this line");
+            fail("Should not pass to this line");
         
         }
 
