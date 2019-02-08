@@ -33,6 +33,12 @@ public class ContractArtistController {
         this.contractArtistRepository = contractArtistRepository;
     }
 
+    // contract
+    @GetMapping("/ContractArtist")
+    public List<ContractArtistEntity> getContractEntities(){
+        return contractArtistRepository.findAll().stream().collect(Collectors.toList());
+    }
+
     // type
     @GetMapping("/Typecontract")
     public List<TypeContractEntity> getTypeContractEntities(){
