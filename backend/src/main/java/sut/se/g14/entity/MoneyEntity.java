@@ -3,11 +3,13 @@ package sut.se.g14.entity;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
-
+import javax.validation.constraints.Size;
 @Entity
 @Data
 @Getter@Setter
@@ -24,22 +26,33 @@ public class MoneyEntity{
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Dress.class)
     @JoinColumn(name = "dress_id",insertable = true)
+    @NotNull(message = "id must not be null to be valid")
     private Dress  idDress;
-    private  @NonNull String nameDress;
+    
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Quere.class)
     @JoinColumn(name = "queue_id",insertable = true)
+    @NotNull(message = "id must not be null to be valid")
     private Quere  idQueue;
-    
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
     @JoinColumn(name = "artist_id",insertable = true)
+    @NotNull(message = "id must not be null to be valid")
     private Artists idArtist;
    
+
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z ]*")
+    @Column( unique = true)
+    @Size(min=2 , max = 10)
+    private  @NonNull String nameDress;
+
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z ]*")
+    @Column( unique = true)
+    @Size(min=2 , max = 10)
     private @NonNull String firstname;
     
-
-
     private  int priceIncome;
     private  int priceExpenses;
 
