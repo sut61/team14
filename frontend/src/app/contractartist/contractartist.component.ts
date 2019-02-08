@@ -17,6 +17,17 @@ export class ContractartistComponent implements OnInit {
   id_dress: Array<any>;
   id_queue: Array<any>;
 
+  id_contract: any = {
+    nameArtist: '',
+    hiremoney: '',
+    typecontract: '',
+    nameManager: '',
+    idType:[],
+    idHie:[],
+    idArtit:[],
+    manager:[],
+  };
+
   ids: any = {
     managerSelect: '',
     typeSelect: '',
@@ -26,6 +37,8 @@ export class ContractartistComponent implements OnInit {
   };
   quereService: any;
   user: any;
+
+  hire : any;
 
   constructor(private moneyService: MoneyService, private httpClient: HttpClient, private router: Router) { }
 
@@ -50,13 +63,19 @@ export class ContractartistComponent implements OnInit {
       this.id_type = data;
       console.log(this.id_type);
     });
+
+    this.moneyService.getIdContract().subscribe(data => {
+      this.id_contract = data;
+      console.log(this.id_contract);
+    });
   }
 
   insertContract() {
 
+
     if (this.ids.artistSelect != 0 && this.ids.typeSelect != 0 && this.ids.hireSelect != 0  && this.ids.managerSelect != 0) {
       
-            this.httpClient.post('http://localhost:8080/Contract/' + this.ids.artistSelect + '/'
+       this.httpClient.post('http://localhost:8080/Contract/' + this.ids.artistSelect + '/'
               + this.ids.typeSelect + '/' + this.ids.hireSelect + '/' + this.ids.managerSelect
               , this.ids).subscribe(data => {
                 console.log('PUT Request is successful', data);
@@ -64,7 +83,7 @@ export class ContractartistComponent implements OnInit {
               },
                 error => {
                   console.log('Error', error);
-                });  
+            }); 
       
     }
     

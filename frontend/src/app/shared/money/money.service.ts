@@ -9,6 +9,10 @@ export class MoneyService {
 
   constructor(private http: HttpClient) { }
 
+  getIdContract(): Observable<any> {
+    return this.http.get(this.API + '/ContractArtist');
+  }
+
   getIdArtist(): Observable<any> {
     return this.http.get(this.API + '/Artist');
   }
@@ -50,6 +54,10 @@ export class MoneyService {
   }
   getFindDress(id): Observable<any> {
     return this.http.get(this.API + '/findDress/' + id);
+  }
+
+  getFindHire(id): Observable<any> {
+    return this.http.get(this.API + '/findHire/' + id);
   }
 
 
