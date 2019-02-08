@@ -95,7 +95,7 @@ public class BackendApplicationTests {
         m.setpriceExpenses(1000000);
         m.setpriceIncome(1000000);
 
-        //entityManager.persist(m);
+        entityManager.persist(m);
         entityManager.flush();
 
     
