@@ -33,9 +33,8 @@ public class ContractArtistEntity{
     private @NonNull String nameArtist;
 
     @NotNull(message = "Value must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z0-9 ,]*")
-    @Size(min=4 , max = 15)
-    
+    @Pattern(regexp="[a-zA-Z0-9 , :]*")
+    @Size(min=4 , max = 20)
     private @NonNull String hiremoney;
    
     @NotNull(message = "name must not be null to be valid")
@@ -79,10 +78,6 @@ public class ContractArtistEntity{
 
     public void setnameManager(String nameAString){this.nameManager = nameAString;}
     public String getnameManager() {return nameManager;}
-
-
-
-
 
     public void setIdArtist(Artists id){this.idArtist = id;}
     public Artists getIdArtist(){return  this.idArtist;}

@@ -2,9 +2,14 @@ package sut.se.g14.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +47,17 @@ public class MoneyEntity{
    
 
     @NotNull(message = "name must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z ]*")
-    //@Column( unique = true)
-    @Size(min=2 , max = 10)
     private  @NonNull String nameDress;
 
     @NotNull(message = "name must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z ]*")
-    //@Column( unique = true)
-    @Size(min=2 , max = 10)
     private @NonNull String firstname;
-    
+
+
+    @Positive
+    @Max(1000000)
     private  int priceIncome;
+
+    @Min(1)
     private  int priceExpenses;
 
     
