@@ -17,8 +17,7 @@ public class Event {
     private   Long id;
     private   String event;
 
-    protected Event(){}
-
+    public Event(){}
     public Event(String event) {
          this.event = event;
 }
