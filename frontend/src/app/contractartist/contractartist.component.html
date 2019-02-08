@@ -39,13 +39,9 @@
                   </mat-form-field>
               </form>
               <form>
-                  <mat-form-field>
-                      <mat-select placeholder="ไอดี : จำนวนเงินจ้าง" [(ngModel)]="ids.hireSelect" name="id" #idQ>
-                          <mat-option *ngFor="let id of id_hire" [value]=[id.id] text="number">
-                              {{id.id}} : {{id.money}}
-                          </mat-option>
-                      </mat-select>
-                  </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="hiremoney" type="text" placeholder="ค่าจ้าง" name="hiremoney">
+                </mat-form-field>
               </form>
 
               <form>

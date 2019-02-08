@@ -24,7 +24,7 @@
                     <mat-form-field>
                         <mat-select placeholder="ไอดี : ชื่อศิลปิน" [(ngModel)]="ids.artistSelect" name="idArtist" #idArtist>
                             <mat-option *ngFor="let id of id_artist" [value]=[id.firstname] text="number">
-                                {{id.artistsID}} : {{id.band.bandname}}
+                                {{id.artistsID}} : {{id.firstname}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -40,7 +40,7 @@
                 </form>
 
                 <mat-form-field>
-                    <input matInput [(ngModel)]="priceExpenses" type="number" placeholder="รายจ่าย">
+                    <input matInput [(ngModel)]="priceExpenses" type="number" placeholder="รายจ่าย" name="priceExpenses">
                 </mat-form-field>
 
                 <form>
@@ -54,7 +54,7 @@
 
                 </form>
                 <mat-form-field>
-                    <input matInput [(ngModel)]="priceIncome" type="number" placeholder="รายรับ">
+                    <input matInput [(ngModel)]="priceIncome" type="number" placeholder="รายรับ" name="priceIncome">
                 </mat-form-field>
             </mat-card-content>
             <h1 style="margin:10px">

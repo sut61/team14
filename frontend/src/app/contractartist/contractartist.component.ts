@@ -39,7 +39,7 @@ export class ContractartistComponent implements OnInit {
   user: any;
 
   hire : any;
-
+  hiremoney: String;
   constructor(private moneyService: MoneyService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
@@ -73,16 +73,17 @@ export class ContractartistComponent implements OnInit {
   insertContract() {
 
 
-    if (this.ids.artistSelect != 0 && this.ids.typeSelect != 0 && this.ids.hireSelect != 0  && this.ids.managerSelect != 0) {
+    if (this.ids.artistSelect != 0 && this.ids.typeSelect != 0 && this.hiremoney != null  && this.ids.managerSelect != 0) {
       
        this.httpClient.post('http://localhost:8080/Contract/' + this.ids.artistSelect + '/'
-              + this.ids.typeSelect + '/' + this.ids.hireSelect + '/' + this.ids.managerSelect
+              + this.ids.typeSelect + '/' + this.hiremoney + '/' + this.ids.managerSelect
               , this.ids).subscribe(data => {
                 console.log('PUT Request is successful', data);
                 alert('บันทึกข้อมูลสำเร็จ');
               },
                 error => {
                   console.log('Error', error);
+                  alert('บันทึกข้อมูลไม่สำเร็จ');
             }); 
       
     }
