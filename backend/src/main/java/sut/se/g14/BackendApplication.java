@@ -73,7 +73,12 @@ public class BackendApplication {
 						   PracticeRepository practiceRepository,
 						   TypePracticeRepository typePracticeRepository,
 						   RoomPracticeRepository roomPracticeRepository,
-						   TypeRoomPracticeRepository typeRoomPracticeRepository) {
+						   TypeRoomPracticeRepository typeRoomPracticeRepository,
+						   TypePrivilegeRepository typePrivilegeRepository,
+						   DateExpMonthRepository dateExpMonthRepository,
+						   DateExpYearRepository dateExpYearRepository,
+						   ProfileRepository profileRepository,
+						   IDCardRepository idCardRepository) {
 		return args -> {
 			//Manager
 			Stream.of("Male", "Female").forEach(gender -> {
@@ -134,7 +139,31 @@ public class BackendApplication {
 
 
 
-			//Register
+			//Register , Privilege VIP
+			Stream.of("2019", "2020", "2021", "2022",
+					"2023", "2024", "2025", "2026",
+					"2027", "2028", "2029", "2030",
+					"2031", "2032", "2033", "2034" ).forEach(expYear ->{
+				DateExpYear newDateExpYear = new DateExpYear();
+				newDateExpYear.setExpYear(expYear);
+				dateExpYearRepository.save(newDateExpYear);
+			});
+
+			Stream.of("01", "02", "03", "04", "05", "06",
+					"07", "08", "09", "10", "11", "12").forEach(expMonth ->{
+				DateExpMonth newDateExpMonth = new DateExpMonth();
+				newDateExpMonth.setExpMonth(expMonth);
+				dateExpMonthRepository.save(newDateExpMonth);
+			});
+
+			Stream.of("Backstage Concert",
+					"Dance Practice",
+					"Special Concert").forEach(typePrivilege ->{
+				TypePrivilege newTypePrivilege = new TypePrivilege();
+				newTypePrivilege.setTypePrivilege(typePrivilege);
+				typePrivilegeRepository.save(newTypePrivilege);
+			});
+
 			Stream.of(
 					"Albania", "Algeria",
 					"Arab Emirates", "Argentina",
