@@ -22,6 +22,7 @@ public class MembersController {
     public Members getOneMembers (@PathVariable String username){
         return membersRepository.findById(username).get();
     }
+
     @PostMapping(path = "/member", produces = MediaType.APPLICATION_JSON_VALUE)
     public Members postMember(@RequestBody Members members){
         return membersRepository.save(members);

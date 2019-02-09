@@ -18,7 +18,7 @@ public class IDCardController {
 
     @PostMapping (path = "/idCard/{profileID}")
     public IDCard postIDCard(@RequestBody IDCard idCard,
-                            @PathVariable Long profileID){
+                            @PathVariable long profileID){
         idCard.setProfile(profileRepository.findById(profileID).get());
 
         return idCardRepository.save(idCard);
