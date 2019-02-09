@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MoneyService } from '../shared/money/money.service';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
-import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
   selector: 'app-contractartist',
   templateUrl: './contractartist.component.html',
@@ -39,6 +38,7 @@ export class ContractartistComponent implements OnInit {
   quereService: any;
   user: any;
 
+  show : String;
   hire : any;
   hiremoney: Number;
   constructor(private moneyService: MoneyService, private httpClient: HttpClient, private router: Router) { }
@@ -75,36 +75,31 @@ export class ContractartistComponent implements OnInit {
 
 
     if (this.ids.artistSelect != 0 && this.ids.typeSelect != 0 && this.hiremoney != null  && this.ids.managerSelect != 0) {
-
+      
        this.httpClient.post('http://localhost:8080/Contract/' + this.ids.artistSelect + '/'
               + this.ids.typeSelect + '/' + this.hiremoney + '/' + this.ids.managerSelect
               , this.ids).subscribe(data => {
                 console.log('PUT Request is successful', data);
-                alert('บันทึกข้อมูลสำเร็จ');
+                //alert('บันทึกข้อมูลสำเร็จ');
+                this.show = "บันทึกข้อมูลสำเร็จ";
               },
                 error => {
                   console.log('Error', error);
-                  alert('บันทึกข้อมูลไม่สำเร็จ');
-            });
-
+                  //alert('บันทึกข้อมูลไม่สำเร็จ');
+                  this.show = "บันทึกข้อมูลไม่สำเร็จ";
+            }); 
+      
     }
-
+    
     else {
-      alert('กรุณาเลือกข้อมูลให้ครบ');
+      this.show = "กรุณาเลือกข้อมูลให้ครบ";
+      //alert('กรุณาเลือกข้อมูลให้ครบ');
     }
 
   }
 
   logout() {
-    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
-  }
-  goManager(){
-    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
-  }
-
-  goPractice(){
-    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 
 }
