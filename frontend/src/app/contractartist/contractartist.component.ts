@@ -39,7 +39,7 @@ export class ContractartistComponent implements OnInit {
   user: any;
 
   hire : any;
-  hiremoney: String;
+  hiremoney: Number;
   constructor(private moneyService: MoneyService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
