@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AlbumsService } from '../shared/albums/albums.service';
 import { ActivatedRoute } from '@angular/router';
 import { AlbumsComponent } from '../albums/albums.component';
-
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
   selector: 'app-view-albums',
   templateUrl: './view-albums.component.html',
@@ -15,7 +15,7 @@ export class ViewAlbumsComponent implements OnInit {
 
   private sub: any;
   private albumsID: any;
- 
+
   private albums = {
   albumsID:'',
   name:'',
@@ -24,8 +24,8 @@ export class ViewAlbumsComponent implements OnInit {
   producer: [],
   song: []
   }
-  
-     
+
+
   constructor(private httpClient: HttpClient,private service: AlbumsService,private router: Router,private rout: ActivatedRoute) { }
 
   ngOnInit() {
@@ -38,13 +38,23 @@ export class ViewAlbumsComponent implements OnInit {
       this.albums = data;
       console.log(this.albums);
     });
-    
+
+  }
+logout() {
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
   }
 
- 
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 
- 
-  
+  }
+
+
+
 
 

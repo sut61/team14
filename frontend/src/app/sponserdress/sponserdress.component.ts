@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 export interface PeriodicElements { }
 
 @Component({
@@ -11,7 +12,7 @@ export interface PeriodicElements { }
 })
 export class SponserDressComponent implements OnInit {
 
-  
+
   title = 'Sponser';
   sponserdress= '';
   status_id = [] ;
@@ -34,11 +35,11 @@ export class SponserDressComponent implements OnInit {
         console.log("Error", error);
         alert("ผิดพลาด กรอกข้อมูลไม่ครบถ้วน " + error)
       });
-    
+
   }
   constructor( private http: HttpClient,  private router: Router) {}
   ngOnInit() {
-   
+
    this.http.get("http://localhost:8080/statusdress").subscribe(
      data => {
        console.log("GET Request is successful ", data);
@@ -49,7 +50,7 @@ export class SponserDressComponent implements OnInit {
          })
        }
        console.log(data);
-       
+
      },
      error => {
        console.log("Error", error);
@@ -66,7 +67,7 @@ export class SponserDressComponent implements OnInit {
            })
          }
          console.log(data);
-         
+
        },
        error => {
          console.log("Error", error);
@@ -83,13 +84,22 @@ export class SponserDressComponent implements OnInit {
           })
         }
         console.log(data);
-        
+
       },
       error => {
         console.log("Error", error);
       }
     );
 }
+logout() {
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
 
-
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
 }

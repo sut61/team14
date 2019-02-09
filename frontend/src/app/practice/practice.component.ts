@@ -34,9 +34,6 @@ export class PracticeComponent implements OnInit {
 
   constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router,
               private rout: ActivatedRoute, private practiceService:PracticeService){
-    if (typeof LoginAdminComponent.userName === 'undefined' || LoginAdminComponent.userName == null) {
-      this.router.navigate(['Login/admin'])
-    }
     console.log(LoginAdminComponent.userName);
   }
 
@@ -46,9 +43,9 @@ export class PracticeComponent implements OnInit {
       console.log(this.username);
     });
 
-     this.manageService.getManager(LoginAdminComponent.userName).subscribe(data => {
+     this.manageService.getManager(this.username.username).subscribe(data => {
       this.manager = data;
-      this.practiceSet.username = LoginAdminComponent.userName;
+      this.practiceSet.username = this.username.username;
       console.log(this.manager);
     });
 

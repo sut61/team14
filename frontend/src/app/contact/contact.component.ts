@@ -3,7 +3,7 @@ import { ManageService } from '../shared/manage/manage.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
-
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -69,11 +69,16 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  go() {
-    this.router.navigate(['Manager/' + this.username.username]);
+    goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
   }
 

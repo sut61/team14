@@ -3,6 +3,7 @@ import { ManageService } from '../shared/manage/manage.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
   selector: 'app-manager',
@@ -19,8 +20,14 @@ export class ManagerComponent implements OnInit {
     password : ''
   };
   manager: any;
+  showError = '';
 
-  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) { }
+  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) {
+    if (typeof LoginAdminComponent.userName === 'undefined' || LoginAdminComponent.userName == null) {
+
+    }
+    console.log(LoginAdminComponent.userName);
+  }
 
   ngOnInit() {
     this.rout.params.subscribe(params => {
@@ -37,7 +44,8 @@ export class ManagerComponent implements OnInit {
   save() {
 
     if (this.managerSet.name === '' || this.managerSet.gender === '' || this.managerSet.username === '' || this.managerSet.password === ''){
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+
+        this.showError = 'Please fill up this form.';
     }else {
       this.httpClient.post('http://localhost:8080/newManager/' + this.managerSet.name + '/' + this.managerSet.gender + '/' +
         this.managerSet.username + '/' + this.managerSet.password ,this.managerSet)
@@ -50,6 +58,7 @@ export class ManagerComponent implements OnInit {
           }
         },
         error => {
+          this.showError = 'การเพิ่มข้อมูลผิดพลาด';
           console.log('Error', error);
         }
       );
@@ -58,6 +67,7 @@ export class ManagerComponent implements OnInit {
   }
 
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
   }
 
@@ -67,6 +77,10 @@ export class ManagerComponent implements OnInit {
 
   goManager(){
     this.router.navigate(['Manager/' + this.username.username]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + this.username.username]);
   }
 
 

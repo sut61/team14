@@ -2,14 +2,18 @@
 
 </div>
 <mat-toolbar style="background-color: #DFC8EF">
-    <span class="fill-remaining-space"></span>
-    <button mat-button (click)="goManager()" >Manager</button>
-    <button mat-button [routerLink]="['/dress']">Dress</button>
-    <button mat-button [routerLink]="['/money']">Finance</button>
-    <button mat-button [routerLink]="['/artists']">Artists</button>
-    <button mat-button [routerLink]="['/contract']">Contract</button>
-    <button mat-button (click)="logout()">Logout</button>
-  </mat-toolbar>
+  <span class="fill-remaining-space"></span>
+  <button mat-button (click)="goManager()" >Manager</button>
+  <button mat-button [routerLink]="['/dress']">Dress</button>
+  <button mat-button [routerLink]="['/money']">Finance</button>
+  <button mat-button [routerLink]="['/artists']">Artists</button>
+  <button mat-button [routerLink]="['/contract']">Contract</button>
+  <button mat-button (click)="goPractice()">Practice</button>
+  <button mat-button [routerLink]="['/albums']">Albums</button>
+  <button mat-button (click)="goPractice()">Work</button>
+  <button mat-button [routerLink]="['/sponser']">SponserDress</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <fieldset>
     <legend style="font: 50px sans-serif;color: red"> การเงิน </legend>
     <fieldset>
