@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { AlbumsService } from '../shared/albums/albums.service';
-import { LoginAdminComponent } from '../login-admin/login-admin.component';
+
 
 
 @Component({
@@ -71,11 +71,10 @@ export class AlbumsComponent implements OnInit {
       .subscribe(data => {
           console.log('PUT Request is successful', data);
           window.location.reload();
-
         },
           error => {
             console.log('Error', error);
-            this.showError = "Albumsname invalid"
+            this.showError = "กรอกข้อมูลผิดพลาด"
           }
         );
          }
@@ -100,18 +99,5 @@ song(element): void {
 view(element):void{
   this.router.navigate(['view-albums/'+element.albumsID]);
 }
-
-logout() {
-    LoginAdminComponent.userName = null;
-    this.router.navigate(['Login/admin']);
-  }
-
-  goManager(){
-    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
-  }
-
-  goPractice(){
-    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
-  }
 
 }
