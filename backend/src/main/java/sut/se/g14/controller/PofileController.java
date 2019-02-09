@@ -46,4 +46,5 @@ public class PofileController {
     public Profile getProfileByMember(@PathVariable String memid){
         return profileRepository.findByMembers(membersRepository.findById(memid).get());
     }
+
 }
