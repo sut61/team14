@@ -54,13 +54,12 @@ public class ContractArtistController {
     // ===========================================================================================
     @PostMapping("/Contract/{artist}/{type}/{hire}/{manager}")
     public ContractArtistEntity ContractArtistEntity(@PathVariable String artist,@PathVariable long type,
-    @PathVariable String hire,@PathVariable String manager
+    @PathVariable int hire,@PathVariable String manager
                                ){
 
 
     ContractArtistEntity c = new ContractArtistEntity();
     TypeContractEntity t = typeContractRepository.findById(type);
-   // HireMoneyEntity h = hireMoneyRepository.findById(hire);
     Artists a = artistRepository.findByfirstname(artist);
     Manager m = managerRepository.findByUsername(manager);
 
