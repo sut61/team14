@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoneyService } from '../shared/money/money.service';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
   selector: 'app-money',
   templateUrl: './money.component.html',
@@ -91,7 +92,7 @@ export class MoneyComponent implements OnInit {
           this.dress = data;
           console.log(this.dress);
 
-         
+
             this.httpClient.post('http://localhost:8080/Money/' + this.ids.artistSelect + '/'
               + this.ids.dressSelect + '/' + this.priceExpenses + '/' + this.ids.queueSelect + '/' + this.priceIncome
               , this.ids).subscribe(data => {
@@ -103,11 +104,11 @@ export class MoneyComponent implements OnInit {
                   alert('บันทึกข้อมูลไม่สำเร็จ');
                 });
 
-           
+
         });
       });
     }
-    
+
     else {
       alert('กรุณาเลือกข้อมูลให้ครบ');
     }
@@ -115,7 +116,15 @@ export class MoneyComponent implements OnInit {
   }
 
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 
 

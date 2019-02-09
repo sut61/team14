@@ -3,6 +3,7 @@ import { ManageService } from '../shared/manage/manage.service';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
   selector: 'app-infomanager',
@@ -48,6 +49,10 @@ export class InfomanagerComponent implements OnInit {
   }
 
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
+  }
+goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 }

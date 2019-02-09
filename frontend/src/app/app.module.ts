@@ -79,6 +79,11 @@ import { DressComponent } from './Dress/dress.component';
 import { SponserDressComponent } from './sponserdress/sponserdress.component';
 import { ContractartistComponent } from './contractartist/contractartist.component';
 
+import { AlbumsService } from './shared/albums/albums.service';
+import { AlbumsComponent } from './albums/albums.component';
+import { SongService } from './shared/song/song.service';
+import { SongComponent } from './song/song.component';
+import { ViewAlbumsComponent } from'./view-albums/view-albums.component'
 
 
 const appRoutes: Routes = [
@@ -99,7 +104,10 @@ const appRoutes: Routes = [
   { path: 'contract', component: ContractartistComponent },
   { path: 'sponser', component: SponserDressComponent },
   { path: 'practice/new/:username', component: PracticeComponent },
-  { path: 'practice/table/:username', component: PracticetableComponent }
+  { path: 'practice/table/:username', component: PracticetableComponent },
+  { path: 'albums', component: AlbumsComponent},
+  { path:'song/:albumsID',component:SongComponent},
+  { path:'view-albums/:albumsID',component:ViewAlbumsComponent}
 ];
 
 @NgModule({
@@ -121,7 +129,10 @@ const appRoutes: Routes = [
     ContractartistComponent,
     SponserDressComponent,
     PracticeComponent,
-    PracticetableComponent
+    PracticetableComponent,
+    AlbumsComponent,
+    SongComponent,
+    ViewAlbumsComponent
 
   ],
   imports: [
@@ -169,7 +180,8 @@ const appRoutes: Routes = [
     MatTreeModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MoneyService, ManageService, ArtistsService, RegisterControlService, QuereService, PracticeService],
+  providers: [MoneyService, ManageService, ArtistsService, RegisterControlService, QuereService, PracticeService,
+              AlbumsService,SongService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

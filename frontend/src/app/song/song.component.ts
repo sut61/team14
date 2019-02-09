@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SongService } from '../shared/song/song.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
   selector: 'app-song',
@@ -83,6 +83,18 @@ add(){
       );
        }
 }
+
+logout() {
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
 }
 
 

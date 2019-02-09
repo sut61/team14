@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 export interface PeriodicElement { }
 
 @Component({
@@ -19,7 +20,7 @@ export class DressComponent implements OnInit {
 
   artist_id: '';
   dress_id: '';
- 
+
 
   onClickSubmit(data) {
 
@@ -34,13 +35,13 @@ export class DressComponent implements OnInit {
         console.log("Error", error);
         alert("ผิดพลาด ไม่พบ ID Artist " + error)
       });
-    
+
   }
-      
-    
+
+
     constructor( private http: HttpClient,  private router: Router) {}
    ngOnInit() {
-    
+
     this.http.get("http://localhost:8080/type").subscribe(
       data => {
         console.log("GET Request is successful ", data);
@@ -51,7 +52,7 @@ export class DressComponent implements OnInit {
           })
         }
         console.log(data);
-        
+
       },
       error => {
         console.log("Error", error);
@@ -67,7 +68,7 @@ export class DressComponent implements OnInit {
           })
         }
         console.log(data);
-        
+
       },
       error => {
         console.log("Error", error);
@@ -84,7 +85,7 @@ export class DressComponent implements OnInit {
           })
         }
         console.log(data);
-        
+
       },
       error => {
         console.log("Error", error);
@@ -92,8 +93,16 @@ export class DressComponent implements OnInit {
     );
   }
 
-  logout() {
+logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 }
 

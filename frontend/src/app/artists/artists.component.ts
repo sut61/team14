@@ -5,6 +5,7 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { Router, RouterModule } from '@angular/router';
 import { ArtistsService } from '../shared/artists/artists.service';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
   selector: 'app-artists',
@@ -82,9 +83,17 @@ export class ArtistsComponent implements OnInit {
                    }
                  );
                   }
-                  
+
 }
 logout() {
-  this.router.navigate(['Login/admin']);
-}
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
 }
