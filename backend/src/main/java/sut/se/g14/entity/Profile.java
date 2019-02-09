@@ -21,10 +21,9 @@ public class Profile {
 
     private @NonNull Long profileID;
     private @NonNull String name;
-    private @NonNull String email;
     private @NonNull String addressDetail;
     private @NonNull Long pastalCade;
-    private @NonNull Long mobilePhone;
+    private @NonNull String mobilePhone;
 
     @OneToOne
     private Members members;
@@ -42,20 +41,21 @@ public class Profile {
     @OrderBy("id Desc")
     private Collection<Quere> quereSet;
 
-    public Profile(){}
 
-    public Profile(String name, String email,String addressDetail, Long pastalCade, Long mobilePhone,
-                   Members members, Country country, Gender gender ) {
+    public Profile(){ }
+
+
+    public Profile(String name, String addressDetail,Long pastalCade, String mobilePhone,
+                   Members members, Country country, Gender gender, Collection<Quere> quereSet) {
         this.name = name;
-        this.email = email;
         this.addressDetail = addressDetail;
         this.pastalCade = pastalCade;
         this.mobilePhone = mobilePhone;
         this.members = members;
         this.country = country;
         this.gender = gender;
+        this.quereSet = quereSet;
     }
-
 
     public Long getProfileID() {
         return profileID;
@@ -71,14 +71,6 @@ public class Profile {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAddressDetail() {
@@ -97,11 +89,11 @@ public class Profile {
         this.pastalCade = pastalCade;
     }
 
-    public Long getMobilePhone() {
+    public String getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(Long mobilePhone) {
+    public void setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
