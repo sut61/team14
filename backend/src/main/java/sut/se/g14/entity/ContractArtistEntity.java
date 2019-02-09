@@ -11,6 +11,9 @@ import java.lang.String;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
@@ -32,10 +35,8 @@ public class ContractArtistEntity{
     @Size(min=2 , max = 10)
     private @NonNull String nameArtist;
 
-    @NotNull(message = "Value must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z0-9 , :]*")
-    @Size(min=4 , max = 20)
-    private @NonNull String hiremoney;
+    @Min(500)@Max(1000000)
+    private @NonNull int hiremoney;
    
     @NotNull(message = "name must not be null to be valid")
     @Pattern(regexp="[a-zA-Z &]*")
@@ -48,17 +49,10 @@ public class ContractArtistEntity{
     private @NonNull String nameManager;
 
 
-
-
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeContractEntity.class)
     @JoinColumn(name = "typecontract_id",insertable = true)
     private TypeContractEntity  idType;
-   
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = HireMoneyEntity.class)
-    @JoinColumn(name = "hire_id",insertable = true)
-    private HireMoneyEntity  idHire;
-    
 
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
     @JoinColumn(name = "artist_id",insertable = true)
@@ -89,11 +83,9 @@ public class ContractArtistEntity{
     public void setIdType(TypeContractEntity id){this.idType = id;}
     public TypeContractEntity getIdType(){return  this.idType;}
 
-    public void setIdHire(HireMoneyEntity id){this.idHire = id;}
-    public HireMoneyEntity getIdHire(){return  this.idHire;}
 
-    public void setHiremoney(String x){this.hiremoney=x;}
-    public String getHiremoney(){return hiremoney;}
+    public void setHiremoney(int x){this.hiremoney=x;}
+    public int getHiremoney(){return hiremoney;}
 
     public void setTypecontract(String x){this.typecontract=x;}
     public String getTypecontract(){return typecontract;}
