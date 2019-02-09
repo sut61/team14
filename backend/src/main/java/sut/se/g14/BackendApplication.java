@@ -69,7 +69,11 @@ public class BackendApplication {
 						   HireMoneyRepository hireMoneyRepository,
 						   AlbumsRepository albumsRepository,
 						   ProducerRepository producerRepository,
-						   SongRepository songRepository) {
+						   SongRepository songRepository,
+						   PracticeRepository practiceRepository,
+						   TypePracticeRepository typePracticeRepository,
+						   RoomPracticeRepository roomPracticeRepository,
+						   TypeRoomPracticeRepository typeRoomPracticeRepository) {
 		return args -> {
 			//Manager
 			Stream.of("Male", "Female").forEach(gender -> {
@@ -257,6 +261,30 @@ public class BackendApplication {
 			songRepository.save(songs1);
 			songRepository.findAll().forEach(System.out::println);
 
+			//Practice
+			Stream.of("ซ้อมดนตรี", "ซ้อมการแสดง", "ซ้อมเต้น", "อื่นๆ").forEach(type -> {
+				TypePractice typePractice = new TypePractice(type);
+				typePracticeRepository.save(typePractice);
+			});
+
+			Stream.of("ห้องซ้อมดนตรี", "ห้องซ้อมทั่วไป").forEach(type -> {
+				TypeRoomPractice typeRoomPractice = new TypeRoomPractice(type);
+				typeRoomPracticeRepository.save(typeRoomPractice);
+			});
+
+			Stream.of("A00", "A01", "A02", "A03", "A04", "A05", "B00", "B01", "B02", "B03", "B04", "B05").forEach(room -> {
+				if(room == "A00" || room == "A01" || room == "A02" || room == "A03" || room == "A04" || room == "A05" ) {
+					TypeRoomPractice type = typeRoomPracticeRepository.findById(1L);
+					RoomPractice roomPractice = new RoomPractice(room, type);
+					roomPracticeRepository.save(roomPractice);
+				}
+				else if(room == "B00" || room == "B01" || room == "B02" || room == "B03" || room == "B04" || room == "B05"  ) {
+					TypeRoomPractice type = typeRoomPracticeRepository.findById(2L);
+					RoomPractice roomPractice = new RoomPractice(room, type);
+					roomPracticeRepository.save(roomPractice);
+				}
+
+			});
 		};
 
 		
