@@ -1,0 +1,122 @@
+<body>
+
+  <mat-toolbar style="background-color: #c899d9">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goBook()">Book</button>
+    <button mat-button (click)="goProfile()">Profile</button>
+    <button mat-button [routerLink]="['/privilege-vip']">PriviegeVIP</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+
+  <div>
+    <h1 style="font-size: 56px; text-align: center; color: #000000; text-shadow: rgb(255, 255, 255);">PRIVILEGE for YOU</h1>
+  </div>
+
+  <mat-card>
+    <div>
+      <mat-card style="background-color: gainsboro;">
+        <p class="txt-profile"><b>Name : </b>{{nameProfile}}</p>
+        <p class="txt-profile"><b>Moblie Phone : </b>{{phoneProfile}}</p>
+      </mat-card>
+
+      <br>
+      <br>
+
+      <div align="center">
+        <mat-grid-list cols="2" rowHeight="70px">
+          <mat-grid-tile>
+            <p style="font-size: 16px; text-align: center"><b>Email Address</b></p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%;">
+              <input matInput placeholder="Email" [(ngModel)]="emailProfile" >
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <br>
+      <br>
+      <div align="center">
+        <mat-grid-list cols="2" rowHeight="30px">
+          <mat-grid-tile>
+            <p style="font-size: 16px; text-align: center"><b>Band</b></p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p style="font-size: 16px; text-align: center"><b>Privilege</b></p>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="2" rowHeight="70px">
+          <mat-grid-tile>
+            <mat-form-field style="width: 70%;">
+              <mat-select placeholder="Select Band" [(ngModel)]="bandSelect">
+                <mat-option *ngFor="let band of bands" [value]="band.bandID">{{band.bandname}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field style="width: 70%; ">
+              <mat-select placeholder="Select Privilege" [(ngModel)]="privilegeSelect">
+                <mat-option *ngFor="let privilege of privileges" [value]="privilege.idPrivilege">{{privilege.typePrivilege}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+
+    <br>
+    <p style="font-size: 20px; text-align: center; ">Payment Information</p>
+
+    <div>
+      <mat-grid-list cols="2" rowHeight="40px">
+        <mat-grid-tile>
+          <p style="font-size: 16px; text-align: center"><b>Credit Card No. :</b></p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="full-width-input" style="width: 70% ;margin: 0 5% 0 5%; ">
+            <input matInput placeholder="Credit Card No." [(ngModel)]="cardNumShow">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <p style="font-size: 16px; text-align: center"><b>Expiration Date :</b></p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field style="width: 30%;">
+            <mat-select placeholder="Month" [(ngModel)]="monthSelect">
+              <mat-option *ngFor="let month of months" [value]="month.expMonthId">{{month.expMonth}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 40%;">
+            <mat-select placeholder="Year" [(ngModel)]="yearSelect">
+              <mat-option *ngFor="let year of years" [value]="year.expYearId">{{year.expYear}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <p style="font-size: 16px; text-align: center"><b>Card Verification No. :</b></p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="full-width-input" style="width: 70% ;margin: 0 5% 0 5%; ">
+            <input type="number" matInput placeholder="Card Verification No." [(ngModel)]="cvvNumShow">
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      <br><br>
+    </div>
+
+    <div align="center">
+      <button mat-raised-button style="background-color: slateblue; " (click)="savePrivilege()"><b>Confirm</b></button>
+    </div>
+
+    <br>
+    <p style="color: red; text-align: center;">{{showError}}</p>
+    <p style="color: seagreen; text-align: center;">{{showCompleat}}</p>
+  </mat-card>
+
+</body>

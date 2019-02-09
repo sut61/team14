@@ -58,6 +58,7 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterControlService } from 'src/app/shared/register-control/register-control.service';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginCusComponent } from './login-cus/login-cus.component';
+import { PrivilegeVIPComponent } from './privilege-vip/privilege-vip.component';
 
 import { BookComponent } from './book/book.component';
 import { BookshowComponent } from './bookshow/bookshow.component';
@@ -107,7 +108,8 @@ const appRoutes: Routes = [
   { path: 'practice/table/:username', component: PracticetableComponent },
   { path: 'albums', component: AlbumsComponent},
   { path:'song/:albumsID',component:SongComponent},
-  { path:'view-albums/:albumsID',component:ViewAlbumsComponent}
+  { path:'view-albums/:albumsID',component:ViewAlbumsComponent},
+  { path: 'privilege-vip', component: PrivilegeVIPComponent }
 ];
 
 @NgModule({
@@ -132,7 +134,8 @@ const appRoutes: Routes = [
     PracticetableComponent,
     AlbumsComponent,
     SongComponent,
-    ViewAlbumsComponent
+    ViewAlbumsComponent,
+    PrivilegeVIPComponent
 
   ],
   imports: [
