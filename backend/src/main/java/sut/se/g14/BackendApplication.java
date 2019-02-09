@@ -8,6 +8,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import sut.se.g14.entity.*;
 import sut.se.g14.repository.*;
 
+import java.sql.Time;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -32,7 +33,11 @@ public class BackendApplication {
 			"WINNER",
 			"BLACKPING"
 	};
-
+	String [] nameProducer = {
+			"Manderin",
+			"Harry",
+			"Mozart"
+	};
 	@Bean
 	CharacterEncodingFilter characterEncodingFilter() {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -61,7 +66,10 @@ public class BackendApplication {
 						   TypeWorkRepository typeWorkRepository,
 						   StatusRepository statusRepository ,TypeContractRepository typeContractRepository,
 						   StatusdressRepository statusdressRepository,
-						   HireMoneyRepository hireMoneyRepository) {
+						   HireMoneyRepository hireMoneyRepository,
+						   AlbumsRepository albumsRepository,
+						   ProducerRepository producerRepository,
+						   SongRepository songRepository) {
 		return args -> {
 			//Manager
 			Stream.of("Male", "Female").forEach(gender -> {
@@ -231,6 +239,23 @@ public class BackendApplication {
 					t.setTypeContract(type);
 					typeContractRepository.save(t);
 				});
+
+			//Albums
+			producerRepository.findAll().forEach(System.out::print);
+
+			Song songs = new Song();
+			songs.setName("Love Love");
+			Time timeSongSet = new Time(Integer.parseInt("00"), Integer.parseInt("02"), Integer.parseInt("45"));
+			songs.setTime(timeSongSet);
+			songRepository.save(songs);
+			songRepository.findAll().forEach(System.out::println);
+
+			Song songs1 = new Song();
+			songs1.setName("Du Du");
+			Time timeSongSet1 = new Time(Integer.parseInt("00"), Integer.parseInt("03"), Integer.parseInt("00"));
+			songs1.setTime(timeSongSet1);
+			songRepository.save(songs1);
+			songRepository.findAll().forEach(System.out::println);
 
 		};
 
