@@ -1,0 +1,80 @@
+<main>
+  <mat-toolbar style="background-color: #DFC8EF">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button (click)="goPractice()">Practice</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+
+  <div align="center">
+    <mat-card class="card">
+      <mat-card-header align="center">
+        <mat-card-title align="center">เพิ่มข้อมูลการซ้อม</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Manager (disabled)" disabled value="{{manager.name}}">
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <input matInput placeholder="Trainer" [(ngModel)]="practiceSet.trainer" name="trainer">
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select placeholder="ศิลปิน *" [(ngModel)]="practiceSet.idBand" name="band">
+            <mat-option *ngFor="let band of band" [value]="band.bandID">
+              {{band.bandname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <input matInput type="date" placeholder="วันที่ซ้อม *" [(ngModel)]="practiceSet.date" name="date">
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <input matInput placeholder="เวลาเริ่ม * hr:mm" [(ngModel)]="practiceSet.startTime" name="startTime">
+        </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field>
+          <input matInput placeholder="เวลาสิ้นสุด * hr:mm"  [(ngModel)]="practiceSet.endTime" name="endTime">
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select placeholder="ห้องซ้อม *" [(ngModel)]="practiceSet.idRoom" name="room">
+            <mat-option *ngFor="let room of room" [value]="room.id">
+              {{room.typeRoomPractice.type}} ห้อง {{room.room}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select placeholder="ประเภทการซ้อม *" [(ngModel)]="practiceSet.idType" name="type">
+            <mat-option *ngFor="let type of typePractice" [value]="type.id">
+              {{type.type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <textarea matInput placeholder="รายละเอียด *" [(ngModel)]="practiceSet.detail" name="detail"></textarea>
+        </mat-form-field><br>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button style="width: 100px; margin-right: 15px; background-color: #dda0dd;"
+                (click)="save()">ตกลง</button>
+        <button mat-button style="width: 100px; margin-left: 15px; background-color: #dda0dd;"
+                (click)="goPractice()">กลับ</button>
+      </mat-card-actions>
+      <br><p style="color: red;">{{showError}}</p>
+    </mat-card>
+  </div>
+
+</main>
