@@ -1,0 +1,85 @@
+<main>
+    <mat-toolbar style="background-color: #DFC8EF">
+        <span class="fill-remaining-space"></span>
+        <button mat-button [routerLink]="['/Manager']"><font size="4"><b>Manager</b></font></button>
+        <button mat-button [routerLink]="['/profile']"><font size="4"><b>Dess</b></font></button>
+        <button mat-button [routerLink]="['/profile']"><font size="4"><b>Finance</b></font></button>
+      <button mat-button [routerLink]="['/albums']"><font size = "4"><b>Albums</b></font></button>
+        <button mat-button (click)="logout()"><font size="4"><b>Login</b></font></button>
+    </mat-toolbar>
+    <div align="center">
+        <p><font size="10">ระบบจัดเก็บอัลบั้มเพลง</font></p>
+        <mat-card class="example-card">
+           <mat-form-field  style="margin-right: 10%">
+                <mat-select placeholder="ชื่อวง" [(ngModel)]="setData.bandIdSelect" (ngModelChange)="test($event)">
+                    <mat-option *ngFor="let band of bands" [value]="band.bandID">
+                        {{band.bandname}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Producer" [(ngModel)]="setData.producerIdSelect" (ngModelChange)="test($event)">
+                    <mat-option *ngFor="let producer of producers" [value]="producer.producerID">
+                        {{producer.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="ชื่ออัลบั้ม" [(ngModel)]="setData.name"></textarea>
+                </mat-form-field>
+
+                <mat-form-field style="margin-right: 60%">
+                    <input matInput type="date" id="box_date"  placeholder="On sale" [(ngModel)]="setData.onsale">
+                    </mat-form-field>
+                    <br>
+            <button mat-flat-button (click)="save()">สร้างอัลบั้ม</button>
+          <br>
+          <p style="color: red;">{{showError}}</p>
+        </mat-card>
+        <br>
+
+       <table mat-table [dataSource]="Albums" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="albumsID">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size: 20px;"><b>No.</b> </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{i+1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Albums</b></font></th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="onsale">
+              <th mat-header-cell *matHeaderCellDef><font size ="4"><b>On-sale</b></font></th>
+              <td mat-cell *matCellDef="let element"> {{element.onsale}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="band">
+              <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Band</b></font></th>
+              <td mat-cell *matCellDef="let element"> {{element.band.bandname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="producer">
+              <th mat-header-cell *matHeaderCellDef><font size ="4"><b>Producer</b></font></th>
+              <td mat-cell *matCellDef="let element"> {{element.producer.name}} </td>
+            </ng-container>
+
+           <ng-container matColumnDef="song">
+                <th mat-header-cell *matHeaderCellDef><font size ="4"><b>AddSong</b></font></th>
+                <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="song(element)">AddSong</button> </td>
+              </ng-container>
+
+              <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef><font size ="4"><b>View</b></font></th>
+                <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warm"  (click)="view(element)">View</button> </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</main>
