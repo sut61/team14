@@ -63,6 +63,9 @@ import { BookComponent } from './book/book.component';
 import { BookshowComponent } from './bookshow/bookshow.component';
 import { QuereService } from './shared/book/quere.service';
 
+import { PracticeComponent } from './practice/practice.component';
+import { PracticetableComponent } from './practicetable/practicetable.component';
+import { PracticeService } from './shared/practice/practice.service';
 
 import {
   MatBadgeModule,
@@ -94,7 +97,9 @@ const appRoutes: Routes = [
   { path: 'Login/admin', component: LoginAdminComponent },
   { path: 'dress', component: DressComponent },
   { path: 'contract', component: ContractartistComponent },
-  { path: 'sponser', component: SponserDressComponent }
+  { path: 'sponser', component: SponserDressComponent },
+  { path: 'practice/new/:username', component: PracticeComponent },
+  { path: 'practice/table/:username', component: PracticetableComponent }
 ];
 
 @NgModule({
@@ -114,7 +119,9 @@ const appRoutes: Routes = [
     BookshowComponent,
     DressComponent,
     ContractartistComponent,
-    SponserDressComponent
+    SponserDressComponent,
+    PracticeComponent,
+    PracticetableComponent
 
   ],
   imports: [
@@ -162,7 +169,7 @@ const appRoutes: Routes = [
     MatTreeModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MoneyService, ManageService, ArtistsService, RegisterControlService, QuereService],
+  providers: [MoneyService, ManageService, ArtistsService, RegisterControlService, QuereService, PracticeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
