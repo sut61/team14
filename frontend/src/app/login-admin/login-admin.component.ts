@@ -12,30 +12,32 @@ import { HttpClient} from '@angular/common/http';
 export class LoginAdminComponent implements OnInit {
   public static userName:string;
 
-  usernameLogin:string;
-  passwordLogin:string;
+  usernameLogin = '';
+  passwordLogin = '';
 
+  showError = '';
   constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   login(){
-    if(this.usernameLogin == null || typeof this.usernameLogin === 'undefined'|| this.passwordLogin == null || typeof this.passwordLogin ==='undefined'){
-      alert("Please fill Username and Password");
+    if(this.usernameLogin == '' || this.passwordLogin == ''){
+      this.showError = 'Please fill in Username and Password';
 
     }else{
       this.manageService.getManager(this.usernameLogin).subscribe(data=>{
         console.log(data);
         if(data){
           if(this.passwordLogin == data.password){
+            LoginAdminComponent.userName = data.username;
             this.router.navigate(['Manager/' + data.username]);
           }
           else{
-            alert("Password invalid");
+            this.showError = 'Password invalid';
           }
         }else {
-          alert("Username invalid");
+          this.showError = 'Username invalid';
         }
 
       },error=>{
