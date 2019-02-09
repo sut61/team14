@@ -1,0 +1,79 @@
+<main>
+  <mat-toolbar style="background-color: #DFC8EF">
+    <span class="fill-remaining-space"></span>
+    <button mat-button (click)="goManager()" >Manager</button>
+    <button mat-button [routerLink]="['/dress']">Dress</button>
+    <button mat-button [routerLink]="['/money']">Finance</button>
+    <button mat-button [routerLink]="['/artists']">Artists</button>
+    <button mat-button (click)="goPractice()">Practice</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+  <div align="center">
+    <p><font size="18">ตารางการซ้อมของศิลปิน</font></p>
+
+    <table mat-table [dataSource]="practice" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>No.</b></font> </th>
+        <td mat-cell *matCellDef="let element; let i = index">{{i+1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="band">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>ศิลปิน</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.band.bandname}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="roomType">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>ห้องซ้อม</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.roomPractice.typeRoomPractice.type}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="room">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>ห้อง</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.roomPractice.room}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>วันที่</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startTime">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>เวลาเริ่ม</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.startTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endTime">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>เวลาสิ้นสุด</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.endTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="typePractice">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>ประเภทการซ้อม</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.typePractice.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detail">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>รายละเอียด</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.detail}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="trainer">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>Trainer</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.trainer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="manager">
+        <th mat-header-cell *matHeaderCellDef><font size ="3"><b>ผู้จัดการ</b></font></th>
+        <td mat-cell *matCellDef="let element"> {{element.manager.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br><br>
+    <button mat-raised-button style="width: 100px; margin-left: 15px; background-color: #dda0dd;"
+            (click)="goPracticeAdd()">เพิ่ม</button>
+  </div>
+</main>
