@@ -44,6 +44,7 @@ public class MoneyEntity{
     @JoinColumn(name = "artist_id",insertable = true)
     @NotNull(message = "id must not be null to be valid")
     private Artists idArtist;
+
    
 
     @NotNull(message = "name must not be null to be valid")
@@ -57,10 +58,10 @@ public class MoneyEntity{
     @Max(1000000)
     private  int priceIncome;
 
-    @Min(1)
+    @Min(500)
     private  int priceExpenses;
 
-    
+
     public void setnameArtist(String nameAString){this.firstname = nameAString;}
     public String getnameArtist() {return firstname;}
     
