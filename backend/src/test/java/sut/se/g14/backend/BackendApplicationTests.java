@@ -330,7 +330,7 @@ public class BackendApplicationTests {
         m = managerRepository.findByUsername("mimi");
         c1.setManager(m);
         c1.setnameArtist("abcd");
-        c1.setHiremoney("1,000");
+        c1.setHiremoney(1000);
         c1.setTypecontract("abcd");
         c1.setnameManager("ab");
 
@@ -351,7 +351,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c.setManager(m);
             c.setnameArtist(null);//ผิด
-            c.setHiremoney("100,000");
+            c.setHiremoney(1000);
             c.setTypecontract("abcd");
             c.setnameManager("ab");
 
@@ -367,29 +367,7 @@ public class BackendApplicationTests {
                 assertEquals(violations.size(), 1);
             }
         }
-        @Test//ค่า null
-        public void tesHiremoneyNull() { 
-        ContractArtistEntity c = new ContractArtistEntity();
-        Manager m = new Manager();
-        m = managerRepository.findByUsername("mimi");
-        c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney(null);//ผิด
-            c.setTypecontract("abcd");
-            c.setnameManager("ab");
 
-            try {
-                entityManager.persist(c);
-                entityManager.flush();
-                fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-                System.out.println(">>>"+e+"<<<");
-                System.out.println("=====Value hiremoney must not be null to be valid\n\n");
-                Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-                assertEquals(violations.isEmpty(), false);
-                assertEquals(violations.size(), 1);
-            }
-        }
         @Test//ค่า null
         public void testTypecontractNull() { 
         ContractArtistEntity c = new ContractArtistEntity();
@@ -397,7 +375,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c.setManager(m);
             c.setnameArtist("abcd");
-            c.setHiremoney("100,000");
+            c.setHiremoney(1000);
             c.setTypecontract(null);//ผิด
             c.setnameManager("ab");
 
@@ -420,7 +398,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c.setManager(m);
             c.setnameArtist("abcd");
-            c.setHiremoney("100,000");
+            c.setHiremoney(1000);
             c.setTypecontract("abcd");
             c.setnameManager(null);//ผิด
 
@@ -444,7 +422,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername(null);
             c1.setManager(m);//ผิด
             c1.setnameArtist("abcd");
-            c1.setHiremoney("1,000");
+            c1.setHiremoney(1000);
             c1.setTypecontract("abcd");
             c1.setnameManager("ab");
             
@@ -464,94 +442,55 @@ public class BackendApplicationTests {
         }
     //======================End TEST Null =================================================
 
-    //================================== Size=============================================
-        
-         
-       
-        
-        //========================== hire test size ============== 
-            @Test//สั้นเกินไป Hiremoney
-            public void testHiremoneyMin() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("100");//ผิด
-            c.setTypecontract("abcd &");
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("Hiremoney must not be minimum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-
-            @Test//ยาวเกินไป Hiremoney
-            public void testHiremoneyMax() {
-            ContractArtistEntity c = new ContractArtistEntity();
-            Manager m = new Manager();
-            m = managerRepository.findByUsername("mimi");
-            c.setManager(m);
-            c.setnameArtist("abcd");
-            c.setHiremoney("100000000000000000000000000000");//ผิด
-            c.setTypecontract("abcd &");
-            c.setnameManager("ab");
-
-            try {
-            entityManager.persist(c);
-            entityManager.flush();
-            fail("Should not pass to this line");
-            } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println(">>>"+e+"<<<");
-            System.out.println("Hiremoney must not be maximum digit to be valid\n\n");
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            }
-            }
-        //====================== end hire test size ==============
-
-       
-    //========================== End test Size====================================
-        
-
-    //============================= pattern test =============================
-       
-        @Test//Hiremoney ไม่ตรงตาม pattern 
-        public void testHiremoneyNotPattern() { 
+    //Size
+    @Test//ค่า max
+    public void testhiremoneyMax() {
         ContractArtistEntity c = new ContractArtistEntity();
         Manager m = new Manager();
         m = managerRepository.findByUsername("mimi");
         c.setManager(m);
         c.setnameArtist("abcd");
-        c.setHiremoney("100,000 บาท");//ผิด
+        c.setHiremoney(10000001);//ผิด
         c.setTypecontract("abcd");
-        c.setnameManager("ab");
+        c.setnameManager("abcd");
 
         try {
-        entityManager.persist(c);
-        entityManager.flush();
-        fail("Should not pass to this line");
+            entityManager.persist(c);
+            entityManager.flush();
+            fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
-        System.out.println(">>>"+e+"<<<");
-        System.out.println("=====Hiremoney must not be pattern to be valid\n\n");
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====Hiremoney must not be maximum to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
         }
+    }
+
+    @Test//ค่า min
+    public void testhiremoneyMin() {
+        ContractArtistEntity c = new ContractArtistEntity();
+        Manager m = new Manager();
+        m = managerRepository.findByUsername("mimi");
+        c.setManager(m);
+        c.setnameArtist("abcd");
+        c.setHiremoney(100);//ผิด
+        c.setTypecontract("abcd");
+        c.setnameManager("abcd");
+
+        try {
+            entityManager.persist(c);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println(">>>"+e+"<<<");
+            System.out.println("=====Hiremoney must not be minimum to be valid\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
         }
-    
-    
-      
-    //================================ end pattern test =======================
+    }
+
 
 
     //Unique
@@ -562,7 +501,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c1.setManager(m);
             c1.setnameArtist("abcd");//ซ้ำ
-            c1.setHiremoney("9999");
+            c1.setHiremoney(9999);
             c1.setTypecontract("abcd");
             c1.setnameManager("ab");
 
@@ -574,7 +513,7 @@ public class BackendApplicationTests {
             m = managerRepository.findByUsername("mimi");
             c2.setManager(m);
             c2.setnameArtist("abcd");//ซ้ำ
-            c2.setHiremoney("9999");
+            c2.setHiremoney(9999);
             c2.setTypecontract("abcd");
             c2.setnameManager("ab");
 
