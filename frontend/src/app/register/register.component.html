@@ -35,6 +35,8 @@
           </mat-form-field>
           <div>
             <button mat-raised-button color="primary" (click)="register()">Register</button>
+            <br><br>
+            <p style="color: red"> {{showError1}} </p>
           </div>
         </mat-card>
       </form>
@@ -46,52 +48,45 @@
         <mat-card>
           <h1 style="font-size:30px; text-align: center; ">Profile</h1>
           <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%; ">
-            <input matInput placeholder="Name" [(ngModel)]="nameProfile" formControlName="secondCtrl" required>
+            <input matInput placeholder="Name" [(ngModel)]="nameProfile" formControlName="secondCtrl" >
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%; ">
-            <input required type="number" matInput placeholder="ID Card/Passport No" [(ngModel)]="idCardProfile"
-              formControlName="secondCtrl" required>
+            <input matInput placeholder="ID Card/Passport No" [(ngModel)]="idCardProfile"
+              formControlName="secondCtrl">
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 40% ;margin: 0 5% 0 5%; ">
             <input matInput [(ngModel)]="birthDayProfile" [matDatepicker]="picker1" [ngModelOptions]="{standalone: true}"
-              placeholder="Birth Day" required>
+              placeholder="Birth Day" >
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 40% ;margin: 0 5% 0 5%;">
-            <mat-select placeholder="Gender" [(ngModel)]="genderSelect" formControlName="secondCtrl" required>
+            <mat-select placeholder="Gender" [(ngModel)]="genderSelect" formControlName="secondCtrl" >
               <mat-option *ngFor="let gender of genders" [value]="gender.gender">{{gender.gender}}</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <br>
-          <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%;">
-            <input required type="email" matInput placeholder="Email" [(ngModel)]="emailProfile" formControlName="secondCtrl"
-              required>
-          </mat-form-field>
-          <br>
-
           <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%; ">
-            <input required type="number" minlength="10" maxlength="10" matInput placeholder="Phone Number" [(ngModel)]="phoneProfile"
+            <input matInput placeholder="Phone Number" [(ngModel)]="phoneProfile"
               formControlName="secondCtrl">
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 90% ;margin: 0 5% 0 5%; ">
-            <textarea matInput placeholder="Address" [(ngModel)]="addressProfile" formControlName="secondCtrl" required></textarea>
+            <textarea matInput placeholder="Address" [(ngModel)]="addressProfile" formControlName="secondCtrl" ></textarea>
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 40% ;margin: 0 5% 5% 5%; ">
-            <mat-select placeholder="Country" [(ngModel)]="countrySelect" formControlName="secondCtrl" required>
+            <mat-select placeholder="Country" [(ngModel)]="countrySelect" formControlName="secondCtrl">
               <mat-option *ngFor="let country of countrys" [value]="country.countryName">{{country.countryName}}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="full-width-input" style="width: 40% ;margin: 0 5% 0 5%; ">
-            <input required type="number" matInput placeholder="Pastal Code" [(ngModel)]="pastalCodeProfile"
-              formControlName="secondCtrl" required>
+            <input matInput placeholder="Pastal Code" [(ngModel)]="pastalCodeProfile"
+              formControlName="secondCtrl" >
           </mat-form-field>
 
           <div>
@@ -139,12 +134,6 @@
               {{genderSelect}}
             </mat-grid-tile>
             <mat-grid-tile>
-              <p class="txt-profile"><b>Email</b></p>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              {{emailProfile}}
-            </mat-grid-tile>
-            <mat-grid-tile>
               <p class="txt-profile"><b>Phone Number</b></p>
             </mat-grid-tile>
             <mat-grid-tile>
@@ -170,10 +159,12 @@
             </mat-grid-tile>
 
           </mat-grid-list>
-
-
+         
+          
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="saveProfile()"><b>Confirm</b></button>
+          <br><br>
+          <p style="color: red"> {{showError2}} </p>
         </div>
 
       </mat-card>
