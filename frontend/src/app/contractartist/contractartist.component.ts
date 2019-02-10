@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoneyService } from '../shared/money/money.service';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
   selector: 'app-contractartist',
   templateUrl: './contractartist.component.html',
@@ -99,7 +100,16 @@ export class ContractartistComponent implements OnInit {
   }
 
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
   }
+  goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
+
 
 }
