@@ -1,0 +1,78 @@
+main {
+
+    background: url(src/pic/admin.jpg);
+       width: 100%;
+       height:665px;
+       background-repeat: no-repeat;
+       background-position: center;
+       background-size: cover;
+       float: center;
+}
+.headtxt {
+    margin: 10%;
+    /*background-color: #FFCC99;*/
+    font-size:35px;
+    color: #CC6600;
+}
+.box {
+width: 85%;
+height: 400px;
+padding-top: 10px;
+margin:auto;
+background-color: #FFCC99;
+}
+#box_invite {
+    background-color: white;
+    color: black;
+    width: 70%;
+    height: 30px;
+    /*font-size: 25px;*/
+}
+.nametxt {
+    color: #000000;
+    opacity: 0.9;
+            filter: alpha(opacity=40);
+}
+.nametxt1 {
+  background-color: #E6E6FA;
+    width: 50%;
+
+}
+table {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    #background-color: #E6E6FA;
+}
+
+
+th.mat-header-cell {
+    text-align: center;
+    #width: 200px;
+}
+
+.mat-cell {
+  text-align: center;
+  #width: 200px;
+  background-color: #D3D3D3;
+}
+#box_name {
+    color: black;
+    width: 30%;
+    height: 35px;
+   // border-radius: 3px;
+    //border: 3px solid #000033;
+    margin-left: 20px;
+    font-size: 17px;
+    text-align: center;
+
+}
+#blocktextup1{
+    margin:20px;
+    width: 28%;
+    height: 100px;
+    border-color: #000000;
+    //background-color: #000000;
+    text-align: center;
+    float: right;
+}
