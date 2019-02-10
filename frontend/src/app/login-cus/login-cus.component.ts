@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LoginCusComponent implements OnInit {
 
-  public static userName:string;
+  public static userName: string;
 
-  usernameLogin:string;
-  passwordLogin:string;
+  usernameLogin: string;
+  passwordLogin: string;
+
+  showError = '';
 
   constructor(private router: Router,
     private registerController: RegisterControlService) { }
@@ -20,19 +22,19 @@ export class LoginCusComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    if(this.usernameLogin == null || typeof this.usernameLogin === 'undefined'|| this.passwordLogin == null || typeof this.passwordLogin ==='undefined'){
+  login() {
+    if (this.usernameLogin == null || typeof this.usernameLogin === 'undefined' || this.passwordLogin == null || typeof this.passwordLogin === 'undefined') {
       alert("Please fill Username and Password");
 
-    }else{
-      this.registerController.getMemberByUsername(this.usernameLogin).subscribe(data=>{
-        if(this.passwordLogin == data.memPassword){
+    } else {
+      this.registerController.getMemberByUsername(this.usernameLogin).subscribe(data => {
+        if (this.passwordLogin == data.memPassword) {
           LoginCusComponent.userName = data.memUser;
-          this.router.navigate(['profile']);
+          this.router.navigate(['profile/' + this.usernameLogin]);
         }
-      },error=>{
-          alert("Username invalid");
-      })
+      }, error => {
+        this.showError = "Username invalid";
+      });
 
     }
   }

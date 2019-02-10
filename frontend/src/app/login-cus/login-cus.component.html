@@ -18,9 +18,13 @@
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="login()">Login</button>
 
+        <br><br>
+        <p style="color: red"> {{showError}} </p>
+
       </mat-card-content>
-      <br>
+      <br> 
       <a [routerLink]="['/register']">Create an account.</a>
+
 
     </mat-card>
   </div>
