@@ -274,6 +274,11 @@ public class BackendApplication {
 				});
 
 			//Albums
+			Stream.of(nameProducer).forEach(name -> {
+				Producer names = new Producer();
+				names.setName(name);
+				producerRepository.save(names);
+			});
 			producerRepository.findAll().forEach(System.out::print);
 
 			Song songs = new Song();
