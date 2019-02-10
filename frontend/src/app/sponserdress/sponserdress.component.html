@@ -11,16 +11,14 @@
   <button mat-button [routerLink]="['/sponser']">SponserDress</button>
   <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
-<mat-progress-bar mode="buffer" ></mat-progress-bar>
-  <mat-grid-list cols="1" rowHeight="12:1" >
-    <mat-toolbar color="primary" >
-      <mat-icon class="example-icon">SPONSERDRESS</mat-icon>
-    </mat-toolbar>
-    <mat-progress-bar mode="buffer"></mat-progress-bar>
-  <br>
-
-    <mat-card class="example-card">
-
+<main>
+  <mat-progress-bar mode="buffer" ></mat-progress-bar>
+  
+        <mat-icon class="example-icon">SPONSERDRESS</mat-icon>
+     
+      <mat-card class="example-card">
+       <body>
+         
         <div class="flex-container">
 
           <form #sponser="ngForm" (ngSubmit)="onClickSubmit(sponser.value)">
@@ -81,7 +79,14 @@
             <div class="flex-container">
               <button type="submit" mat-stroked-button color="primary">SAVE</button>
             </div>
-
+            <div class="flex-container">
+              <p style="color: red;">{{showError}}</p>
+            </div>
           </form>
         </div>
-      </mat-card>
+      </body>
+    </mat-card>
+
+    <br><br><br><br>
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  </main>
