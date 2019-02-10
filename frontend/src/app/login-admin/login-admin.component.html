@@ -13,7 +13,7 @@
         <input matInput type="password" placeholder="Password" [(ngModel)]="passwordLogin">
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="login()">Login</button>
-      <br><br>
+      <br><p style="color: #ff0000;">{{showError}}</p><br>
       <a [routerLink]="['/login-cus']">สำหรับสมาชิก</a>
 
     </mat-card-content>
