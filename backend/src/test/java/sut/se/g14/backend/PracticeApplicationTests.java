@@ -53,9 +53,20 @@ public class PracticeApplicationTests {
         practice.setEndTime(endTime);
         practice.setDetail("abcdefghigk lmnop123");
 
-        entityManager.persist(practice);
-        entityManager.flush();
-        System.out.println("Add Practice Complete\n\n");
+        //entityManager.persist(practice);
+        //entityManager.flush();
+
+
+        try {
+            entityManager.persist(practice);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(e);
+            System.out.println("Add Practice Complete\n\n");
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
     }
 
     @Test

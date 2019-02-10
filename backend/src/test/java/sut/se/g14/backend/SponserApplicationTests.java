@@ -205,7 +205,7 @@ public class SponserApplicationTests {
     public void testDateFutureOrPresent() throws ParseException{
         Sponser s= new Sponser();
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2560-05-05");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2000-05-05");
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
