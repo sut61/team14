@@ -2,7 +2,9 @@
   <span class="fill-remaining-space"></span>
   <button mat-button [routerLink]="['/book']">Book</button>
   <button mat-button [routerLink]="['/profile']">Profile</button>
+  <button mat-button [routerLink]="['/tableWork']">TableWork</button>
   <button mat-button (click)="logout()">Logout</button>
+
 </mat-toolbar>
 <mat-toolbar [style.backgroundColor]="'#000033'"><!--สร้างแถบสีข้างบน-->
   <label class="headtxt">ระบบจองคิวงาน</label>
@@ -29,12 +31,7 @@
       </div>
       </div>
     <div id="blocktextup3">
-      <div class="nametxt">
-        <label>E-mail  </label>
-        <div id="box_mail">
-          {{user.email}}
-        </div>
-      </div>
+
     </div>
 
     </div>
@@ -84,6 +81,9 @@
          <button mat-raised-button (click)="history()" class="mat-bot" >ดูข้อมูลการจอง</button>
          <button mat-raised-button (click)="save()" class="mat-bot" >ตกลง</button>
        </div>
+
+        <br><p style="color: red;">{{showError}}</p>
+
       </div>
     </div>
   </div>

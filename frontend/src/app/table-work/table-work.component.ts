@@ -17,10 +17,11 @@ import { HttpClient} from '@angular/common/http';
 export class TableWorkComponent implements OnInit {
     old: Array<any>;
     format: Array<any>;
-
+    showError = '';
   displayedColumns: string[] = ['nameArtist','date', 'time', 'place', 'invite','tag','price','old','format','buttom'];
 
   quere: Array<any>;
+
 
   setData: any = {
 
@@ -57,7 +58,7 @@ export class TableWorkComponent implements OnInit {
 
   save(id){
 
-
+    this.showError = 'Please fill out this form.';
 
       this.setData.id = id;
 
@@ -66,11 +67,11 @@ export class TableWorkComponent implements OnInit {
        ,this.setData)
       .subscribe(
         data => {
-          alert(' บันทึกสำเร็จ');
+         this.showError = 'บันทึกสำเร็จ';
           console.log('PUT Request is successful', data);
         },
         error => {
-          alert(' บันทึกไม่สำเร็จ');
+          this.showError = 'ไม่บันทึกสำเร็จ';
           console.log('Error', error);
         }
       );

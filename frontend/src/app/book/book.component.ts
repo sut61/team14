@@ -17,6 +17,8 @@ export class BookComponent implements OnInit {
   typeWorks: Array<any>;
   user: any;
 
+  showError = '';
+
   setData: any = {
     username :'',
     place : '',
@@ -73,7 +75,8 @@ export class BookComponent implements OnInit {
   save() {
     if (this.setData.artistSelect === '' || this.setData.typeWorkSelect === '' || this.setData.place === '' || this.setData.date === '' ||
     this.setData.hour === '' || this.setData.hrs === '' || this.setData.mins === '') {
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      this.showError = 'Please fill out this form.';
+
     }else{
       if (this.user.quereSet[0] == undefined || this.user.quereSet[0].statusQuere.statusId != 1) {
         this.httpClient.post('http://localhost:8080/Quere/' + this.setData.place + '/' + this.setData.date + '/' +
@@ -81,19 +84,20 @@ export class BookComponent implements OnInit {
         this.setData.username + '/' + this.setData.typeWorkSelect ,this.setData)
         .subscribe(data => {
           if(data){
-            alert('การจองเสร็จสิ้น');
+           this.showError = 'บันทึกการจองสำเร็จ';
             this.router.navigate(['bookshow/' + this.setData.username]);
            console.log('PUT Request is successful', data);
           }
         },
           error => {
+            this.showError = 'การกรอกข้อมูลผิดพลาด';
             console.log('Error', error);
           }
         );
       }else{
-        alert(' ขออภัย พบการจองที่ยังไม่ได้รับการยืนยัน');
+        this.showError = 'มี ข้อมูลการจองที่ยังไม่ได้รับการตอบรับ';
       }
-    }  
+    }
   }
 
   history(){

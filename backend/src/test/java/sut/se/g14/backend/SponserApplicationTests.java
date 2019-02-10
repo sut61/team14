@@ -66,10 +66,10 @@ public class SponserApplicationTests {
     }
     
     @Test//ค่า null
-    public void testNameSponser() { 
+    public void testNameSponser() throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2022,2,10);
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -80,10 +80,10 @@ public class SponserApplicationTests {
 
     }
     @Test//ค่า null
-    public void testNameSponserNull() { 
+    public void testNameSponserNull() throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
         s.setSponser(null);//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -105,10 +105,10 @@ public class SponserApplicationTests {
     }
 
    @Test//ค่า null
-    public void testNameSponserMin() { 
+    public void testNameSponserMin() throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
         s.setSponser("a");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -130,10 +130,10 @@ public class SponserApplicationTests {
     }
 
     @Test//null
-    public void testStatusdressCannotBeNull() {
+    public void testStatusdressCannotBeNull() throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(null);
         s.setDress(dress);
@@ -154,10 +154,10 @@ public class SponserApplicationTests {
         }
     }
     @Test//ยาวเกินไป
-    public void testNameSponserNotPatten() {
+    public void testNameSponserNotPatten() throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
         s.setSponser("ฟหกฟ");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -178,10 +178,10 @@ public class SponserApplicationTests {
         }
     }
     @Test//null
-    public void testDressCannotBeNull() {
+    public void testDressCannotBeNull()throws ParseException{ 
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(null);
@@ -204,8 +204,8 @@ public class SponserApplicationTests {
     @Test//null
     public void testDateFutureOrPresent() throws ParseException{
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2018-02-12");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2560-05-05");
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -225,10 +225,10 @@ public class SponserApplicationTests {
             assertEquals(violations.size(), 1);
         }
     } @Test//null
-    public void testArtitsCannotBeNull() {
+    public void testArtitsCannotBeNull() throws ParseException{
         Sponser s= new Sponser();
-        Date datereturn = new Date(2019,2,10);
-        Date date = new Date(2019,2,10);
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-02-12");
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
@@ -251,7 +251,7 @@ public class SponserApplicationTests {
     @Test//null
     public void testDateReturnFutureOrPresent() throws ParseException{
         Sponser s= new Sponser();
-        Date date = new Date(2019,2,10);
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2018-02-12");
         s.setSponser("aaaa");//ผิด
         s.setStatusdress(statusdress);
