@@ -93,7 +93,7 @@ const appRoutes: Routes = [
   { path: 'artists', component: ArtistsComponent },
   { path: 'show-artists', component: ShowArtistsComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:username', component: ProfileComponent },
   { path: 'login-cus', component: LoginCusComponent },
   { path: 'book/:username', component: BookComponent },
   { path: 'bookshow/:username', component: BookshowComponent },

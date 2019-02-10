@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
   countrySelect: string;
   pastalCodeProfile: number;
 
+  showError1 = '';
+  showError2 = '';
+
   constructor(private router: Router,
     private registerController: RegisterControlService,
     private _formBuilder: FormBuilder) { }
@@ -72,31 +75,35 @@ export class RegisterComponent implements OnInit {
           console.log(error);
         });
     } else {
-      alert("Password does not match");
+      this.showError1 = "Password does not match";
     }
   }
 
-  saveProfile() {
+  changeStep(index: number) {
+    this.stepper.selectedIndex = index;
+  }
+  
+  saveProfile() { 
     this.registerController.postProfile(
-      this.nameProfile,
+      this.nameProfile, 
       this.genderSelect, this.countrySelect,
       this.idCardProfile, this.phoneProfile,
       this.addressProfile, this.pastalCodeProfile,
       this.usernameRegister).subscribe(data => {
         console.log(data);
-        this.router.navigate(['login-cus']);
         this.registerController.postIDCard(this.idCardProfile, this.birthDayProfile, data.profileID).subscribe(data => {
+          this.router.navigate(['login-cus']);
           console.log(data);
+          
         });
       },
         error => {
           console.log(error);
+          this.showError2 = "Your Profile Invalid";
         });
   }
-  
-  changeStep(index: number) {
-    this.stepper.selectedIndex = index;
-  }
+
+
 
 }
 
