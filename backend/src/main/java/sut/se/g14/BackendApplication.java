@@ -78,7 +78,9 @@ public class BackendApplication {
 						   DateExpMonthRepository dateExpMonthRepository,
 						   DateExpYearRepository dateExpYearRepository,
 						   ProfileRepository profileRepository,
-						   IDCardRepository idCardRepository) {
+						   IDCardRepository idCardRepository,
+						   OldRepository oldRepository,
+						   FormatRepository formatRepository) {
 		return args -> {
 			//Manager
 			Stream.of("Male", "Female").forEach(gender -> {
@@ -94,6 +96,19 @@ public class BackendApplication {
 				newType.setType(type);
 				typeContactRepository.save(newType);
 			});
+
+			Stream.of(15,18,21).forEach(old -> {
+				Old newold = new Old();
+				newold.setOld(old);
+				oldRepository.save(newold);
+			});
+
+			Stream.of("ยืนชม","นั่งชม","ไม่กำหนด").forEach(format -> {
+				Format newformat = new Format();
+				newformat.setFormat(format);
+				formatRepository.save(newformat);
+			});
+
 
 			Stream.of("mimi").forEach(username -> {
 				Gender gender = genderRepository.findById(2L);
@@ -120,6 +135,8 @@ public class BackendApplication {
 			typeContactRepository.findAll().forEach(System.out::println);
 			contactRepository.findAll().forEach(System.out::println);
 			managerRepository.findAll().forEach(System.out::println);
+			oldRepository.findAll().forEach(System.out::println);
+			formatRepository.findAll().forEach(System.out::println);
 
 			//Artists
 
