@@ -7,7 +7,11 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class RegisterControlService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+
+  }
+
+  //====== Pofile =======
 
   public postMember(username: string, password: string): Observable<any> {
     return this.httpClient.post('//localhost:8080/member', {
@@ -18,23 +22,21 @@ export class RegisterControlService {
 
   public postProfile(
     nameProfile: string,
-    emailProfile: string,
     genderSelect: number,
     countrySelect: string,
     idCardProfile: number,
-    phoneProfile: number,
+    phoneProfile: string,
     addressProfile: string,
     pastalCodeProfile: number,
     member: string): Observable<any> {
-    return this.httpClient.post('//localhost:8080/profile/' + genderSelect + '/' + countrySelect + '/' + member ,{
+    return this.httpClient.post('//localhost:8080/profile/' + genderSelect + '/' + countrySelect + '/' + member, {
       "name": nameProfile,
-      "email": emailProfile,
       "addressDetail": addressProfile,
       "pastalCade": pastalCodeProfile,
       "mobilePhone": phoneProfile
-
     });
   }
+
 
   public postIDCard(
     idCardProfile: number,
@@ -46,13 +48,13 @@ export class RegisterControlService {
     });
   }
 
+
   public getCountry(): Observable<any> {
     return this.httpClient.get('//localhost:8080/countrys');
   }
   public getGender(): Observable<any> {
     return this.httpClient.get('//localhost:8080/gender');
   }
-
   public getIDCardByProfileId(idCardNum: number): Observable<any> {
     return this.httpClient.get('//localhost:8080/idCard/profile/' + idCardNum);
   }
@@ -64,5 +66,51 @@ export class RegisterControlService {
   public getProfileByUsername(username: string): Observable<any> {
     return this.httpClient.get('//localhost:8080/profile/member/' + username);
   }
+
+
+
+  // ========= Privilege VIP ==========
+
+
+  public postPrivilegeVIP(
+    cardNumShow: string, cvvNumShow: string, emailProfile: string,
+    monthSelect: string, yearSelect: string,
+    profileID: number, bandSelect: string,
+    privilegeSelect: string): Observable<any> {
+    return this.httpClient.post('//localhost:8080/Privilege/' + monthSelect + '/' + yearSelect + '/'
+      + profileID + '/' + bandSelect + '/' + privilegeSelect, {
+        "numCredit": cardNumShow,
+        "numCvv": cvvNumShow,
+        "email": emailProfile
+      });
+  }
+
+  getShowPrivilege(): Observable<any> {
+    return this.httpClient.get('//localhost:8080/Privilege');
+  }
+
+  public getVIPbyProfile(profileId: number): Observable<any> {
+    return this.httpClient.get('//localhost:8080/Privilege/profile/' + profileId);
+  }
+
+  public getPrivilegeVIP(idVIP: number): Observable<any> {
+    return this.httpClient.get('//localhost:8080/Privilege/' + idVIP);
+  }
+  public getBand(): Observable<any> {
+    return this.httpClient.get('//localhost:8080/Band');
+  }
+  public getExpMonth(): Observable<any> {
+    return this.httpClient.get('//localhost:8080/expMonth');
+  }
+  public getExpYear(): Observable<any> {
+    return this.httpClient.get('//localhost:8080/expYear');
+  }
+  public getTypePrivilege(): Observable<any> {
+    return this.httpClient.get('//localhost:8080/typePrivilege');
+  }
+  
+
+
+
 
 }
