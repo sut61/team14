@@ -18,7 +18,7 @@ export class SponserDressComponent implements OnInit {
   status_id = [] ;
   dress= [];
   artists= [];
-
+  showError : String;
   onClickSubmit(data) {
     if(this.sponserdress != null && data.date != null && data.datere != null){
       data.date = data.date.getTime()
@@ -29,11 +29,13 @@ export class SponserDressComponent implements OnInit {
 
       data => {
         console.log("POST Request is successful ", data);
-        alert("สำเร็จ")
+        alert("successful")
+        this.showError = "สำเร็จ"
       },
       error => {
         console.log("Error", error);
-        alert("ผิดพลาด กรอกข้อมูลไม่ครบถ้วน " + error)
+        alert("ข้อมูลผิดพลาด Error")
+        this.showError = "ข้อมูลผิดพลาด Error"
       });
 
   }

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   birthDayProfile: string;
   genderSelect: number;
   emailProfile: string;
-  phoneProfile: number;
+  phoneProfile: string;
   addressProfile: string;
   countrySelect: string;
   pastalCodeProfile: number;
@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
 
   saveProfile() {
     this.registerController.postProfile(
-      this.nameProfile, this.emailProfile,
+      this.nameProfile,
       this.genderSelect, this.countrySelect,
       this.idCardProfile, this.phoneProfile,
       this.addressProfile, this.pastalCodeProfile,
