@@ -23,9 +23,6 @@ export class ManagerComponent implements OnInit {
   showError = '';
 
   constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) {
-    if (typeof LoginAdminComponent.userName === 'undefined' || LoginAdminComponent.userName == null) {
-
-    }
     console.log(LoginAdminComponent.userName);
   }
 
@@ -44,7 +41,6 @@ export class ManagerComponent implements OnInit {
   save() {
 
     if (this.managerSet.name === '' || this.managerSet.gender === '' || this.managerSet.username === '' || this.managerSet.password === ''){
-
         this.showError = 'Please fill up this form.';
     }else {
       this.httpClient.post('http://localhost:8080/newManager/' + this.managerSet.name + '/' + this.managerSet.gender + '/' +

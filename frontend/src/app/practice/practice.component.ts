@@ -105,7 +105,7 @@ export class PracticeComponent implements OnInit {
   }
 
   goPractice(){
-    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+    this.router.navigate(['practice/table/' + this.username.username]);
   }
 
 

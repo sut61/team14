@@ -77,6 +77,10 @@ export class ContactComponent implements OnInit {
     this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
 
+  go() {
+    this.router.navigate(['Manager/' + this.username.username]);
+  }
+
   logout() {
     LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);

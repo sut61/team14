@@ -77,5 +77,15 @@ export class TableWorkComponent implements OnInit {
       );
     }
 
+goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
 
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
+logout() {
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
 }
