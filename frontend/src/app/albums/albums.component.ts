@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { AlbumsService } from '../shared/albums/albums.service';
-
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 
 @Component({
@@ -99,5 +99,17 @@ song(element): void {
 view(element):void{
   this.router.navigate(['view-albums/'+element.albumsID]);
 }
+
+goManager(){
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+  }
+logout() {
+    LoginAdminComponent.userName = null;
+    this.router.navigate(['Login/admin']);
+  }
 
 }

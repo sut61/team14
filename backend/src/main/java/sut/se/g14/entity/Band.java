@@ -1,5 +1,7 @@
 package sut.se.g14.entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 
@@ -17,6 +19,8 @@ public class Band {
     @Column(name="BandID")
 
     private @NonNull Long BandID;
+
+    @NotNull(message = "bandname must not be null to be valid")
     private @NonNull String bandname;
 
     public Band() {}

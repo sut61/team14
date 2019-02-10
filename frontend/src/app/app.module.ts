@@ -86,6 +86,8 @@ import { SongService } from './shared/song/song.service';
 import { SongComponent } from './song/song.component';
 import { ViewAlbumsComponent } from'./view-albums/view-albums.component'
 
+import { WorkService } from './shared/work/work.service';
+import { TableWorkComponent } from './table-work/table-work.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login-cus', pathMatch: 'full' },
@@ -109,7 +111,8 @@ const appRoutes: Routes = [
   { path: 'albums', component: AlbumsComponent},
   { path:'song/:albumsID',component:SongComponent},
   { path:'view-albums/:albumsID',component:ViewAlbumsComponent},
-  { path: 'privilege-vip', component: PrivilegeVIPComponent }
+  { path: 'privilege-vip', component: PrivilegeVIPComponent },
+  { path: 'table-work', component: TableWorkComponent },
 ];
 
 @NgModule({
@@ -135,7 +138,8 @@ const appRoutes: Routes = [
     AlbumsComponent,
     SongComponent,
     ViewAlbumsComponent,
-    PrivilegeVIPComponent
+    PrivilegeVIPComponent,
+    TableWorkComponent
 
   ],
   imports: [
@@ -184,7 +188,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [MoneyService, ManageService, ArtistsService, RegisterControlService, QuereService, PracticeService,
-              AlbumsService,SongService],
+              AlbumsService,SongService, WorkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
