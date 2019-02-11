@@ -82,7 +82,7 @@ public class BackendApplicationTests {
         
     }
 //==================================== Start test sprint1 ==============================================
-    @Test
+    @Test//ผ่าน
         public void testDataSuccessSP1() {
         MoneyEntity m = new MoneyEntity();
         a = artistRepository.findByfirstname("firstname");
@@ -103,9 +103,9 @@ public class BackendApplicationTests {
 
 
         }
-    //===========================test Null
+
     
-    
+    //============================positive
         @Test//เช็คค่าติดลบ
         public void testpriceIncomeNotPossitive() {
         MoneyEntity m = new MoneyEntity();
@@ -131,8 +131,8 @@ public class BackendApplicationTests {
         assertEquals(violations.size(), 1);
         }
         }
-    
-    
+    //===================================================
+    //===========================test Null
         @Test
         public void testfirstnameNull() {
         MoneyEntity m = new MoneyEntity();

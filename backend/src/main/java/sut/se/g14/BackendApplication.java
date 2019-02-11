@@ -283,7 +283,7 @@ public class BackendApplication {
 				});
 
 				//typeContract
-				Stream.of("ร้องเพลง & โมเดลลิ่ง","music").forEach(type -> {
+				Stream.of("modeling","music").forEach(type -> {
 					TypeContractEntity t = new TypeContractEntity();
 
 					t.setTypeContract(type);
