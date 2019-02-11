@@ -30,22 +30,16 @@ public class ContractArtistEntity{
     private @NonNull long id;
 
     @NotNull(message = "name must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z ]*")
     @Column( unique = true)
-    @Size(min=2 , max = 10)
     private @NonNull String nameArtist;
 
     @Min(500)@Max(1000000)
     private @NonNull int hiremoney;
    
     @NotNull(message = "name must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z &]*")
-    @Size(min= 2 , max = 10)
     private @NonNull String typecontract;
 
     @NotNull(message = "name must not be null to be valid")
-    @Pattern(regexp="[a-zA-Z ]*")
-    @Size(min=1 , max=10)
     private @NonNull String nameManager;
 
 
