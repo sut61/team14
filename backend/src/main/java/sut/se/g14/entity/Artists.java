@@ -4,6 +4,11 @@ import javax.persistence.*;
 import lombok.*;
 import java.sql.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+
 @Entity
 @Setter @Getter
 @ToString
@@ -19,23 +24,44 @@ public class Artists {
     @Column(name="artistsID")
 
     private @NonNull Long artistsID;
+
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z]*")
+    @Size(min=2)
     private @NonNull String firstname;
+
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z]*")
     private @NonNull String lastname;
+
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z]*")
+    @Size(max=10)
     private @NonNull String nickname;
+
+    @NotNull
     private @NonNull Date birthday ;
+
+    @NotNull(message = "phone must not be null to be valid")
+    @Pattern(regexp = "\\d{10}")
+    @Column(unique = true)
     private @NonNull String phone;
+
 
     @ManyToOne
     @JoinColumn(name = "gender_ID")
     private Gender gender;
 
+
     @ManyToOne
     @JoinColumn(name = "Manager_ID")
     private Manager manager;
 
+
     @ManyToOne
     @JoinColumn(name = "BandID")
     private Band band;
+
 
     @ManyToOne
     @JoinColumn(name = "TypeMusicID")
@@ -122,7 +148,7 @@ public class Artists {
     }
 
     public Artists() {}
-    public Artists(Long artistsID,String firstname , String lastname,String nickname,Date birthday,String phone) { //constructor
+    public Artists(Long artistsID,@NotNull  String firstname ,@NotNull String lastname,@NotNull String nickname,@NotNull Date birthday,@NotNull String phone) { //constructor
 
         this.artistsID = artistsID;
         this.firstname = firstname;

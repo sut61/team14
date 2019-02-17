@@ -1,4 +1,4 @@
-package sut.se.g14.backend.sprint2;
+package sut.se.g14.backend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,19 +35,15 @@ import javax.validation.ConstraintViolation;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 
-public class AlbumsApplicationTests {
+public class Sprint2AlbumsApplicationTests {
 
 	@Autowired private TestEntityManager entityManager;
-	@Autowired private GenderRepository genderRepository;
 	@Autowired private  BandRepository bandRepository;
-	@Autowired private  TypeMusicRepository typeMusicRepository;
 	@Autowired private  ProducerRepository producerRepository;
 	@Autowired private  SongRepository songRepository;
 
 
-	Gender gender = new Gender();
 	Band band = new Band();
-	TypeMusic typeMusic = new TypeMusic();
 	Producer producer = new Producer();
 	Song song = new Song();
 
@@ -65,56 +61,70 @@ public class AlbumsApplicationTests {
 		entityManager.persist(producer);
 		entityManager.flush();
 
-        song.setName("Lovelove");
-        entityManager.persist(song);
-        entityManager.flush();
-	}
-
-	///////////////////////////Match/////////////////////////////////////////////////
-	@Test
-	public void testMatchAlbums() throws ParseException{
-		Albums albums = new Albums();
-		albums.setBand(band);
-		albums.setProducer(producer);
-		albums.setName("LoveLove");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
-		albums.setOnsale(onsale);
-		entityManager.persist(albums);
+		song.setName("Lovelove");
+		entityManager.persist(song);
 		entityManager.flush();
 	}
 
-    @Test
-    public void testMatchSong() {
-        Song song = new Song();
-        song.setName("Youyuo");
-        Time timeSongSet = new Time(Integer.parseInt("00"), Integer.parseInt("03"), Integer.parseInt("00"));
-        song.setTime(timeSongSet);
-        entityManager.persist(song);
-        entityManager.flush();
-    }
+	///////////////////////////Match/////////////////////////////////////////////////
 
-   //////////////////////NULL/////////////////////////////////
 	@Test
-	public void testAlbumnameCannotBeNull() throws ParseException{
+	public void testMatchAlbums() throws ParseException {
 		Albums albums = new Albums();
-        Song song = new Song();
-        song.setName("BUBUBUBUBU");
+
 		albums.setBand(band);
 		albums.setProducer(producer);
-		albums.setName(null);
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		albums.setName("LoveLove");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
+			System.out.println("\n\n================================  Complete testMatchAlbums ================================\n");
+		} catch(javax.validation.ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+	}
 
+	@Test
+	public void testMatchSong() {
+		Song song = new Song();
+		song.setName("Youyuo");
+		Time timeSongSet = new Time(Integer.parseInt("00"), Integer.parseInt("03"), Integer.parseInt("00"));
+		song.setTime(timeSongSet);
+
+		try {
+			entityManager.persist(song);
+			entityManager.flush();
+			System.out.println("\n\n================================  Complete testMatchSong ================================\n");
+		} catch(javax.validation.ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+	}
+
+
+	//////////////////////NULL/////////////////////////////////
+	@Test
+	public void testAlbumnameCannotBeNull() throws ParseException{
+		Albums albums = new Albums();
+
+		albums.setName(null);
+		albums.setBand(band);
+		albums.setProducer(producer);
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
+		albums.setOnsale(onsale);
+
+		try {
+			entityManager.persist(albums);
+			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name Null <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error test testAlbumnameCannotBeNull ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
@@ -124,22 +134,20 @@ public class AlbumsApplicationTests {
 	@Test
 	public void testBandCannotBeNull() throws ParseException{
 		Albums albums = new Albums();
+
 		albums.setBand(null);
 		albums.setProducer(producer);
 		albums.setName("KingOfKing");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
-
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name Null <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error test testBandCannotBeNull ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
@@ -152,19 +160,36 @@ public class AlbumsApplicationTests {
 		albums.setBand(band);
 		albums.setProducer(null);
 		albums.setName("Lotus");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
-
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name Null <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error test testProducerCannotBeNull ================================\n");
+			System.out.println(e);
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+	}
+
+	@Test
+	public void testOnsaleCannotBeNull() throws ParseException{
+		Albums albums = new Albums();
+		albums.setBand(band);
+		albums.setProducer(producer);
+		albums.setName("Lotus");
+		albums.setOnsale(null);
+		try {
+			entityManager.persist(albums);
+			entityManager.flush();
+			fail("Should not pass to this line");
+		} catch(javax.validation.ConstraintViolationException e) {
+			System.out.println("\n\n================================  Error test testOnsaleCannotBeNull ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
@@ -178,47 +203,40 @@ public class AlbumsApplicationTests {
 		albums.setBand(band);
 		albums.setProducer(producer);
 		albums.setName("12345");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
-
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name NotMatchPatten <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error testNameCannotPatten ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
 		}
 	}
 
-    ////////////////////SIZE///////////////////////////////////////////////
+
+	////////////////////SIZE///////////////////////////////////////////////
 	@Test
 	public void testNameSizeCannotMatchLowerThanMin() throws ParseException{
 		Albums albums = new Albums();
-        Song song = new Song();
-        song.setName("BUBUBUBUBU");
 		albums.setBand(band);
 		albums.setProducer(producer);
 		albums.setName("BI");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
-
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name MinSize <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error testNameSizeCannotMatchLowerThanMin ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
@@ -228,111 +246,73 @@ public class AlbumsApplicationTests {
 	@Test
 	public void testNameSizeCannotMatchHighThanMin() throws ParseException{
 		Albums albums = new Albums();
-        Song song = new Song();
-        song.setName("BUBUBUBUBU");
 		albums.setBand(band);
 		albums.setProducer(producer);
 		albums.setName("BIfhdirjorkkyoykhitolghjfdjhoierjhoirejhoidjhoidrgoijerhijerjhjoiewjyhoiepwjhioejhoierwjhoiejhoiewjhoiewjhioejh");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+
 		try {
 			entityManager.persist(albums);
 			entityManager.flush();
-
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Name MaxSize <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
+			System.out.println("\n\n================================  Error testNameSizeCannotMatchHighThanMin ================================\n");
+			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
 		}
 	}
 
-    @Test
-    public void testMinSizeSong() throws ParseException{
-        Song song = new Song();
-        song.setName("y");
-        Time timeSongSet = new Time(Integer.parseInt("00"), Integer.parseInt("03"), Integer.parseInt("00"));
-        song.setTime(timeSongSet);
-        try {
-            entityManager.persist(song);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println();
-            System.out.println("----------> SongName MinSize <--------------------");
-            System.out.println(e.getMessage());
-            System.out.println();
-            System.out.println();
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
-
-///////////////////////////////////////DateFuture////////////////////////////////////////////////////////
 	@Test
-	public void testOnsaleCannnotFuture() throws ParseException{
-		Albums albums = new Albums();
+	public void testMinSizeSong() throws ParseException{
 		Song song = new Song();
-		song.setName("BUBUBUBUBU");
+		song.setName("y");
+
+		try {
+			entityManager.persist(song);
+			entityManager.flush();
+			fail("Should not pass to this line");
+		} catch(javax.validation.ConstraintViolationException e) {
+			System.out.println("\n\n================================  Error testMinSizeSong ================================\n");
+			System.out.println(e);
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			assertEquals(violations.isEmpty(), false);
+			assertEquals(violations.size(), 1);
+		}
+	}
+///////////////////////////////unique//////////////////////
+	@Test
+	public void testNameAlbumMustBeUnique() throws ParseException{
+
+		Albums albums = new Albums();
+
 		albums.setBand(band);
 		albums.setProducer(producer);
-		albums.setName("BIBIBI");
-		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2018-05-05");
+		albums.setName("LoveLove");
+		Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2563-05-05");
 		albums.setOnsale(onsale);
+		entityManager.persist(albums);
+		entityManager.flush();
+
+		Albums albums1 = new Albums();
+
+		albums1.setBand(band);
+		albums1.setProducer(producer);
+		albums1.setName("LoveLove");
+		Date onsale1 = new SimpleDateFormat("yyyy-MM-dd").parse("2566-05-05");
+		albums1.setOnsale(onsale1);
+
 		try {
-			entityManager.persist(albums);
+			entityManager.persist(albums1);
 			entityManager.flush();
 
 			fail("Should not pass to this line");
-		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println();
-			System.out.println("----------> Onsale NotFuture <--------------------");
-			System.out.println(e.getMessage());
-			System.out.println();
-			System.out.println();
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			assertEquals(violations.isEmpty(), false);
-			assertEquals(violations.size(), 1);
+		} catch(javax.persistence.PersistenceException e) {
+			System.out.println(e);
+			System.out.println("AlbumsName Must Be Unique\n\n");
 		}
 	}
 
-  ///////////////////////////Unique//////////////////////////
-  @Test(expected = javax.persistence.PersistenceException.class)
-	public void testNameAlbumsBeUnique() throws ParseException{
-
-	  Albums albums = new Albums();
-	  albums.setBand(band);
-	  albums.setProducer(producer);
-	  albums.setName("ComingSoon");
-	  Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
-	  albums.setOnsale(onsale);
-	  entityManager.persist(albums);
-	  entityManager.flush();
-
-	  Albums albums1 = new Albums();
-	  albums1.setBand(band);
-	  albums1.setProducer(producer);
-	  albums1.setName("ComingSoon");
-	  Date onsale1 = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-25");
-	  albums1.setOnsale(onsale1);
-	  entityManager.persist(albums1);
-
-
-	  System.out.println();
-	  System.out.println("----------> NameAlbumsBeUnique <--------------------");
-	  System.out.println();
-	  System.out.println();
-
-	  entityManager.flush();
-	  fail("Should not pass to this line");
-  }
-
 }
-

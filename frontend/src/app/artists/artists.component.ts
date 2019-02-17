@@ -67,10 +67,6 @@ showError = '';
          }
 
          save() {
-             if (this.setData.genderIdSelect === '' || this.setData.bandIdSelect === '' || this.setData.managerIdSelect === '' ||this.setData.typeMusicIdSelect  === ''||
-             this.setData.firstname === '' || this.setData.lastname === '' || this.setData.nickname === '' || this.setData. birthday === '' ||this.setData.phoneInput === '' ) {
-               alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-             } else {
                this.httpClient.post('http://localhost:8080/artists/create/' + this.setData.firstname + '/' + this.setData.lastname
                + '/'+this.setData.nickname+'/'+this.setData.birthday+'/'+0+this.setData.phoneInput+'/'+this.setData.genderIdSelect+'/'+this.setData.managerIdSelect+'/'+this.setData.bandIdSelect+'/'+this.setData.typeMusicIdSelect,this.setData)
                .subscribe(data => {
@@ -83,10 +79,15 @@ showError = '';
                      this.showError = "กรอกข้อมูลผิดพลาด"
                    }
                  );
-                  }
-
 }
 logout() {
   this.router.navigate(['Login/admin']);
 }
+ goManager(){
+    this.router.navigate(['Manager/' + this.username.username]);
+  }
+
+  goPractice(){
+    this.router.navigate(['practice/table/' + this.username.username]);
+  }
 }
