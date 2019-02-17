@@ -1,6 +1,7 @@
 package sut.se.g14.entity;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -14,6 +15,8 @@ public class Contact {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="contact_seq")
     @Column(name="Contact_ID")
     private @NonNull Long id;
+
+    @Size(min = 5)
     private @NonNull String contact;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeContact.class)

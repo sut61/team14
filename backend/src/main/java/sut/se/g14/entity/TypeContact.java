@@ -1,6 +1,7 @@
 package sut.se.g14.entity;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -14,7 +15,10 @@ public class TypeContact {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="type_seq")
     @Column(name="Type_ID")
     private @NonNull Long id;
+
+    @NotNull(message = "typeContact must not be null to be valid")
     private @NonNull String type;
+
     public Long getId() {
         return id;
     }
