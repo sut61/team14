@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ArtistsComponent } from 'src/app/artists/artists.component';
 import { ArtistsService } from '../shared/artists/artists.service';
+import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 
 
@@ -89,7 +90,15 @@ getManager() {
     console.log(this.viewartists.selecttypemusics);
   }
   logout() {
+    LoginAdminComponent.userName = null;
     this.router.navigate(['Login/admin']);
+  }
+  goManager() {
+    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
+  }
+
+  goPractice() {
+    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
   }
   }
   

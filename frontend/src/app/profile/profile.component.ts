@@ -68,9 +68,7 @@ export class ProfileComponent implements OnInit {
         this.birthDayProfile = dataC.birthDay;
       });
 
-    /*  this.registerController.getPrivilegeVIP(data.profileID).subscribe(dataP => {
-        this.idVIP = dataP.idVIP;
-      }) */
+
 
     });
   }
@@ -84,11 +82,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['book/' + this.idProfile]);
   }
   goProfile(){
-    this.router.navigate(['profile/' + this.username]);
+    this.router.navigate(['profile/' + this.idProfile]);
   }
 
-  goPrivilegeVIP(){
-    this.router.navigate(['privilege-show/' + this.username]);
-  }
+ 
 }
 
