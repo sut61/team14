@@ -8,7 +8,7 @@
     <button mat-button [routerLink]="['/contract']">Contract</button>
     <button mat-button (click)="goPractice()">Practice</button>
     <button mat-button [routerLink]="['/albums']">Albums</button>
-    <button mat-button [routerLink]="['/table-work']">Work</button>
+    <button mat-button (click)="goPractice()">Work</button>
     <button mat-button [routerLink]="['/sponser']">SponserDress</button>
     <button mat-button (click)="logout()">Logout</button>
   </mat-toolbar>
@@ -17,51 +17,54 @@
     เพิ่มข้อมูลผู้จัดการใหม่
   </div>
 
-    <div class="plan">
-      <div class="planIn1">
-        <div class="planBox1">
-          ชื่อ :
-        </div>
-        <div class="planBox1">
-          เพศ :
-        </div>
-        <div class="planBox1">
-          Username :
-        </div>
-        <div class="planBox1">
-          Password :
-        </div>
-        <div class="planBox1">
-
-        </div>
-        <div class="planBox1">
-          <button mat-raised-button (click)="save()" style="background-color: #9A80FD" >ต่อไป</button>
-        </div>
+  <div class="plan">
+    <div class="planIn1">
+      <div class="planBox1">
+        ชื่อ :
       </div>
-      <div class="planIn2">
-        <div class="planBox2">
-          <input matInput placeholder="ชื่อ" value="" [(ngModel)]="managerSet.name" name="name">
-        </div>
-        <div class="planBox2">
-          <mat-select placeholder=" " [(ngModel)]="managerSet.gender" name="gender" class="selectBox">
-            <mat-option *ngFor="let gender of genders" [value]="gender.id">
-              {{gender.gender}}
-            </mat-option>
-          </mat-select>
-        </div>
-        <div class="planBox2">
-          <input matInput placeholder="Username" value="" [(ngModel)]="managerSet.username" name="username">
-        </div>
-        <div class="planBox2">
-          <input matInput type="password" placeholder="Password" value="" [(ngModel)]="managerSet.password" name="password">
-        </div>
-        <div class="planBox2">
+      <div class="planBox1">
+        เพศ :
+      </div>
+      <div class="planBox1">
+        Username :
+      </div>
+      <div class="planBox1">
+        Password :
+      </div>
+      <div class="planBox1">
 
-        </div>
-        <div class="planBox2">
-          <button mat-raised-button (click)="back()" style="background-color: #9A80FD" >กลับ</button>
-        </div>
+      </div>
+      <div class="planBox1">
+        <button mat-raised-button (click)="save()" style="background-color: #9A80FD" >ต่อไป</button>
       </div>
     </div>
+    <div class="planIn2">
+      <div class="planBox2">
+        <input matInput placeholder="ชื่อ" value="" [(ngModel)]="managerSet.name" name="name">
+      </div>
+      <div class="planBox2">
+        <mat-select placeholder=" " [(ngModel)]="managerSet.gender" name="gender" class="selectBox">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{gender.gender}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="planBox2">
+        <input matInput placeholder="Username" value="" [(ngModel)]="managerSet.username" name="username">
+      </div>
+      <div class="planBox2">
+        <input matInput type="password" placeholder="Password" value="" [(ngModel)]="managerSet.password" name="password">
+      </div>
+      <div class="planBox2">
+
+      </div>
+      <div class="planBox2">
+        <button mat-raised-button (click)="back()" style="background-color: #9A80FD" >กลับ</button>
+      </div>
+    </div>
+    <div align="center">
+      <p style="color: red;">{{showError}}</p>
+    </div>
+  </div>
 </main>
 
