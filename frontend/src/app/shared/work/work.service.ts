@@ -19,6 +19,9 @@ export class WorkService {
   getFormat(): Observable<any> {
     return this.http.get(this.API + '/Formats');
   }
+  getAllTablework() : Observable<any>{
+      return this.http.get('//localhost:8080/TableWorks');
+    }
 
 
 }

@@ -25,7 +25,7 @@ public class TableWork {
         private @NonNull long tableWorkId;
 
         @NotNull
-        @Pattern(regexp = "[a-zA-Z!%&]*")
+        @Pattern(regexp = "[a-z A-Z!%&]*")
         @Size(min=10)
         private @NonNull String invite;
 

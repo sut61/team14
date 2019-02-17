@@ -13,14 +13,11 @@
 </mat-toolbar>
 
 <main>
-  <label class="headtxt">บันทึกตารางงานศิลปิน</label>
+  <label class="headtxt">ตารางงานศิลปิน</label>
   <div id="blocktextup1">
     <div class="nametxt">
-      <label>Username :</label>
+      <label>Username :</label> {{this.setData.username}}
 
-      <div id="box_name">
-        {{this.setData.username}}
-      </div>
     </div>
   </div>
 
@@ -47,44 +44,9 @@
         <td mat-cell *matCellDef="let element"><font  color="#000000"> {{element.placeQuere.place}}</font></td>
       </ng-container>
 
-      <ng-container matColumnDef="invite">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">Invite</font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000"><textarea id ="box_invite" matInput name="invite"  [(ngModel)]="setData.invite"></textarea></font></td>
-      </ng-container>
-
-      <ng-container matColumnDef="tag">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">Tag</font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000"><textarea matInput name="tag"  [(ngModel)]="setData.tag"></textarea></font></td>
-      </ng-container>
-
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">ค่าตัวศิลปิน(บาท/ชม.)</font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000"><input matInput name="price" type="number"  [(ngModel)]="setData.price"></font></td>
-      </ng-container>
-
-      <ng-container matColumnDef="old">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">ผู้ชมอายุตั้งแต่(ปี)ขึ้นไป</font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000"><mat-select placeholder=" " [(ngModel)]="setData.old" name="old" id="select">
-          <mat-option *ngFor="let old of old" [value]="old.oldId">
-            {{old.old}}
-          </mat-option>
-        </mat-select></font></td>
-      </ng-container>
-
-      <ng-container matColumnDef="format">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">Format</font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000">
-          <mat-select placeholder=" " [(ngModel)]="setData.format" name="format" id="select">
-            <mat-option *ngFor="let format of format" [value]="format.formatId">
-              {{format.format}}
-            </mat-option>
-          </mat-select></font></td>
-      </ng-container>
-
-
       <ng-container matColumnDef="buttom">
-        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">   </font></font> </th>
-        <td mat-cell *matCellDef="let element"><font  color="#000000"><button mat-raised-button (click)="save(element.id)" class="mat-bot" >ตกลง</button></font></td>
+        <th mat-header-cell *matHeaderCellDef><font size = "4"><font  color="#000000">จัดการ</font></font> </th>
+        <td mat-cell *matCellDef="let element"><font  color="#000000"><button mat-raised-button (click)="pick(element.id)" class="mat-bot" >ตกลง</button></font></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -92,6 +54,5 @@
 
 
     </table>
-    <br><p style="color: red;">{{showError}}</p>
   </div>
 </main>

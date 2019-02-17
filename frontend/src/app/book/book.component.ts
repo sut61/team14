@@ -73,6 +73,7 @@ export class BookComponent implements OnInit {
   }
 
   save() {
+    this.showError = 'Please wait.';
     if (this.setData.artistSelect === '' || this.setData.typeWorkSelect === '' || this.setData.place === '' || this.setData.date === '' ||
     this.setData.hour === '' || this.setData.hrs === '' || this.setData.mins === '') {
       this.showError = 'Please fill out this form.';
@@ -84,7 +85,7 @@ export class BookComponent implements OnInit {
         this.setData.username + '/' + this.setData.typeWorkSelect ,this.setData)
         .subscribe(data => {
           if(data){
-           this.showError = 'บันทึกการจองสำเร็จ';
+           this.showError = 'บันทึกสำเร็จ';
             this.router.navigate(['bookshow/' + this.setData.username]);
            console.log('PUT Request is successful', data);
           }
@@ -103,6 +104,14 @@ export class BookComponent implements OnInit {
   history(){
     this.router.navigate(['bookshow/' + this.setData.username]);
   }
+    goProfile(){
+    this.router.navigate(['profile/' + this.username]);
+  }
+
+  goPrivilegeVIP(){
+    this.router.navigate(['privilege-show/' + this.username]);
+  }
+
 
   logout() {
     LoginCusComponent.userName = null;
