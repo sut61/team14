@@ -105,11 +105,11 @@ export class BookComponent implements OnInit {
     this.router.navigate(['bookshow/' + this.setData.username]);
   }
     goProfile(){
-    this.router.navigate(['profile/' + this.username]);
+    this.router.navigate(['profile/' + this.username.username]);
   }
 
   goPrivilegeVIP(){
-    this.router.navigate(['privilege-show/' + this.username]);
+    this.router.navigate(['privilege-show/' + this.username.username]);
   }
 
 

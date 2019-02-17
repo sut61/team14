@@ -1,4 +1,4 @@
-package sut.se.g14.backend.sprint2;
+package sut.se.g14.backend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class PrivilegeVIPApplicationTests {
+public class Sprint2PrivilegeVIPApplicationTests {
 
 
 	@Autowired
@@ -36,12 +36,11 @@ public class PrivilegeVIPApplicationTests {
 
 	private Validator validator;
 
-
+	//Sprint2 PrivilegeVIP
 	TypePrivilege typePrivilege = new TypePrivilege();
 	Band band = new Band();
 	DateExpMonth dateExpMonth = new DateExpMonth();
 	DateExpYear dateExpYear = new DateExpYear();
-
 
 
 	@Before
@@ -50,6 +49,7 @@ public class PrivilegeVIPApplicationTests {
 		validator = factory.getValidator();
 
 
+		//Sprinnt2 PrivilegeVIP
 		typePrivilege.setTypePrivilege("Special Concert");
 		entityManager.persist(typePrivilege);
 		entityManager.flush();
@@ -68,9 +68,10 @@ public class PrivilegeVIPApplicationTests {
 
 	}
 
+//============================================== Sprint2 Test PrivilegeVIP ================================================
 
 	@Test
-	public void dataPrivilegeVIP() {
+	public void dataCompletePrivilegeVIP() {
 		PrivilegeVIP privilegeVIP = new PrivilegeVIP();
 
 		privilegeVIP.setNumCredit("1234567890123456");
@@ -111,7 +112,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testCreditNumCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test CreditNum CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -136,7 +137,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testCvvNumCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test CvvNum CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -161,7 +162,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testEmailCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test Email CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -187,7 +188,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testBandCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test Band CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -212,7 +213,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch (javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testTypePrivilegeCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test TypePrivilege CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -237,7 +238,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testDateExpMonthannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test DateExpMonth CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -262,7 +263,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testDateExpYearCannotBeNull ================================\n");
+			System.out.println("\n\n================================  Error test DateExpYear CannotBeNull ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -290,7 +291,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testNumCreditCannotLongerThanMax ================================\n");
+			System.out.println("\n\n================================  Error test NumCredit CannotLongerThanMax ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -315,7 +316,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testCreditCannotLowerThanMin ================================\n");
+			System.out.println("\n\n================================  Error test NumCredit CannotLowerThanMin ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -340,7 +341,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testNumCvvCannotLongerThanMax ================================\n");
+			System.out.println("\n\n================================  Error test NumCvv CannotLongerThanMax ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -365,7 +366,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testCvvCannotLowerThanMin ================================\n");
+			System.out.println("\n\n================================  Error test NumCvv CannotLowerThanMin ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -392,7 +393,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testNumCreditMustBePattern ================================\n");
+			System.out.println("\n\n================================  Error test NumCredit MustBePattern ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -417,7 +418,7 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testNumCvvMustBePattern ================================\n");
+			System.out.println("\n\n================================  Error test NumCvv MustBePattern ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
@@ -443,14 +444,14 @@ public class PrivilegeVIPApplicationTests {
 			entityManager.flush();
 			fail("Should not pass to this line");
 		} catch(javax.validation.ConstraintViolationException e) {
-			System.out.println("\n\n================================  Error testEmailMustBeEmail ================================\n");
+			System.out.println("\n\n================================  Error test Email MustBeEmail ================================\n");
 			System.out.println(e);
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			assertEquals(violations.isEmpty(), false);
 			assertEquals(violations.size(), 1);
 		}
 	}
-
+//============================================== END Test Sprint2 PrivilegeVIP ============================================
 
 
 

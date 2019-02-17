@@ -1,5 +1,6 @@
 package sut.se.g14;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,10 @@ import sut.se.g14.entity.*;
 import sut.se.g14.repository.*;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -336,12 +341,91 @@ public class BackendApplication {
 				}
 
 			});
-		};
 
-		
-		
-		
+			//Profile
+			setCustomer();
+
+			//Artist
+			Artists artists = new Artists();
+			Gender gender = genderRepository.findById(1L);
+			Manager manager = managerRepository.findByUsername("mimi");
+			Band band = bandRepository.findById(1);
+			TypeMusic typeMusic = typeMusicRepository.findById(1);
+			LocalDate local1 = LocalDate.parse("2540-12-05");
+			java.sql.Date date = java.sql.Date.valueOf(local1);
+
+			artists.setFirstname("sakura");
+			artists.setLastname("hanami");
+			artists.setNickname("hana");
+			artists.setBirthday(date);
+			artists.setPhone("0912345678");
+			artists.setGender(gender);
+			artists.setManager(manager);
+			artists.setBand(band);
+			artists.setTypeMusic(typeMusic);
+			artistRepository.save(artists);
+			artistRepository.findAll().forEach(System.out::println);
+
+			//Queue
+			Quere quere = new Quere();
+			Place newPlace = new Place();
+			Profile members = profileRepository.findByProfileID(1L);
+			Band band2 = bandRepository.findById(1);
+			TypeWork typeWork = typeWorkRepository.findByTypeworkId(1L);
+			Status status = statusRepository.findByStatusId(1L);
+
+			LocalDate local2 = LocalDate.parse("2562-12-11");
+			java.sql.Date date2 = java.sql.Date.valueOf(local2);
+			Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+			newPlace.setPlace("Terminal 21 Korat");
+			newPlace.setDate(date2);
+			newPlace.setTime(time);
+			newPlace.setHour(2);
+			placeRepository.save(newPlace);
+
+			quere.setBandQuere(band2);
+			quere.setPlaceQuere(newPlace);
+			quere.setTypeworkQuere(typeWork);
+			quere.setStatusQuere(status);
+			quereRepository.save(quere);
+			members.getQuereSet().add(quere);
+			profileRepository.save(members);
+			quereRepository.findAll().forEach(System.out::println);
+		};
 	}
 
+
+	@Autowired GenderRepository genderRepository;
+	@Autowired CountryRepository countryRepository;
+	@Autowired MembersRepository membersRepository;
+	@Autowired ProfileRepository profileRepository;
+	@Autowired IDCardRepository idCardRepository;
+	public void setCustomer() throws ParseException {
+
+		Gender gender = genderRepository.findById(1);
+		Country country = countryRepository.findById(1);
+		Profile profile = new Profile();
+		Members members = new Members();
+		IDCard idCard = new IDCard();
+
+		members.setMemUser("testCus");
+		members.setMemPassword("12345678");
+		membersRepository.save(members);
+
+		profile.setAddressDetail("335 Ratchadumnoen Korot");
+		profile.setName("Customer Test");
+		profile.setPastalCade(12345L);
+		profile.setMobilePhone("0901234567");
+		profile.setMembers(members);
+		profile.setGender(gender);
+		profile.setCountry(country);
+		profileRepository.save(profile);
+
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2540-08-12");
+		idCard.setCardIdNum(1234567890123L);
+		idCard.setBrithDay(date);
+		idCard.setProfile(profile);
+		idCardRepository.save(idCard);
+	}
 }
 
