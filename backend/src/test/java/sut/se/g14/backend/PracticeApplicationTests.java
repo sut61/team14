@@ -21,7 +21,6 @@ import java.util.Set;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -29,23 +28,23 @@ import static org.junit.Assert.fail;
 @DataJpaTest
 public class PracticeApplicationTests {
     @Autowired private TestEntityManager entityManager;
-    @Autowired private GenderRepository genderRepository;
     @Autowired private PracticeRepository practiceRepository;
-    @Autowired private TypeContactRepository typeContactRepository;
-    @Autowired private ContactRepository contactRepository;
 
     private Validator validator;
+
     @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
+
+    //===== Practice =====
     @Test
     public void testPracticeAddData() throws ParseException {
         Time startTime = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Time endTime = new Time(Integer.parseInt("12"), Integer.parseInt("00"), Integer.parseInt("00"));
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-20");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2563-12-20");
         Practice practice = new Practice();
         practice.setTrainer("FristName Lastname");
         practice.setDate(date);
@@ -53,19 +52,17 @@ public class PracticeApplicationTests {
         practice.setEndTime(endTime);
         practice.setDetail("abcdefghigk lmnop123");
 
-        //entityManager.persist(practice);
-        //entityManager.flush();
-
-
         try {
             entityManager.persist(practice);
             entityManager.flush();
+            System.out.println("***** Add Practice Complete *****\n\n");
         } catch (javax.validation.ConstraintViolationException e) {
             System.out.println(e);
             System.out.println("Add Practice Complete\n\n");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
+            fail();
         }
     }
 
@@ -87,7 +84,7 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("Practice Date Cannot Be Null\n\n");
+            System.out.println("***** Practice Date Cannot Be Null\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -99,7 +96,7 @@ public class PracticeApplicationTests {
         Time startTime = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Time endTime = new Time(Integer.parseInt("12"), Integer.parseInt("00"), Integer.parseInt("00"));
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2018-12-20");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2561-12-20");
 
         Practice practice = new Practice();
         practice.setTrainer("FristName Lastname");
@@ -115,7 +112,7 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("Date Cannot Past\n\n");
+            System.out.println("***** Date Cannot Past\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -127,7 +124,7 @@ public class PracticeApplicationTests {
         Time startTime = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Time endTime = new Time(Integer.parseInt("12"), Integer.parseInt("00"), Integer.parseInt("00"));
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-20");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2563-12-20");
 
         Practice practice = new Practice();
         practice.setTrainer("FristName Lastname@#");
@@ -142,7 +139,7 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("Practice Name Cannot Match Pattern\n\n");
+            System.out.println("***** Practice Name Cannot Match Pattern\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -154,7 +151,7 @@ public class PracticeApplicationTests {
         Time startTime = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Time endTime = new Time(Integer.parseInt("12"), Integer.parseInt("00"), Integer.parseInt("00"));
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-20");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2563-12-20");
 
         Practice practice = new Practice();
         practice.setTrainer("FristName Lastname");
@@ -169,13 +166,14 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("Practice Detail Size Cannot Lower Than Min\n\n");
+            System.out.println("***** Practice Detail Size Cannot Lower Than Min\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
 
+    //===== TypePractice =====
     @Test
     public void testTypePracticeCannotBeNull() {
         TypePractice typePractice = new TypePractice();
@@ -187,13 +185,14 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("TypePractice Cannot Be Null\n\n");
+            System.out.println("***** TypePractice Cannot Be Null\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
 
+    //===== TypeRoomPractice =====
     @Test
     public void testTypeRoomPracticeCannotBeNull() {
         TypeRoomPractice typeroomPractice = new TypeRoomPractice();
@@ -205,13 +204,14 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("TypeRoomPractice Cannot Be Null\n\n");
+            System.out.println("***** TypeRoomPractice Cannot Be Null\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
 
+    //===== RoomPractice =====
     @Test
     public void testRoomPracticeCannotBeNull() {
         RoomPractice roomPractice = new RoomPractice();
@@ -223,13 +223,14 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("RoomPractice Cannot Be Null\n\n");
+            System.out.println("***** RoomPractice Cannot Be Null\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
 
+    //===== Band =====
     @Test
     public void testBandCannotBeNull() {
         Band band = new Band();
@@ -241,7 +242,7 @@ public class PracticeApplicationTests {
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            System.out.println("Band Cannot Be Null\n\n");
+            System.out.println("***** Band Cannot Be Null\n\n *****");
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
