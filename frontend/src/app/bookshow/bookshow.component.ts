@@ -40,7 +40,7 @@ export class BookshowComponent implements OnInit {
        this.sub = this.rout.params.subscribe(params => {
            this.username = params
             console.log(this.username)
-    })
+    });
         this.quereService.getMembers(this.username.username).subscribe(data => {
          this.user = data;
         console.log(this.user);
@@ -67,6 +67,14 @@ export class BookshowComponent implements OnInit {
   }
      back(){
     this.router.navigate(['book/' + this.username.username]);
+  }
+
+  goProfile(){
+    this.router.navigate(['profile/' + this.username]);
+  }
+
+  goPrivilegeVIP(){
+    this.router.navigate(['privilege-show/' + this.username]);
   }
 
   logout() {

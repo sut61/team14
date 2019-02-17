@@ -68,6 +68,9 @@ import { PracticeComponent } from './practice/practice.component';
 import { PracticetableComponent } from './practicetable/practicetable.component';
 import { PracticeService } from './shared/practice/practice.service';
 
+
+import { ShowWorkComponent } from './show-work/show-work.component';
+
 import {
   MatBadgeModule,
   MatBottomSheetModule,
@@ -113,6 +116,7 @@ const appRoutes: Routes = [
   { path:'view-albums/:albumsID',component:ViewAlbumsComponent},
   { path: 'privilege-vip', component: PrivilegeVIPComponent },
   { path: 'table-work', component: TableWorkComponent },
+  { path: 'show-work/:id', component: ShowWorkComponent }
 ];
 
 @NgModule({
@@ -139,7 +143,8 @@ const appRoutes: Routes = [
     SongComponent,
     ViewAlbumsComponent,
     PrivilegeVIPComponent,
-    TableWorkComponent
+    TableWorkComponent,
+    ShowWorkComponent
 
   ],
   imports: [
