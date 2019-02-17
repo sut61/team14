@@ -5,11 +5,6 @@
     <button mat-button [routerLink]="['/dress']">Dress</button>
     <button mat-button [routerLink]="['/money']">Finance</button>
     <button mat-button [routerLink]="['/artists']">Artists</button>
-    <button mat-button [routerLink]="['/contract']">Contract</button>
-    <button mat-button (click)="goPractice()">Practice</button>
-    <button mat-button [routerLink]="['/albums']">Albums</button>
-    <button mat-button [routerLink]="['/table-work']">Work</button>
-    <button mat-button [routerLink]="['/sponser']">SponserDress</button>
     <button mat-button (click)="logout()">Logout</button>
   </mat-toolbar>
     <div align="center">
@@ -42,7 +37,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="number" placeholder="เบอร์โทรศัพท์" [(ngModel)]="setData.phone">
+          <input matInput type="number" placeholder="เบอร์โทรศัพท์" [(ngModel)]="setData.phoneInput">
         </mat-form-field>
 
         <mat-form-field style="margin-right: 10%">
@@ -68,6 +63,7 @@
         </mat-form-field>
       <br>
       <button mat-flat-button (click)="save()">ส่ง</button>
+        <p style="color: red;">{{showError}}</p>
     </mat-card>
     </div>
 </main>
