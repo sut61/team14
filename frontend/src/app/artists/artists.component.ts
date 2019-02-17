@@ -5,7 +5,6 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { Router, RouterModule } from '@angular/router';
 import { ArtistsService } from '../shared/artists/artists.service';
-import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
   selector: 'app-artists',
@@ -30,7 +29,7 @@ export class ArtistsComponent implements OnInit {
       birthday: '',
       phoneInput : ''
     };
-
+showError = '';
   constructor(private httpClient: HttpClient,private service: ArtistsService,private router: Router) { }
 
   ngOnInit() {
@@ -69,31 +68,25 @@ export class ArtistsComponent implements OnInit {
 
          save() {
              if (this.setData.genderIdSelect === '' || this.setData.bandIdSelect === '' || this.setData.managerIdSelect === '' ||this.setData.typeMusicIdSelect  === ''||
-             this.setData.firstname === '' || this.setData.lastname === '' || this.setData.nickname === '' || this.setData. birthday === '' ||this.setData.phone === '' ) {
+             this.setData.firstname === '' || this.setData.lastname === '' || this.setData.nickname === '' || this.setData. birthday === '' ||this.setData.phoneInput === '' ) {
                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
              } else {
                this.httpClient.post('http://localhost:8080/artists/create/' + this.setData.firstname + '/' + this.setData.lastname
-               + '/'+this.setData.nickname+'/'+this.setData.birthday+'/'+this.setData.phone+'/'+this.setData.genderIdSelect+'/'+this.setData.managerIdSelect+'/'+this.setData.bandIdSelect+'/'+this.setData.typeMusicIdSelect,this.setData)
+               + '/'+this.setData.nickname+'/'+this.setData.birthday+'/'+0+this.setData.phoneInput+'/'+this.setData.genderIdSelect+'/'+this.setData.managerIdSelect+'/'+this.setData.bandIdSelect+'/'+this.setData.typeMusicIdSelect,this.setData)
                .subscribe(data => {
+
                    console.log('PUT Request is successful', data);
                    this.router.navigate(['show-artists']);
                  },
-                   error => {
+                 error =>{
                      console.log('Error', error);
+                     this.showError = "กรอกข้อมูลผิดพลาด"
                    }
                  );
                   }
 
 }
 logout() {
-    LoginAdminComponent.userName = null;
-    this.router.navigate(['Login/admin']);
-  }
-  goManager(){
-    this.router.navigate(['Manager/' + LoginAdminComponent.userName]);
-  }
-
-  goPractice(){
-    this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
-  }
+  this.router.navigate(['Login/admin']);
+}
 }
