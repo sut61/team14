@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -20,21 +23,39 @@ public class Profile {
     @Column(name = "PROFILE_ID")
 
     private @NonNull Long profileID;
+
+    @NotNull(message = "Name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z. ]*")
+    @Column(unique = true)
     private @NonNull String name;
-    private @NonNull String addressDetail;
-    private @NonNull Long pastalCade;
+
+    @Size(min = 10, max=10)
+    @Pattern(regexp = "[0-9]*")
     private @NonNull String mobilePhone;
 
+    @NotNull(message = "addressDetail must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z0-9-_. ]*")
+    private @NonNull String addressDetail;
+
+    @NotNull(message = "pastalCode must not be null to be valid")
+    private @NonNull Long pastalCade;
+
     @OneToOne
+    @JoinColumn(name = "Members_ID")
     private Members members;
 
+
+    @NotNull(message = "country must not be null to be valid")
     @ManyToOne
     @JoinColumn(name = "COUNTRY_ID")
     private Country country;
 
-    @ManyToOne
-    @JoinColumn(name = "GENDER_ID")
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
+    @NotNull(message = "gender must not be null to be valid")
+    @JoinColumn(name = "Gender_ID", insertable = true)
     private Gender gender;
+
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @Fetch(value=FetchMode.SUBSELECT)
