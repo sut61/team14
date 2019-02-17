@@ -18,7 +18,7 @@ export class PrivilegeVIPComponent implements OnInit {
   months: Array<any>;
   years: Array<any>;
 
-  profileID: number;
+  idProfile: number;
   nameProfile: string;
   phoneProfile: string;
   
@@ -59,7 +59,7 @@ export class PrivilegeVIPComponent implements OnInit {
 
   getProfile() {
     this.registerController.getProfileByUsername(LoginCusComponent.userName).subscribe(data => {
-      this.profileID = data.profileID;
+      this.idProfile = data.profileID;
       this.nameProfile = data.name;
       this.phoneProfile = data.mobilePhone;
     });
@@ -88,10 +88,10 @@ export class PrivilegeVIPComponent implements OnInit {
 
   logout() {
     LoginCusComponent.userName = null;
-    this.router.navigate(['login-cus']);
+    this.router.navigate(['login-cus']); 
   }
   goBook() {
-    this.router.navigate(['book/' + this.profileID]);
+    this.router.navigate(['book/' + this.idProfile]);
   }
 
 
@@ -99,7 +99,7 @@ export class PrivilegeVIPComponent implements OnInit {
     this.registerController.postPrivilegeVIP(
       this.cardNumShow, this.cvvNumShow, this.emailProfile,
       this.monthSelect, this.yearSelect,
-      this.profileID, this.bandSelect, this.privilegeSelect
+      this.idProfile, this.bandSelect, this.privilegeSelect
     ).subscribe(data => {
       this.showCompleat = "Compleat Privilege";
       console.log(data);
@@ -111,7 +111,7 @@ export class PrivilegeVIPComponent implements OnInit {
   }
 
   goProfile(){
-    this.router.navigate(['profile/' + this.username]);
+    this.router.navigate(['profile/' + this.idProfile]);
   }
 
 }
