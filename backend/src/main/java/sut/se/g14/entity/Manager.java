@@ -1,6 +1,9 @@
 package sut.se.g14.entity;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -19,11 +22,23 @@ public class Manager {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="manager_seq")
     @Column(name="Manager_ID")
     private @NonNull Long id;
+
+    @Pattern(regexp="[a-zA-Z ]*")
+    @NotNull(message = "name must not be null to be valid")
     private @NonNull String name;
+
+    @NotNull(message = "username must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z0-9_.]*")
+    @Column(unique = true)
     private @NonNull String username;
+
+    @NotNull(message = "password must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z0-9]*")
+    @Size(min=8)
     private @NonNull String password;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
+    @NotNull(message = "gender must not be null to be valid")
     @JoinColumn(name = "Gender_ID", insertable = true)
     private Gender gender;
 

@@ -1,6 +1,7 @@
 package sut.se.g14.entity;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -15,6 +16,8 @@ public class Gender {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="gender_seq")
     @Column(name="gender_ID")
     private @NonNull Long id;
+
+    @NotNull(message = "gender must not be null to be valid")
     private @NonNull String gender;
 
     public Long getId() {
