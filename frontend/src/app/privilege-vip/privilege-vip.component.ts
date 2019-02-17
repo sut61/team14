@@ -21,7 +21,7 @@ export class PrivilegeVIPComponent implements OnInit {
   idProfile: number;
   nameProfile: string;
   phoneProfile: string;
-  
+
   emailProfile: string;
   cardNumShow: string;
   cvvNumShow: string;
@@ -88,7 +88,7 @@ export class PrivilegeVIPComponent implements OnInit {
 
   logout() {
     LoginCusComponent.userName = null;
-    this.router.navigate(['login-cus']); 
+    this.router.navigate(['login-cus']);
   }
   goBook() {
     this.router.navigate(['book/' + this.idProfile]);
@@ -102,11 +102,13 @@ export class PrivilegeVIPComponent implements OnInit {
       this.idProfile, this.bandSelect, this.privilegeSelect
     ).subscribe(data => {
       this.showCompleat = "Compleat Privilege";
+      this.showError = " ";
       console.log(data);
     },
       error => {
         console.log(error);
         this.showError = "กรุณากรอกข้อมูลให้ถูกต้อง";
+        this.showCompleat = " ";
       });
   }
 

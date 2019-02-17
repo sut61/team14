@@ -54,7 +54,7 @@ export class ManagerComponent implements OnInit {
           }
         },
         error => {
-          this.showError = 'การเพิ่มข้อมูลผิดพลาด';
+          this.showError = 'กรอกข้อมูลผิดพลาด';
           console.log('Error', error);
         }
       );
