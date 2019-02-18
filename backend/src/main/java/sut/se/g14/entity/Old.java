@@ -23,7 +23,7 @@ public class Old {
     @Column(name="Old_ID")
     private @NonNull Long oldId;
 
-    @Max(120)
+    @Max(100)
     private @NonNull int old;
 
     public Long getOldId() {

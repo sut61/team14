@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -21,6 +22,7 @@ public class TypeWork {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="typeWork_seq")
     @Column(name="TypeWork_ID")
     private @NonNull Long typeworkId;
+    @NotNull
     private @NonNull String typeWork;
 
     public Long getTypeworkId() {

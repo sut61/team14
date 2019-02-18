@@ -45,13 +45,11 @@ public class TableWorkApplicationTests {
 	}
 
 	@Test
-	public void InviteFinish() {
+	public void TableWorkFinish() {
 		TableWork tableWork = new TableWork();
-
-
 		tableWork.setInvite("welcome to consert");
-
-
+		tableWork.setPrice(1300L);
+		tableWork.setTag("Woww");
 		}
 
 	@Test
