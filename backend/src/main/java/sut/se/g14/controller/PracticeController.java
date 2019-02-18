@@ -45,11 +45,10 @@ public class PracticeController {
     }
 
     @PostMapping("/newPractice/{trainer}/{date}/{startTime}/{endTime}/{detail}/{idRoom}/{idType}/{idBand}/{username}")
-    public Practice addPractice(@PathVariable String trainer, @PathVariable String date, @PathVariable String startTime,
+    public Practice addPractice(@PathVariable String trainer, @PathVariable Date date, @PathVariable String startTime,
                                 @PathVariable String endTime, @PathVariable String detail, @PathVariable long idRoom,
-                                @PathVariable long idType, @PathVariable long idBand, @PathVariable String username) throws ParseException {
+                                @PathVariable long idType, @PathVariable long idBand, @PathVariable String username){
 
-        Date dateSet = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         String[] timeStart = startTime.split(":");
         String[] timeEnd = endTime.split(":");
         Time startTimeSet = new Time(Integer.parseInt(timeStart[0]), Integer.parseInt(timeStart[1]), Integer.parseInt("00"));
@@ -60,7 +59,7 @@ public class PracticeController {
         Band band = bandRepository.findById(idBand);
         Manager manager = managerRepository.findByUsername(username);
 
-        Practice practice = new Practice(trainer,dateSet,startTimeSet,endTimeSet,detail,roomPractice,typePractice,band,manager);
+        Practice practice = new Practice(trainer,date,startTimeSet,endTimeSet,detail,roomPractice,typePractice,band,manager);
         return practiceRepository.save(practice);
     }
 }
