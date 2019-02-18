@@ -29,7 +29,9 @@ public class Albums {
     @Column(unique = true)
     private @NonNull String name;
 
+
     @NotNull
+    @Temporal(TemporalType.DATE)
     private @NonNull Date onsale ;
 
 

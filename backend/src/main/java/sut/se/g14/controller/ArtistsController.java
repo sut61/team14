@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
+
 
 @RestController
 @CrossOrigin(origins =  "http://localhost:4200")
@@ -63,16 +63,14 @@ public class ArtistsController {
 
         return managerRepository.findById(managerId).get();
     }
-  @PostMapping("/artists/create/{firstname}/{lastname}/{nickname}/{birthdays}/{phone}/{id}/{ManagerID}/{BandID}/{TypeMusicID}")
+  @PostMapping("/artists/create/{firstname}/{lastname}/{nickname}/{birthday}/{phone}/{id}/{ManagerID}/{BandID}/{TypeMusicID}")
     public Artists newArtists(Artists newArtists ,@PathVariable String firstname,@PathVariable String lastname,@PathVariable String nickname,
-                                  @PathVariable String birthdays,@PathVariable String phone,@PathVariable Long id,@PathVariable Long ManagerID,
+                                  @PathVariable Date birthday,@PathVariable String phone,@PathVariable Long id,@PathVariable Long ManagerID,
                               @PathVariable Long BandID,@PathVariable Long TypeMusicID){
 
             newArtists.setFirstname(firstname);
             newArtists.setLastname(lastname);
             newArtists.setNickname(nickname);
-            LocalDate localD = LocalDate.parse(birthdays);
-            Date birthday = Date.valueOf(localD);
             newArtists.setBirthday(birthday);
             newArtists.setPhone(phone);
             newArtists.setGender(genderRepository.findById(id).get());

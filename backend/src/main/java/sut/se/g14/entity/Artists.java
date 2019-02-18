@@ -2,8 +2,8 @@ package sut.se.g14.entity;
 
 import javax.persistence.*;
 import lombok.*;
-import java.sql.Date;
-
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -40,6 +40,7 @@ public class Artists {
     private @NonNull String nickname;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     private @NonNull Date birthday ;
 
     @NotNull(message = "phone must not be null to be valid")

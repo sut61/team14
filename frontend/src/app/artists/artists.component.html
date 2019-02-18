@@ -28,8 +28,10 @@
           <textarea matInput placeholder="ชื่อเล่น" [(ngModel)]="setData.nickname"></textarea>
         </mat-form-field>
 
-        <mat-form-field style="margin-right: 10%">
-        <input matInput type="date" id="box_date"  placeholder="วันเกิด" [(ngModel)]="setData.birthday"><br>
+        <mat-form-field style="margin-right: 3%">
+          <input matInput [matDatepicker]="picker" placeholder="วันเกิด *" name="date" [(ngModel)]="setData.birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
@@ -42,7 +44,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="number" placeholder="เบอร์โทรศัพท์" [(ngModel)]="setData.phoneInput">
+          <textarea matInput placeholder="เบอร์โทรศัพท์" [(ngModel)]="setData.phoneInput"></textarea>
         </mat-form-field>
 
         <mat-form-field style="margin-right: 10%">

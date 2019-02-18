@@ -69,7 +69,7 @@ export class ArtistsComponent implements OnInit {
 
   save() {
     this.httpClient.post('http://localhost:8080/artists/create/' + this.setData.firstname + '/' + this.setData.lastname
-      + '/' + this.setData.nickname + '/' + this.setData.birthday + '/' + 0 + this.setData.phoneInput + '/' + this.setData.genderIdSelect + '/' + this.setData.managerIdSelect + '/' + this.setData.bandIdSelect + '/' + this.setData.typeMusicIdSelect, this.setData)
+      + '/' + this.setData.nickname + '/' + this.setData.birthday + '/' + this.setData.phoneInput + '/' + this.setData.genderIdSelect + '/' + this.setData.managerIdSelect + '/' + this.setData.bandIdSelect + '/' + this.setData.typeMusicIdSelect, this.setData)
       .subscribe(data => {
 
         console.log('PUT Request is successful', data);
