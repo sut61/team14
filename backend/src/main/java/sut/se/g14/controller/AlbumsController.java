@@ -50,14 +50,13 @@ public class AlbumsController {
         return producerRepository.findById(producerId).get();
     }
 
-    @PostMapping("/albums/create/{BandID}/{producerID}/{name}/{onsales}")
+    @PostMapping("/albums/create/{BandID}/{producerID}/{name}/{onsale}")
     public Albums newAlbums(Albums newAlbums ,@PathVariable Long BandID,@PathVariable Long producerID,
-                            @PathVariable String name,@PathVariable String onsales) throws ParseException {
+                            @PathVariable String name,@PathVariable Date onsale) throws ParseException {
 
         newAlbums.setBand(bandRepository.findById(BandID).get());
         newAlbums.setProducer(producerRepository.findById(producerID).get());
         newAlbums.setName(name);
-        Date onsale = new SimpleDateFormat("yyyy-MM-dd").parse(onsales);
         newAlbums.setOnsale(onsale);
         return this.albumsRepository.save(newAlbums);
     }

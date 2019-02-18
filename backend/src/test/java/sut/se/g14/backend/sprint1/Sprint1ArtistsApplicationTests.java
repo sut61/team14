@@ -1,5 +1,4 @@
-package sut.se.g14.backend;
-
+package sut.se.g14.backend.sprint1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,8 +15,9 @@ import sut.se.g14.repository.*;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -67,8 +67,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("Hunbin");
         artists.setLastname("Kim");
         artists.setNickname("BI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -93,8 +92,7 @@ public class Sprint1ArtistsApplicationTests {
       artists.setFirstname(null);
       artists.setLastname("Kim");
       artists.setNickname("BI");
-      LocalDate localD = LocalDate.parse("2541-01-01");
-      java.sql.Date birthday = java.sql.Date.valueOf(localD);
+      Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
       artists.setBirthday(birthday);
       artists.setGender(gender);
       artists.setPhone("0847323566");
@@ -119,8 +117,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("Hunbin");
         artists.setLastname(null);
         artists.setNickname("BI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -145,8 +142,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("Hunbin");
         artists.setLastname("Kim");
         artists.setNickname(null);
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -171,8 +167,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("H");
         artists.setLastname("Kim");
         artists.setNickname("BI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -197,8 +192,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("Hunbin");
         artists.setLastname("Kim");
         artists.setNickname("BIBIBIBIBIBIBIBIBIBI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -223,8 +217,7 @@ public class Sprint1ArtistsApplicationTests {
         artists.setFirstname("Hunbin");
         artists.setLastname("Kim");
         artists.setNickname("BI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("asd123456789");
@@ -243,14 +236,13 @@ public class Sprint1ArtistsApplicationTests {
     }
 ////////////////////////////////////////UNIQUE/////////////////////////////////////////////////////
     @Test
-    public void testPhoneMustBeUnique() {
+    public void testPhoneMustBeUnique() throws ParseException{
         Artists artists = new Artists();
 
         artists.setFirstname("Hunbin");
         artists.setLastname("Kim");
         artists.setNickname("BI");
-        LocalDate localD = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday = java.sql.Date.valueOf(localD);
+        Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists.setBirthday(birthday);
         artists.setGender(gender);
         artists.setPhone("0847323566");
@@ -264,8 +256,7 @@ public class Sprint1ArtistsApplicationTests {
         artists1.setFirstname("Hunbin");
         artists1.setLastname("Kim");
         artists1.setNickname("BI");
-        LocalDate localD1 = LocalDate.parse("2541-01-01");
-        java.sql.Date birthday1 = java.sql.Date.valueOf(localD1);
+        Date birthday1 = new SimpleDateFormat("yyyy-MM-dd").parse("2541-05-05");
         artists1.setBirthday(birthday1);
         artists1.setGender(gender);
         artists1.setPhone("0847323566");
