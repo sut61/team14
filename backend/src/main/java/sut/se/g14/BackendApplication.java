@@ -344,6 +344,7 @@ public class BackendApplication {
 
 			//Profile
 			setCustomer();
+			setCustomer2();
 
 			//Artist
 			Artists artists = new Artists();
@@ -414,6 +415,33 @@ public class BackendApplication {
 
 		profile.setAddressDetail("335 Ratchadumnoen Korot");
 		profile.setName("Customer Test");
+		profile.setPastalCade(12345L);
+		profile.setMobilePhone("0901234567");
+		profile.setMembers(members);
+		profile.setGender(gender);
+		profile.setCountry(country);
+		profileRepository.save(profile);
+
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2540-08-12");
+		idCard.setCardIdNum(1234567890123L);
+		idCard.setBrithDay(date);
+		idCard.setProfile(profile);
+		idCardRepository.save(idCard);
+	}
+	public void setCustomer2() throws ParseException {
+
+		Gender gender = genderRepository.findById(1);
+		Country country = countryRepository.findById(1);
+		Profile profile = new Profile();
+		Members members = new Members();
+		IDCard idCard = new IDCard();
+
+		members.setMemUser("testCus2");
+		members.setMemPassword("12345678");
+		membersRepository.save(members);
+
+		profile.setAddressDetail("335 Ratchadumnoen Korot");
+		profile.setName("Customer");
 		profile.setPastalCade(12345L);
 		profile.setMobilePhone("0901234567");
 		profile.setMembers(members);

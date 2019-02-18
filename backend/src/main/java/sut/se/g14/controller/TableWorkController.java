@@ -20,7 +20,7 @@ public class TableWorkController {
     @Autowired private  ManagerRepository managerRepository;
     @Autowired private  OldRepository oldRepository;
     @Autowired private FormatRepository formatRepository;
-
+    @Autowired private  StatusRepository statusRepository;
 
     TableWorkController(TableWorkRepository tableWorkRepository) {
         this.tableWorkRepository = tableWorkRepository;
@@ -47,8 +47,10 @@ public class TableWorkController {
         Manager manager = managerRepository.findByUsername(username);
         Format formats = formatRepository.findByFormatId(format);
         Old olds = oldRepository.findByOldId(old);
+        Status status = statusRepository.findByStatusId(2L);
 
-
+        quere.setStatusQuere(status);
+        quereRepository.save(quere);
 
         newTableWork.setInvite(invite);
         newTableWork.setTag(tag);
