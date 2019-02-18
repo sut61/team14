@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -23,10 +24,15 @@ public class Place {
     @Column(name="Place_ID")
     private @NonNull Long placeId;
 
+    @NotNull
+    @Size(min =10)
+    @Pattern(regexp = "[a-z A-Z@.1-9]*")
     private @NonNull String place;
 
+    @NotNull
     private @NonNull Date date;
 
+    @NotNull
     private @NonNull Time time;
 
     public Long getPlaceId() {
@@ -69,5 +75,8 @@ public class Place {
         this.hour = hour;
     }
 
+    @NotNull
+    @Max(6)
+    @Positive
     private @NonNull int hour;
 }
