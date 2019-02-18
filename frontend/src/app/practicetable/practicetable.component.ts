@@ -7,20 +7,20 @@ import { HttpClient} from '@angular/common/http';
 import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
-  selector: 'app-practicetable',
-  templateUrl: './practicetable.component.html',
-  styleUrls: ['./practicetable.component.css']
+selector: 'app-practicetable',
+templateUrl: './practicetable.component.html',
+styleUrls: ['./practicetable.component.css']
 })
 export class PracticetableComponent implements OnInit {
-  displayedColumns: string[] = [
-    'id', 'band', 'roomType', 'room', 'date','startTime','endTime','typePractice', 'detail', 'trainer','manager'
-  ];
+displayedColumns: string[] = [
+'id', 'band', 'roomType', 'room', 'date','startTime','endTime','typePractice', 'detail', 'trainer','manager'
+];
 
-  private username: any;
-  manager: Array<any>;
-  practice: Array<any>;
+private username: any;
+manager: Array<any>;
+practice: Array<any>;
 
-  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router,
+constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router,
               private rout: ActivatedRoute, private practiceService:PracticeService) {
     console.log(LoginAdminComponent.userName);
   }

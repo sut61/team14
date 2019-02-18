@@ -6,23 +6,23 @@ import { HttpClient} from '@angular/common/http';
 import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
-  selector: 'app-manager',
-  templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.css']
+selector: 'app-manager',
+templateUrl: './manager.component.html',
+styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-  private username: any;
-  genders: Array<any>;
-  managerSet: any = {
-    name : '',
-    gender : '',
-    username : '',
-    password : ''
-  };
-  manager: any;
-  showError = '';
+private username: any;
+genders: Array<any>;
+managerSet: any = {
+name : '',
+gender : '',
+username : '',
+password : ''
+};
+manager: any;
+showError = '';
 
-  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) {
+constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) {
     console.log(LoginAdminComponent.userName);
   }
 
@@ -54,7 +54,7 @@ export class ManagerComponent implements OnInit {
           }
         },
         error => {
-          this.showError = 'กรอกข้อมูลผิดพลาด';
+          this.showError = 'something wrong.';
           console.log('Error', error);
         }
       );

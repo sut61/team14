@@ -27,7 +27,8 @@
 
         <mat-form-field>
           <input matInput placeholder="Trainer" [(ngModel)]="practiceSet.trainer" name="trainer">
-        </mat-form-field><br>
+          <mat-hint align="start">a-z A-Z _.</mat-hint>
+        </mat-form-field><br><br>
 
         <mat-form-field>
           <mat-select placeholder="ศิลปิน *" [(ngModel)]="practiceSet.idBand" name="band">
@@ -35,19 +36,22 @@
               {{band.bandname}}
             </mat-option>
           </mat-select>
-        </mat-form-field><br>
+        </mat-form-field><br><br>
 
         <mat-form-field>
-          <input matInput placeholder="วันที่ซ้อม * yyyy-MM-dd" [(ngModel)]="practiceSet.date" name="date">
-        </mat-form-field><br>
+          <input matInput placeholder="วันที่ซ้อม *" [(ngModel)]="practiceSet.date" name="date">
+          <mat-hint align="start">yyyy-MM-dd</mat-hint>
+        </mat-form-field><br><br>
 
         <mat-form-field>
-          <input matInput placeholder="เวลาเริ่ม * hr:mm" [(ngModel)]="practiceSet.startTime" name="startTime">
+          <input matInput placeholder="เวลาเริ่ม *" [(ngModel)]="practiceSet.startTime" name="startTime">
+          <mat-hint align="start">hr:mm</mat-hint>
         </mat-form-field>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <mat-form-field>
-          <input matInput placeholder="เวลาสิ้นสุด * hr:mm"  [(ngModel)]="practiceSet.endTime" name="endTime">
-        </mat-form-field><br>
+          <input matInput placeholder="เวลาสิ้นสุด *"  [(ngModel)]="practiceSet.endTime" name="endTime">
+          <mat-hint align="start">hr:mm</mat-hint>
+        </mat-form-field><br><br>
 
         <mat-form-field>
           <mat-select placeholder="ห้องซ้อม *" [(ngModel)]="practiceSet.idRoom" name="room">
@@ -55,7 +59,7 @@
               {{room.typeRoomPractice.type}} ห้อง {{room.room}}
             </mat-option>
           </mat-select>
-        </mat-form-field><br>
+        </mat-form-field><br><br>
 
         <mat-form-field>
           <mat-select placeholder="ประเภทการซ้อม *" [(ngModel)]="practiceSet.idType" name="type">
@@ -63,11 +67,11 @@
               {{type.type}}
             </mat-option>
           </mat-select>
-        </mat-form-field><br>
+        </mat-form-field><br><br>
 
         <mat-form-field>
           <textarea matInput placeholder="รายละเอียด *" [(ngModel)]="practiceSet.detail" name="detail"></textarea>
-        </mat-form-field><br>
+        </mat-form-field><br><br>
 
       </mat-card-content>
 

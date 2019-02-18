@@ -5,29 +5,31 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import { LoginAdminComponent } from '../login-admin/login-admin.component';
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+selector: 'app-contact',
+templateUrl: './contact.component.html',
+styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  private username: any;
-  private sub: any;
-  typeContact: Array<any>;
+private username: any;
+private sub: any;
+typeContact: Array<any>;
+showError = '';
+showCorrect = '';
 
-  private manager = {
-    id : '',
-    name : '',
-    username : '',
-    password : '',
-    gender : [],
-    contact : []
-  };
+private manager = {
+id : '',
+name : '',
+username : '',
+password : '',
+gender : [],
+contact : []
+};
 
-  contactSet: any = {
-    contact : '',
-    type : ''
-  };
-  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) { }
+contactSet: any = {
+contact : '',
+type : ''
+};
+constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router, private rout: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.rout.params.subscribe(params => {
@@ -49,20 +51,24 @@ export class ContactComponent implements OnInit {
   add() {
 
     if (this.contactSet.contact === '' || this.contactSet.type === ''){
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        this.showError = 'Please fill up this form.';
+        this.showCorrect = ' ';
     }else {
       this.httpClient.post('http://localhost:8080/newContact/' + this.manager.username + '/' + this.contactSet.type + '/' +
         this.contactSet.contact,this.contactSet)
       .subscribe(
         data => {
           if(data) {
-            alert('เพิ่มข้อมูลการติดต่อสำเร็จ');
+            this.showCorrect = 'complete.';
+            this.showError = ' ';
             this.contactSet.contact = '';
             this.contactSet.type = '';
             console.log('PUT Request is successful', data);
           }
         },
         error => {
+          this.showError = 'something wrong.';
+          this.showCorrect = ' ';
           console.log('Error', error);
         }
       );

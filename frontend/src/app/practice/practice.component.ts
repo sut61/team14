@@ -7,32 +7,32 @@ import { HttpClient} from '@angular/common/http';
 import { LoginAdminComponent } from '../login-admin/login-admin.component';
 
 @Component({
-  selector: 'app-practice',
-  templateUrl: './practice.component.html',
-  styleUrls: ['./practice.component.css']
+selector: 'app-practice',
+templateUrl: './practice.component.html',
+styleUrls: ['./practice.component.css']
 })
 export class PracticeComponent implements OnInit {
-  private username: any;
-  manager: Array<any>;
-  typePractice: any;
-  room: Array<any>;
-  band: Array<any>;
+private username: any;
+manager: Array<any>;
+typePractice: any;
+room: Array<any>;
+band: Array<any>;
 
-  showError = '';
+showError = '';
 
-  practiceSet: any = {
-    trainer: '',
-    date: '',
-    startTime: '',
-    endTime: '',
-    detail: '',
-    idRoom: '',
-    idType: '',
-    idBand: '',
-    username: ''
-  };
+practiceSet: any = {
+trainer: '',
+date: '',
+startTime: '',
+endTime: '',
+detail: '',
+idRoom: '',
+idType: '',
+idBand: '',
+username: ''
+};
 
-  constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router,
+constructor(private manageService:ManageService, private httpClient: HttpClient, private router: Router,
               private rout: ActivatedRoute, private practiceService:PracticeService){
     console.log(LoginAdminComponent.userName);
   }
@@ -84,7 +84,7 @@ export class PracticeComponent implements OnInit {
         data => {
           console.log('PUT Request is successful', data);
           if(data){
-                  this.router.navigate(['practice/table/' + LoginAdminComponent.userName]);
+                  this.router.navigate(['practice/table/' + this.username.username]);
           }
         },
         error => {
