@@ -41,6 +41,7 @@
     <div class="planIn2">
       <div class="planBox2">
         <input matInput placeholder="ชื่อ" value="" [(ngModel)]="managerSet.name" name="name">
+        <br><mat-hint align="start"><font size="2">a-zA-z</font></mat-hint>
       </div>
       <div class="planBox2">
         <mat-select placeholder=" " [(ngModel)]="managerSet.gender" name="gender" class="selectBox">
@@ -51,9 +52,11 @@
       </div>
       <div class="planBox2">
         <input matInput placeholder="Username" value="" [(ngModel)]="managerSet.username" name="username">
+        <br><mat-hint align="start"><font size="2">a-zA-z0-9_.</font></mat-hint>
       </div>
       <div class="planBox2">
         <input matInput type="password" placeholder="Password" value="" [(ngModel)]="managerSet.password" name="password">
+        <br><mat-hint align="start"><font size="2">a-zA-z0-9 minimum size 8</font></mat-hint>
       </div>
       <div class="planBox2">
 
@@ -62,9 +65,7 @@
         <button mat-raised-button (click)="back()" style="background-color: #9A80FD" >กลับ</button>
       </div>
     </div>
-    <div align="center">
-      <p style="color: red;">{{showError}}</p>
-    </div>
+    <p style="color: red;">{{showError}}</p>
   </div>
 </main>
 
