@@ -15,7 +15,7 @@ public class Sizes {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private   Long id;
 
-
+    @Column(unique = true)
     private   String size;
 
     public Sizes(){}

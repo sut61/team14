@@ -1,4 +1,4 @@
-package sut.se.g14.backend;
+package sut.se.g14.backend.sprint2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
