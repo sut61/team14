@@ -73,7 +73,7 @@ export class BookComponent implements OnInit {
   }
 
   save() {
-    this.showError = 'Please wait.';
+
     if (this.setData.artistSelect === '' || this.setData.typeWorkSelect === '' || this.setData.place === '' || this.setData.date === '' ||
     this.setData.hour === '' || this.setData.hrs === '' || this.setData.mins === '') {
       this.showError = 'Please fill out this form.';
