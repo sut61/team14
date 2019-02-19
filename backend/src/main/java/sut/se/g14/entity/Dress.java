@@ -1,5 +1,10 @@
 package sut.se.g14.entity;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import java.util.*;
@@ -17,15 +22,29 @@ public class Dress {
     @Id()
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private   Long id;
+    
+    @NotNull(message = "name must not be null to be valid")
+    @Pattern(regexp="[a-zA-Z]*")
+    @Size(min=4,max=20)
     private   String dress;
-   
+
+
     @ManyToOne
+    @NotNull(message = "name must not be null to be valid")
     private Event event;
+
+    
     @ManyToOne
+    @NotNull(message = "name must not be null to be valid")
     private Sizes size;
+
     @ManyToOne
+    @NotNull(message = "name must not be null to be valid")
     private Artists artist;
+
+    
     @ManyToOne
+    @NotNull(message = "name must not be null to be valid")
     private Type Type;
 
     public Dress(){    }

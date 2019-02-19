@@ -27,89 +27,101 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest
+// @SpringBootTest
 @DataJpaTest
 public class SponserApplicationTests {
 
-	@Autowired
-    private SponserRepository   sponserrepository;
+    @Autowired
+    private SponserRepository sponserrepository;
 
     @Autowired
     private TestEntityManager entityManager;
-
 
     private Validator validator;
     Statusdress statusdress = new Statusdress();
     Dress dress = new Dress();
     Artists artists = new Artists();
-    Band  band = new Band();
-     
-	@Before
+    Band band = new Band();
+    Event event = new Event();
+    Sizes size = new Sizes();
+    Type type = new Type();
+
+    @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
+        
+
+        LocalDate localD = LocalDate.parse("2019-05-05");
+        java.sql.Date b = java.sql.Date.valueOf(localD);
+
+
         statusdress.setStatusdress("using");
-		entityManager.persist(statusdress);
+        entityManager.persist(statusdress);
+        entityManager.flush();
+
+        event.setEvent("Event");
+        entityManager.persist(event);
+        entityManager.flush();
+
+        type.setType("Receive");
+        entityManager.persist(type);
         entityManager.flush();
         
-        dress.setDress("White shirt");
-		entityManager.persist(dress);
+        size.setSize("X");
+        entityManager.persist(size);
         entityManager.flush();
 
         band.setBandname("WINNER");
-		entityManager.persistAndFlush(band);
-        
+        entityManager.persistAndFlush(band);
+
         artists.setBand(entityManager.persistFlushFind(band));
-		entityManager.persist(artists);
-		entityManager.flush();
-    }
+        
+        artists.setFirstname("aaa");
+        artists.setLastname("aaaa");
+        artists.setNickname("aaaa");
+        artists.setBirthday(b);
+        artists.setPhone("1234567890");
+        entityManager.persist(artists);
+        entityManager.flush();
+
+        dress.setDress("Whiteshirt");
+        dress.setSize(size);
+        dress.setEvent(event);
+        dress.setType(type);
+        dress.setArtist(artists);
+        entityManager.persist(dress);
     
-    @Test//ค่า null
-    public void testNameSponser() throws ParseException{ 
+
+     
+
+    }
+
+    // ----------------------------------------SPonser--------------------------------------//
+    // ---------------------------------------------------------------------------------//
+
+    @Test
+    public void testNameSponser() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2019-05-05");
-        Sponser s= new Sponser();
-        s.setSponser("aaaa");//ผิด
+        Sponser s = new Sponser();
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(artists);
         s.setDate(date);
-        
+
         s.setDatereturn(datereturn);
 
     }
-    @Test//ค่า null
-    public void testNameSponserNull() throws ParseException{ 
+
+    @Test // ค่า null
+    public void testNameSponserNull() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Sponser s= new Sponser();
-        s.setSponser(null);//ผิด
-        s.setStatusdress(statusdress);
-        s.setDress(dress);
-        s.setArtists(artists);
-        s.setDate(date);
-        s.setDatereturn(datereturn);
-
-        try {
-            entityManager.persist(s);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testSponserCannotBeNull() ================================\n\n");
-            System.out.println(e);
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
-
-   @Test//ค่า null
-    public void testNameSponserMin() throws ParseException{ 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Sponser s= new Sponser();
-        s.setSponser("a");//ผิด
+        Sponser s = new Sponser();
+        s.setSponser(null);// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(artists);
@@ -120,8 +132,9 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testSponserCannotMin4() ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testSponserCannotBeNull() ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
@@ -129,12 +142,65 @@ public class SponserApplicationTests {
         }
     }
 
-    @Test//null
-    public void testStatusdressCannotBeNull() throws ParseException{ 
+    @Test // ค่า null
+    public void testNameSponserMin() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Sponser s= new Sponser();
-        s.setSponser("aaaa");//ผิด
+        Sponser s = new Sponser();
+        s.setSponser("a");// ผิด
+        s.setStatusdress(statusdress);
+        s.setDress(dress);
+        s.setArtists(artists);
+        s.setDate(date);
+        s.setDatereturn(datereturn);
+
+        try {
+            entityManager.persist(s);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testSponserCannotMin4() ================================\n\n");
+            System.out.println(e);
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    
+    @Test // ค่า null
+    public void testNameSponserMax() throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Sponser s = new Sponser();
+        s.setSponser("aaaaaaaaaaaaaaaaaaaaaaa");// ผิด
+        s.setStatusdress(statusdress);
+        s.setDress(dress);
+        s.setArtists(artists);
+        s.setDate(date);
+        s.setDatereturn(datereturn);
+
+        try {
+            entityManager.persist(s);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testSponserCannotMax() ================================\n\n");
+            System.out.println(e);
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    @Test // null
+    public void testStatusdressCannotBeNull() throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
+        Sponser s = new Sponser();
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(null);
         s.setDress(dress);
         s.setArtists(artists);
@@ -145,20 +211,22 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testStatusdressCannotBeNull ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testStatusdressCannotBeNull ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
-    @Test//ยาวเกินไป
-    public void testNameSponserNotPatten() throws ParseException{ 
+
+    @Test // ยาวเกินไป
+    public void testNameSponserNotPatten() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Sponser s= new Sponser();
-        s.setSponser("ฟหกฟ");//ผิด
+        Sponser s = new Sponser();
+        s.setSponser("ฟหกฟ");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(artists);
@@ -169,20 +237,22 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testSponserCNotPatten ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testSponserCNotPatten ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
-    @Test//null
-    public void testDressCannotBeNull()throws ParseException{ 
+
+    @Test // null
+    public void testDressCannotBeNull() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Sponser s= new Sponser();
-        s.setSponser("aaaa");//ผิด
+        Sponser s = new Sponser();
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(null);
         s.setArtists(artists);
@@ -193,20 +263,22 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testDressCannotBeNull ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testDressCannotBeNull ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
-    @Test//null
-    public void testDateFutureOrPresent() throws ParseException{
-        Sponser s= new Sponser();
+
+    @Test // null
+    public void testDateFutureOrPresent() throws ParseException {
+        Sponser s = new Sponser();
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2000-05-05");
-        s.setSponser("aaaa");//ผิด
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(artists);
@@ -217,19 +289,22 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testDateFutureOrPresent ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testDateFutureOrPresent ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
-    } @Test//null
-    public void testArtitsCannotBeNull() throws ParseException{
-        Sponser s= new Sponser();
+    }
+
+    @Test // null
+    public void testArtitsCannotBeNull() throws ParseException {
+        Sponser s = new Sponser();
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-02-12");
-        s.setSponser("aaaa");//ผิด
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-12");
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(null);
@@ -240,20 +315,22 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testArtistCannotBeNull ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testArtistCannotBeNull ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
-    @Test//null
-    public void testDateReturnFutureOrPresent() throws ParseException{
-        Sponser s= new Sponser();
+
+    @Test // null
+    public void testDateReturnFutureOrPresent() throws ParseException {
+        Sponser s = new Sponser();
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2562-05-05");
         Date datereturn = new SimpleDateFormat("yyyy-MM-dd").parse("2018-02-12");
-        s.setSponser("aaaa");//ผิด
+        s.setSponser("aaaa");// ผิด
         s.setStatusdress(statusdress);
         s.setDress(dress);
         s.setArtists(artists);
@@ -264,14 +341,14 @@ public class SponserApplicationTests {
             entityManager.persist(s);
             entityManager.flush();
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            System.out.println("\n\n================================  Error testDatereturnFutureOrPresent ================================\n\n");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "\n\n================================  Error testDatereturnFutureOrPresent ================================\n\n");
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
-    
-}
 
+}
