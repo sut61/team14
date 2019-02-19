@@ -69,7 +69,7 @@ export class ShowWorkComponent implements OnInit {
 
   save(){
 
-    this.showError = 'Please wait.';
+
 
     this.setData.id = this.id.id;
 
