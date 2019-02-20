@@ -31,18 +31,18 @@ public class MoneyEntity{
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Dress.class)
     @JoinColumn(name = "dress_id",insertable = true)
-    @NotNull(message = "id must not be null to be valid")
+    @NotNull(message = "idDress must not be null to be valid")
     private Dress  idDress;
     
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Quere.class)
     @JoinColumn(name = "queue_id",insertable = true)
-    @NotNull(message = "id must not be null to be valid")
+    @NotNull(message = "idQueue must not be null to be valid")
     private Quere  idQueue;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Artists.class)
     @JoinColumn(name = "artist_id",insertable = true)
-    @NotNull(message = "id must not be null to be valid")
+    @NotNull(message = "idArtist must not be null to be valid")
     private Artists idArtist;
 
    

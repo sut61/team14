@@ -17,7 +17,7 @@ export class MoneyComponent implements OnInit {
     artistSelect: '',
     testSelect: '',
   };
-
+  show : String;
   //ตัวแปรเรียก id แต่ละ entity
   id_artist: Array<any>;
   id_income: Array<any>;
@@ -97,11 +97,11 @@ export class MoneyComponent implements OnInit {
               + this.ids.dressSelect + '/' + this.priceExpenses + '/' + this.ids.queueSelect + '/' + this.priceIncome
               , this.ids).subscribe(data => {
                 console.log('PUT Request is successful', data);
-                alert('บันทึกข้อมูลสำเร็จ');
+                this.show = "บันทึกข้อมูลสำเร็จ";
               },
                 error => {
                   console.log('Error', error);
-                  alert('บันทึกข้อมูลไม่สำเร็จ');
+                  this.show = "บันทึกข้อมูลไม่สำเร็จ";
                 });
 
 
@@ -110,7 +110,7 @@ export class MoneyComponent implements OnInit {
     }
 
     else {
-      alert('กรุณาเลือกข้อมูลให้ครบ');
+      this.show = "กรุณาเลือกข้อมูลให้ครบ";
     }
 
   }
