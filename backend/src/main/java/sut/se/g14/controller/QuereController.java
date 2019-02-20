@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import sut.se.g14.entity.*;
 import sut.se.g14.repository.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -47,13 +47,13 @@ public class QuereController {
         quere.setStatusQuere(status);
         return quereRepository.save(quere);
     }
-    @PostMapping("/Quere/{place}/{startDate}/{hour}/{hrs}/{mins}/{bandId}/{memuser}/{typeworkId}")
-    public Profile newMembers(@PathVariable String place, @PathVariable String startDate, @PathVariable int hour,
+    @PostMapping("/Quere/{place}/{date}/{hour}/{hrs}/{mins}/{bandId}/{memuser}/{typeworkId}")
+    public Profile newMembers(@PathVariable String place, @PathVariable Date date, @PathVariable int hour,
                               @PathVariable String hrs, @PathVariable String mins,@PathVariable long bandId,
                               @PathVariable Long memuser, @PathVariable Long typeworkId) {
         Place newPlace = new Place();
-        LocalDate localD = LocalDate.parse(startDate);
-        Date date = Date.valueOf(localD);
+       // LocalDate localD = LocalDate.parse(startDate);
+        //Date date = Date.valueOf(localD);
         Time time = new Time(Integer.parseInt(hrs),Integer.parseInt(mins),Integer.parseInt("00"));
         newPlace.setPlace(place);
         newPlace.setDate(date);

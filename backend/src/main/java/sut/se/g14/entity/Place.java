@@ -1,15 +1,14 @@
 package sut.se.g14.entity;
 
 import lombok.*;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
+
 
 @Data
 @Entity
@@ -30,7 +29,9 @@ public class Place {
     private @NonNull String place;
 
     @NotNull
-    private @NonNull Date date;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public @NonNull Date date;
 
     @NotNull
     private @NonNull Time time;
