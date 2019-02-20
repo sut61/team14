@@ -28,10 +28,4 @@ export class AlbumsService {
     return this.http.get('//localhost:8080/Song');
   }
 
-  private albums = new BehaviorSubject('default message');
-  currentMessage = this.albums.asObservable();
-
-  adder(name: string) {
-    this.albums.next(name);
-  }
 }
