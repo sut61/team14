@@ -48,7 +48,7 @@ main {
    float: left;
 }
 #select {
-    background-color: gray;
+   // background-color: gray;
     width: 70%;
     height: 30px;
     border-radius: 3px;
@@ -68,18 +68,18 @@ main {
 }
 #blockindown{
     margin:20px;
-    width: 31%;
+    width: 25%;
     height: 420px;
-   // background-color: #000033;
+    //background-color: #000033;
     text-align: right;
     float: left;
 
 }
 #blockindownl{
     margin:20px;
-    width: 60%;
+    width: 65%;
     height: 420px;
-   // background-color: #000033;
+    //background-color: #000033;
     text-align: left;
     float: right;
 
