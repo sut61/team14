@@ -33,7 +33,7 @@ export class LoginCusComponent implements OnInit {
           this.router.navigate(['profile/' + this.usernameLogin]);
         }
       }, error => {
-        this.showError = "Username invalid";
+        this.showError = "Username or Password invalid";
       });
 
     }

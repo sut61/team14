@@ -29,12 +29,10 @@ export class SponserDressComponent implements OnInit {
 
       data => {
         console.log("POST Request is successful ", data);
-        alert("successful")
         this.showError = "สำเร็จ"
       },
       error => {
         console.log("Error", error);
-        alert("ข้อมูลผิดพลาด Error")
         this.showError = "ข้อมูลผิดพลาด Error"
       });
 

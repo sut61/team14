@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>LoginCustomerTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginCustomerComplete</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:4200/login-cus<datalist><option>http://localhost:4200/login-cus</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-0<datalist><option>id=mat-input-0</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='for Admin'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[2]</option><option>//input[@id='mat-input-0']</option><option>//input</option><option>css=#mat-input-0</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=mat-input-0<datalist><option>id=mat-input-0</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='for Admin'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[2]</option><option>//input[@id='mat-input-0']</option><option>//input</option><option>css=#mat-input-0</option></datalist></td><td>testCus</td>
+</tr>
+<tr><td>click</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/preceding::input[1]</option><option>//input[@id='mat-input-1']</option><option>//mat-form-field[2]/div/div/div/input</option><option>css=#mat-input-1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/preceding::input[1]</option><option>//input[@id='mat-input-1']</option><option>//mat-form-field[2]/div/div/div/input</option><option>css=#mat-input-1</option></datalist></td><td>12345678</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::span[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::span[1]</option><option>//mat-card-content/button/span</option><option>css=button.mat-raised-button.mat-primary.cdk-focused.cdk-mouse-focused &gt; span.mat-button-wrapper</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Name'])[1]/following::figure[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Name'])[1]/following::figure[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Profile'])[1]/following::figure[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ID Card/Passport No.'])[1]/preceding::figure[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Birth Day'])[1]/preceding::figure[3]</option><option>//mat-grid-tile[2]/figure</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Name'])[1]/following::figure[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Name'])[1]/following::figure[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Profile'])[1]/following::figure[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ID Card/Passport No.'])[1]/preceding::figure[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Birth Day'])[1]/preceding::figure[3]</option><option>//mat-grid-tile[2]/figure</option></datalist></td><td>Customer Test</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LogginCustomerFail</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:4200/login-cus<datalist><option>http://localhost:4200/login-cus</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=mat-input-0<datalist><option>id=mat-input-0</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='for Admin'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[2]</option><option>//input[@id='mat-input-0']</option><option>//input</option><option>css=#mat-input-0</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=mat-input-0<datalist><option>id=mat-input-0</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='for Admin'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[2]</option><option>//input[@id='mat-input-0']</option><option>//input</option><option>css=#mat-input-0</option></datalist></td><td>test</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::mat-card-content[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::mat-card-content[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='for Admin'])[1]/following::mat-card-content[1]</option><option>//mat-card-content</option><option>css=mat-card-content.mat-card-content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::div[7]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::div[7]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::div[10]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/preceding::div[5]</option><option>//mat-form-field[2]/div/div/div</option><option>css=mat-form-field.full-width-input.mat-form-field.ng-tns-c4-1.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-hide-placeholder.ng-untouched.ng-pristine.ng-valid &gt; div.mat-form-field-wrapper &gt; div.mat-form-field-flex &gt; div.mat-form-field-infix</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=mat-input-1<datalist><option>id=mat-input-1</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[1]/following::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/preceding::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/preceding::input[1]</option><option>//input[@id='mat-input-1']</option><option>//mat-form-field[2]/div/div/div/input</option><option>css=#mat-input-1</option></datalist></td><td>12345678</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::button[1]</option><option>//mat-card-content/button</option><option>css=button.mat-raised-button.mat-primary.cdk-focused.cdk-mouse-focused</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::p[1]</option><option>//mat-card-content/p</option><option>css=mat-card-content.mat-card-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::p[1]</option><option>//mat-card-content/p</option><option>css=mat-card-content.mat-card-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::p[1]</option><option>//mat-card-content/p</option><option>css=mat-card-content.mat-card-content &gt; p</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Login'])[2]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::p[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Create an account.'])[1]/preceding::p[1]</option><option>//mat-card-content/p</option><option>css=mat-card-content.mat-card-content &gt; p</option></datalist></td><td>Username or Password invalid</td>
+</tr>
+</tbody></table>
+</body>
+</html>
