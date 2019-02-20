@@ -423,7 +423,7 @@ public class BackendApplication {
 		profileRepository.save(profile);
 
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2540-08-12");
-		idCard.setCardIdNum(1234567890123L);
+		idCard.setCardIdNum(1234567890111L);
 		idCard.setBrithDay(date);
 		idCard.setProfile(profile);
 		idCardRepository.save(idCard);
