@@ -36,10 +36,10 @@ public class ContractArtistEntity{
     @Min(500)@Max(1000000)
     private @NonNull int hiremoney;
    
-    @NotNull(message = "name must not be null to be valid")
+    @NotNull(message = "typecontract must not be null to be valid")
     private @NonNull String typecontract;
 
-    @NotNull(message = "name must not be null to be valid")
+    @NotNull(message = "nameManager must not be null to be valid")
     private @NonNull String nameManager;
 
 
