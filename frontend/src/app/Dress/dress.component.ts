@@ -17,7 +17,7 @@ export class DressComponent implements OnInit {
   sizes = [];
   events = [];
   namearts = [];
-
+  showError : String;
   artist_id: '';
   dress_id: '';
 
@@ -30,10 +30,12 @@ export class DressComponent implements OnInit {
       data => {
         console.log("POST Request is successful ", data);
         alert("สำเร็จ")
+        this.showError = "สำเร็จ"
       },
       error => {
         console.log("Error", error);
         alert("ผิดพลาด ไม่พบ ID Artist " + error)
+        this.showError = "ข้อมูลผิดพลาด Error"
       });
 
   }
