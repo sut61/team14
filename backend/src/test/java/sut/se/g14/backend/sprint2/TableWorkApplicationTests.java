@@ -45,11 +45,14 @@ public class TableWorkApplicationTests {
 	}
 
 	@Test
-	public void TableWorkFinish() {
+	public void TableWorkAddFinish() {
 		TableWork tableWork = new TableWork();
 		tableWork.setInvite("welcome to consert");
 		tableWork.setPrice(1300L);
 		tableWork.setTag("Woww");
+
+		entityManager.persist(tableWork);
+		entityManager.flush();
 		}
 
 	@Test

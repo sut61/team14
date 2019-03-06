@@ -25,7 +25,7 @@ public class Place {
 
     @NotNull
     @Size(min =10)
-    @Pattern(regexp = "[a-z A-Z@.1-9]*")
+    @Pattern(regexp = "[a-z A-Z@.0-9]*")
     private @NonNull String place;
 
     @NotNull

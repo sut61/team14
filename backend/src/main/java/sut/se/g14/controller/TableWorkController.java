@@ -50,6 +50,7 @@ public class TableWorkController {
         Status status = statusRepository.findByStatusId(2L);
 
         quere.setStatusQuere(status);
+        quere.setFormatWork(formats);
         quereRepository.save(quere);
 
         newTableWork.setInvite(invite);
@@ -58,15 +59,6 @@ public class TableWorkController {
         newTableWork.setTableWorkQuere(quere);
         newTableWork.setManagerWork(manager);
         newTableWork.setOldWork(olds);
-        newTableWork.setFormatWork(formats);
-        /*
-        for(String s : tagSet){
-            Hashtag hashtag = new Hashtag();
-            hashtag.setTag(s);
-            hashtagRepository.save(hashtag);
-            newTableWork.getTableWorkTag().add(hashtag);
-            //tableWorkRepository.save(newTableWork);
-        }*/
         return tableWorkRepository.save(newTableWork);
     }
 }

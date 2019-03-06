@@ -35,7 +35,8 @@ public class TableWork {
         @NotNull
         private @NonNull String tag;
 
-        @OneToOne
+        @ManyToOne(fetch = FetchType.EAGER, targetEntity = Quere.class)
+        @JoinColumn(name = "Q_ID", insertable = true)
         private Quere tableWorkQuere;
 
         @ManyToOne(fetch = FetchType.EAGER, targetEntity = Manager.class)
@@ -45,10 +46,6 @@ public class TableWork {
         @ManyToOne(fetch = FetchType.EAGER, targetEntity = Old.class)
         @JoinColumn(name = "OLD_ID", insertable = true)
         private Old oldWork;
-
-        @ManyToOne(fetch = FetchType.EAGER, targetEntity = Format.class)
-        @JoinColumn(name = "FM_ID", insertable = true)
-        private Format  formatWork;
 
         public long getTableWorkId() {
                 return tableWorkId;
@@ -103,17 +100,5 @@ public class TableWork {
         public void setOldWork(Old oldWork) {
                 this.oldWork = oldWork;
         }
-
-
-        public Format getFormatWork() {
-                return formatWork;
-        }
-
-        public void setFormatWork(Format formatWork) {
-                this.formatWork = formatWork;
-        }
-
-
-
 
 }
