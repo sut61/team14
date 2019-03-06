@@ -33,6 +33,10 @@ public class Quere {
     @JoinColumn(name = "TQ_ID", insertable = true)
     private TypeWork typeworkQuere;
 
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Format.class)
+    @JoinColumn(name = "FM_ID", insertable = true)
+    private Format  formatWork;
+
     public long getId() {
         return id;
     }
@@ -71,5 +75,13 @@ public class Quere {
 
     public void setTypeworkQuere(TypeWork typeworkQuere) {
         this.typeworkQuere = typeworkQuere;
+    }
+
+    public Format getFormatWork() {
+        return formatWork;
+    }
+
+    public void setFormatWork(Format formatWork) {
+        this.formatWork = formatWork;
     }
 }
