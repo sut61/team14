@@ -26,9 +26,14 @@ import static org.junit.Assert.fail;
 @DataJpaTest
 
 public class QueueApplicationTests {
-    @Autowired private TestEntityManager entityManager;
-    @Autowired private PlaceRepository placeRepository;
-    @Autowired private TypeWorkRepository typeWorkRepository;
+    @Autowired
+    private TestEntityManager entityManager;
+    @Autowired
+    private PlaceRepository placeRepository;
+    @Autowired
+    private TypeWorkRepository typeWorkRepository;
+    @Autowired
+    private StatusRepository statusRepository;
 
     private Validator validator;
 
@@ -43,7 +48,7 @@ public class QueueApplicationTests {
     public void testQueueAddData() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
 
         TypeWork typeWork = typeWorkRepository.findByTypeworkId(1L);
         Quere quere = new Quere();
@@ -63,7 +68,7 @@ public class QueueApplicationTests {
     public void PlaceCannotBeNull() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace(null);
         place.setDate(date2);
@@ -74,7 +79,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -92,7 +97,7 @@ public class QueueApplicationTests {
     public void PlacePattern() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("#suranaree");
         place.setDate(date2);
@@ -103,7 +108,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -120,7 +125,7 @@ public class QueueApplicationTests {
     public void PlaceSize() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("s");
         place.setDate(date2);
@@ -131,7 +136,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -148,7 +153,7 @@ public class QueueApplicationTests {
     public void DateNotNull() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("suranaree university");
         place.setDate(null);
@@ -159,7 +164,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -176,7 +181,7 @@ public class QueueApplicationTests {
     public void HourSize() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("suranaree university");
         place.setDate(date2);
@@ -187,7 +192,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -205,7 +210,7 @@ public class QueueApplicationTests {
     public void HourPositive() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("suranaree university");
         place.setDate(date2);
@@ -216,7 +221,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -234,7 +239,7 @@ public class QueueApplicationTests {
     public void TimeNotNull() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         place.setPlace("suranaree university");
         place.setDate(date2);
@@ -245,7 +250,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -262,7 +267,7 @@ public class QueueApplicationTests {
     public void TypeWorkNotNull() {
         LocalDate local2 = LocalDate.parse("2562-12-11");
         java.sql.Date date2 = java.sql.Date.valueOf(local2);
-        Time time = new Time(Integer.parseInt("10"),Integer.parseInt("00"),Integer.parseInt("00"));
+        Time time = new Time(Integer.parseInt("10"), Integer.parseInt("00"), Integer.parseInt("00"));
         Place place = new Place();
         Quere quere = new Quere();
         TypeWork typeWork = typeWorkRepository.findByTypeworkId(1L);
@@ -277,7 +282,7 @@ public class QueueApplicationTests {
             entityManager.flush();
 
             fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -289,4 +294,49 @@ public class QueueApplicationTests {
         }
 
     }
+
+    @Test
+    public void InviteCannotBeNull() {
+        TableWork tableWork = new TableWork();
+        tableWork.setInvite(null);
+        tableWork.setPrice(1300L);
+        tableWork.setTag("Wowwww");
+        try {
+            entityManager.persist(tableWork);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+            System.out.println();
+            System.out.println("----------> Invite notnull<--------------------");
+            System.out.println(e.getMessage());
+            System.out.println();
+            System.out.println();
+        }
+    }
+
+    @Test
+    public void StatusCannotBeNull() {
+        Status status = new Status();
+        status.setStatusQuere(null);
+        try {
+            entityManager.persist(status);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+            System.out.println();
+            System.out.println("----------> Status notnull<--------------------");
+            System.out.println(e.getMessage());
+            System.out.println();
+            System.out.println();
+        }
+    }
 }
+

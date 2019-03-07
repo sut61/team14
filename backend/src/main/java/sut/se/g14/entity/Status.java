@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -23,6 +24,7 @@ public class Status {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="status_seq")
     @Column(name="Status_ID")
     private @NonNull Long statusId;
+    @NotNull
     private @NonNull String statusQuere;
 
     public Long getStatusId() {
