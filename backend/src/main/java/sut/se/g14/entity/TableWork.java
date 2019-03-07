@@ -35,8 +35,7 @@ public class TableWork {
         @NotNull
         private @NonNull String tag;
 
-        @ManyToOne(fetch = FetchType.EAGER, targetEntity = Quere.class)
-        @JoinColumn(name = "Q_ID", insertable = true)
+        @OneToOne
         private Quere tableWorkQuere;
 
         @ManyToOne(fetch = FetchType.EAGER, targetEntity = Manager.class)
